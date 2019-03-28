@@ -13,6 +13,7 @@ class MapsController: UICollectionViewController, MKMapViewDelegate, CLLocationM
     
     private var locationManager: CLLocationManager!
     private var mapView: MKMapView!
+    private var rewe: GroceryShop!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,12 +40,12 @@ class MapsController: UICollectionViewController, MKMapViewDelegate, CLLocationM
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
         
+        rewe = GroceryShop(title: "Norma", locationName: "Heinrich-Grüber-Straße 86, 12621 Berlin", coordinate: CLLocationCoordinate2D(latitude: 52.519430, longitude: 13.597354))
+        mapView.addAnnotation(rewe)
+        
         if CLLocationManager.locationServicesEnabled() {
             locationManager.startUpdatingLocation()
         }
-        
-        let rewe = GroceryShop(title: "Norma", locationName: "Heinrich-Grüber-Straße 86, 12621 Berlin", coordinate: CLLocationCoordinate2D(latitude: 52.519430, longitude: 13.597354))
-        mapView.addAnnotation(rewe)
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -59,6 +60,36 @@ class MapsController: UICollectionViewController, MKMapViewDelegate, CLLocationM
         myAnnotation.coordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude)
         myAnnotation.title = "Dein Standort"
         mapView.addAnnotation(myAnnotation)
+        
+        let sourcePlacemark = MKPlacemark(coordinate: myAnnotation.coordinate)
+        let destinationPlacemark = MKPlacemark(coordinate: rewe.coordinate)
+        let directionRequest = MKDirections.Request()
+        directionRequest.source = MKMapItem(placemark: sourcePlacemark)
+        directionRequest.destination = MKMapItem(placemark: destinationPlacemark)
+        directionRequest.transportType = .automobile
+        
+        let directions = MKDirections(request: directionRequest)
+        directions.calculate { (response, error) in
+            guard let directionResponse = response else {
+                if let error = error {
+                    print("we have error getting locations=\(error.localizedDescription)")
+                }
+                return
+            }
+            
+            let route = directionResponse.routes[0]
+            self.mapView.addOverlay(route.polyline, level: .aboveRoads)
+            
+            let rect = route.polyline.boundingMapRect
+            self.mapView.setRegion(MKCoordinateRegion(rect), animated: true)
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        renderer.strokeColor = #colorLiteral(red: 0.9706280828, green: 0.3376097977, blue: 0.3618901968, alpha: 1)
+        renderer.lineWidth = 4.0
+        return renderer
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
