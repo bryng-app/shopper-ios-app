@@ -16,18 +16,26 @@ class BaseTabBarController: UITabBarController {
         tabBar.tintColor = .black
         
         viewControllers = [
-            createViewController(viewController: ProfileController(), title: "Profil", unfilledImageName: "contacts", filledImageName: "contacts-filled"),
+            createViewController(viewController: StoreController(), title: "Geschäfte", unfilledImageName: "shop", filledImageName: "shop-filled", hasNavController: true),
             createViewController(viewController: MapsController(), title: "Maps", unfilledImageName: "map-marker", filledImageName: "map-marker-filled"),
-            createViewController(viewController: UIViewController(), title: "Store", unfilledImageName: "shop", filledImageName: "shop-filled"),
+            createViewController(viewController: ProfileController(), title: "Profil", unfilledImageName: "contacts", filledImageName: "contacts-filled"),
         ]
     }
     
-    fileprivate func createViewController(viewController: UIViewController, title: String, unfilledImageName: String, filledImageName: String) -> UIViewController {
-        
+    fileprivate func createViewController(viewController: UIViewController, title: String, unfilledImageName: String, filledImageName: String, hasNavController: Bool = false) -> UIViewController {
         viewController.view.backgroundColor = .white
         viewController.tabBarItem.title = title
         viewController.tabBarItem.image = UIImage(named: unfilledImageName)
         viewController.tabBarItem.selectedImage = UIImage(named: filledImageName)
+        
+        if hasNavController {
+            let navController = UINavigationController(rootViewController: viewController)
+            navController.navigationBar.prefersLargeTitles = true
+            
+            viewController.navigationItem.title = title
+            return navController
+        }
+        
         return viewController
     }
     

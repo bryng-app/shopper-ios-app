@@ -54,7 +54,6 @@ class ProfileController: UICollectionViewController {
         
         view.addSubview(photoButton)
         let photoHeight = collectionView.bounds.height * 0.2
-        print(photoHeight)
         photoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         photoButton.widthAnchor.constraint(equalToConstant: photoHeight).isActive = true
         photoButton.heightAnchor.constraint(equalToConstant: photoHeight).isActive = true

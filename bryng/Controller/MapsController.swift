@@ -18,7 +18,7 @@ class MapsController: UICollectionViewController, MKMapViewDelegate, CLLocationM
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.backgroundColor = .yellow
+        collectionView.backgroundColor = .white
     }
     
     override func viewWillAppear(_ animated: Bool) {
