@@ -14,6 +14,8 @@
 		800E3F6D224AB3820030A61A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 800E3F6C224AB3820030A61A /* MapKit.framework */; };
 		800E3F6F224AB3A70030A61A /* MapsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E3F6E224AB3A70030A61A /* MapsController.swift */; };
 		802973BF224F57E900A362D6 /* StoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802973BE224F57E900A362D6 /* StoreController.swift */; };
+		808533B62255263D005BF967 /* GroceryShopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808533B52255263D005BF967 /* GroceryShopCell.swift */; };
+		808533B8225528EA005BF967 /* UILabel+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808533B7225528EA005BF967 /* UILabel+Layout.swift */; };
 		8089786C224A6724003DEF2B /* UIDevice+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8089786B224A6724003DEF2B /* UIDevice+Name.swift */; };
 		80A795882249090B00EF856A /* UISeperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A795872249090B00EF856A /* UISeperator.swift */; };
 		80B002712247E9BA00E92DDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B002702247E9BA00E92DDB /* AppDelegate.swift */; };
@@ -35,6 +37,8 @@
 		800E3F6E224AB3A70030A61A /* MapsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsController.swift; sourceTree = "<group>"; };
 		800E3F70224AB9B60030A61A /* berlin.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = berlin.gpx; sourceTree = "<group>"; };
 		802973BE224F57E900A362D6 /* StoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreController.swift; sourceTree = "<group>"; };
+		808533B52255263D005BF967 /* GroceryShopCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryShopCell.swift; sourceTree = "<group>"; };
+		808533B7225528EA005BF967 /* UILabel+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Layout.swift"; sourceTree = "<group>"; };
 		8089786B224A6724003DEF2B /* UIDevice+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Name.swift"; sourceTree = "<group>"; };
 		80A795872249090B00EF856A /* UISeperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISeperator.swift; sourceTree = "<group>"; };
 		80B0026D2247E9BA00E92DDB /* bryng.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bryng.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,6 +84,7 @@
 				800BBAAF2248155700110A0C /* UIStackView+Layout.swift */,
 				80A795872249090B00EF856A /* UISeperator.swift */,
 				8089786B224A6724003DEF2B /* UIDevice+Name.swift */,
+				808533B7225528EA005BF967 /* UILabel+Layout.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -90,6 +95,14 @@
 				800E3F6C224AB3820030A61A /* MapKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		808533B422552626005BF967 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				808533B52255263D005BF967 /* GroceryShopCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		80B002642247E9BA00E92DDB = {
@@ -113,6 +126,7 @@
 		80B0026F2247E9BA00E92DDB /* bryng */ = {
 			isa = PBXGroup;
 			children = (
+				808533B422552626005BF967 /* Views */,
 				80C6EC8C224BFF40008E6EA9 /* Model */,
 				800BBAAA22480C1B00110A0C /* Extensions */,
 				800BBAA722480A8D00110A0C /* Controller */,
@@ -214,8 +228,10 @@
 				800BBAA922480AB900110A0C /* ProfileController.swift in Sources */,
 				80B002862247E9D800E92DDB /* BaseTabBarController.swift in Sources */,
 				8089786C224A6724003DEF2B /* UIDevice+Name.swift in Sources */,
+				808533B8225528EA005BF967 /* UILabel+Layout.swift in Sources */,
 				800E3F6F224AB3A70030A61A /* MapsController.swift in Sources */,
 				80A795882249090B00EF856A /* UISeperator.swift in Sources */,
+				808533B62255263D005BF967 /* GroceryShopCell.swift in Sources */,
 				800BBAAC22480C4600110A0C /* UIView+Layout.swift in Sources */,
 				800BBAB02248155700110A0C /* UIStackView+Layout.swift in Sources */,
 				80B002792247E9BA00E92DDB /* bryng.xcdatamodeld in Sources */,
