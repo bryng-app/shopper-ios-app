@@ -18,18 +18,8 @@ class GroceryShopCell: UICollectionViewCell {
         return iv
     }()
     
-    let nameLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Store Name"
-        return label
-    }()
-    
-    let distanceLabel: UILabel = {
-        let label = UILabel()
-        label.text = "7.4km entfernt"
-        label.font = UIFont.systemFont(ofSize: 14)
-        return label
-    }()
+    let nameLabel = UILabel(text: "Store Name")
+    let distanceLabel = UILabel(text: "7.4km entfernt", font: .systemFont(ofSize: 14))
     
     let goToButton: UIButton = {
         let btn = UIButton(type: .system)
@@ -43,22 +33,33 @@ class GroceryShopCell: UICollectionViewCell {
         return btn
     }()
     
+    var didSelectHandler: ((String) -> ())? // TODO: Change to parsed object
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .green
+        backgroundColor = .white
+        layer.cornerRadius = 16
         
-        let labelsStackView = UIStackView(arrangedSubviews: [
+        let labelsStackView = VerticalStackView(arrangedSubviews: [
             nameLabel, distanceLabel
             ], spacing: 0)
         
         let stackView = UIStackView(arrangedSubviews: [
             imageView, labelsStackView, goToButton
-            ], spacing: 12, horizontal: true)
+            ])
         stackView.alignment = .center
+        stackView.spacing = 12
         
         addSubview(stackView)
         stackView.fillSuperview(padding: .init(top: 16, left: 24, bottom: 16, right: 24))
+        
+        goToButton.addTarget(self, action: #selector(onGoToButtonClick), for: .touchUpInside)
+    }
+    
+    @objc fileprivate func onGoToButtonClick() {
+        // TODO: On handle click, parse data
+        didSelectHandler?("bryng von STORE NAME")
     }
     
     required init?(coder aDecoder: NSCoder) {

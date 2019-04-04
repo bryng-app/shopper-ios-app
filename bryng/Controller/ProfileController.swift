@@ -60,16 +60,16 @@ class ProfileController: UICollectionViewController {
         photoButton.anchor(top: view.topAnchor, leading: nil, bottom: nil, trailing: nil, padding: .init(top: photoHeight / 2, left: 0, bottom: 0, right: 0))
         photoButton.layer.cornerRadius = photoHeight / 2
         
-        let stackView = UIStackView(arrangedSubviews: [
+        let stackView = VerticalStackView(arrangedSubviews: [
             UISeperator.create(),
-            UIStackView(arrangedSubviews: [
+            VerticalStackView(arrangedSubviews: [
                 ordersButton,
                 profileButton,
                 paymentMethodsButton,
                 inviteFriendsButton,
                 ], spacing: 6),
             UISeperator.create(),
-            UIStackView(arrangedSubviews: [
+            VerticalStackView(arrangedSubviews: [
                 socialMediaButton,
                 aboutUsButton,
                 ], spacing: 6),
