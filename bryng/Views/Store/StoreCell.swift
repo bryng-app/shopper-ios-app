@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GroceryShopCell: UICollectionViewCell {
+class StoreCell: UICollectionViewCell {
     
     let imageView: UIImageView = {
         let iv = UIImageView()
@@ -20,6 +20,7 @@ class GroceryShopCell: UICollectionViewCell {
     
     let nameLabel = UILabel(text: "Store Name")
     let distanceLabel = UILabel(text: "7.4km entfernt", font: .systemFont(ofSize: 14))
+    let openingHoursLabel = UILabel(text: "08-20 Uhr", font: .systemFont(ofSize: 14))
     
     let goToButton: UIButton = {
         let btn = UIButton(type: .system)
@@ -42,7 +43,7 @@ class GroceryShopCell: UICollectionViewCell {
         layer.cornerRadius = 16
         
         let labelsStackView = VerticalStackView(arrangedSubviews: [
-            nameLabel, distanceLabel
+            nameLabel, distanceLabel, openingHoursLabel
             ], spacing: 0)
         
         let stackView = UIStackView(arrangedSubviews: [

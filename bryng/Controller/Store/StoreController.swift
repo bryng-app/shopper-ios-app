@@ -19,7 +19,7 @@ class StoreController: UICollectionViewController, UICollectionViewDelegateFlowL
         
         collectionView.backgroundColor = #colorLiteral(red: 0.9415884067, green: 0.9415884067, blue: 0.9415884067, alpha: 1)
         
-        collectionView.register(GroceryShopCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.register(StoreCell.self, forCellWithReuseIdentifier: cellId)
         
         setupSearchBar()
     }
@@ -49,7 +49,7 @@ class StoreController: UICollectionViewController, UICollectionViewDelegateFlowL
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! GroceryShopCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! StoreCell
         
         // TODO: Set parsed data
         cell.didSelectHandler = { [weak self] storeName in
