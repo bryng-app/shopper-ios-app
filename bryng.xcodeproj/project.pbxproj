@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8006A9132257510500A83E0D /* StoreItemsFullscreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8006A9122257510500A83E0D /* StoreItemsFullscreenController.swift */; };
+		8006A9132257510500A83E0D /* StoreItemsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8006A9122257510500A83E0D /* StoreItemsController.swift */; };
 		800BBAA922480AB900110A0C /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800BBAA822480AB900110A0C /* ProfileController.swift */; };
 		800BBAAC22480C4600110A0C /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800BBAAB22480C4600110A0C /* UIView+Layout.swift */; };
 		800BBAAE2248122300110A0C /* UIButton+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800BBAAD2248122300110A0C /* UIButton+Layout.swift */; };
 		800E3F6D224AB3820030A61A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 800E3F6C224AB3820030A61A /* MapKit.framework */; };
 		800E3F6F224AB3A70030A61A /* MapsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E3F6E224AB3A70030A61A /* MapsController.swift */; };
+		801154422257D29200B00A66 /* StoreItemsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801154412257D29200B00A66 /* StoreItemsHeader.swift */; };
 		802973BF224F57E900A362D6 /* StoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802973BE224F57E900A362D6 /* StoreController.swift */; };
 		808533B62255263D005BF967 /* StoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808533B52255263D005BF967 /* StoreCell.swift */; };
 		8089786C224A6724003DEF2B /* UIDevice+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8089786B224A6724003DEF2B /* UIDevice+Name.swift */; };
@@ -32,13 +33,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8006A9122257510500A83E0D /* StoreItemsFullscreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemsFullscreenController.swift; sourceTree = "<group>"; };
+		8006A9122257510500A83E0D /* StoreItemsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemsController.swift; sourceTree = "<group>"; };
 		800BBAA822480AB900110A0C /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		800BBAAB22480C4600110A0C /* UIView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 		800BBAAD2248122300110A0C /* UIButton+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Layout.swift"; sourceTree = "<group>"; };
 		800E3F6C224AB3820030A61A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		800E3F6E224AB3A70030A61A /* MapsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsController.swift; sourceTree = "<group>"; };
 		800E3F70224AB9B60030A61A /* berlin.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = berlin.gpx; sourceTree = "<group>"; };
+		801154412257D29200B00A66 /* StoreItemsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemsHeader.swift; sourceTree = "<group>"; };
 		802973BE224F57E900A362D6 /* StoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreController.swift; sourceTree = "<group>"; };
 		808533B52255263D005BF967 /* StoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCell.swift; sourceTree = "<group>"; };
 		8089786B224A6724003DEF2B /* UIDevice+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Name.swift"; sourceTree = "<group>"; };
@@ -113,9 +115,8 @@
 		80AB976422566EB0002507B9 /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				80CE1B252257D42F00B20351 /* Category */,
 				802973BE224F57E900A362D6 /* StoreController.swift */,
-				80AB976622566EE6002507B9 /* StoreCategoryController.swift */,
-				8006A9122257510500A83E0D /* StoreItemsFullscreenController.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -123,7 +124,7 @@
 		80AB97682256740D002507B9 /* Store */ = {
 			isa = PBXGroup;
 			children = (
-				80AB976A22567425002507B9 /* StoreCategoryCell.swift */,
+				80CE1B262257D45700B20351 /* Category */,
 				808533B52255263D005BF967 /* StoreCell.swift */,
 			);
 			path = Store;
@@ -180,6 +181,24 @@
 				80C6EC8D224BFF55008E6EA9 /* GroceryShop.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		80CE1B252257D42F00B20351 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				80AB976622566EE6002507B9 /* StoreCategoryController.swift */,
+				8006A9122257510500A83E0D /* StoreItemsController.swift */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		80CE1B262257D45700B20351 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				80AB976A22567425002507B9 /* StoreCategoryCell.swift */,
+				801154412257D29200B00A66 /* StoreItemsHeader.swift */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,13 +288,14 @@
 				808533B62255263D005BF967 /* StoreCell.swift in Sources */,
 				800BBAAC22480C4600110A0C /* UIView+Layout.swift in Sources */,
 				80B002792247E9BA00E92DDB /* bryng.xcdatamodeld in Sources */,
-				8006A9132257510500A83E0D /* StoreItemsFullscreenController.swift in Sources */,
+				8006A9132257510500A83E0D /* StoreItemsController.swift in Sources */,
 				80B002732247E9BA00E92DDB /* ViewController.swift in Sources */,
 				80C6EC8E224BFF55008E6EA9 /* GroceryShop.swift in Sources */,
 				800BBAAE2248122300110A0C /* UIButton+Layout.swift in Sources */,
 				802973BF224F57E900A362D6 /* StoreController.swift in Sources */,
 				80B002712247E9BA00E92DDB /* AppDelegate.swift in Sources */,
 				80AB976B22567425002507B9 /* StoreCategoryCell.swift in Sources */,
+				801154422257D29200B00A66 /* StoreItemsHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

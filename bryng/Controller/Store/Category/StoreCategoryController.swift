@@ -45,7 +45,7 @@ class StoreCategoryController: UICollectionViewController, UICollectionViewDeleg
         return cell
     }
     
-    fileprivate var itemsFullscreenController: StoreItemsFullscreenController!
+    fileprivate var itemsController: StoreItemsController!
     
     var topConstraint: NSLayoutConstraint?
     var leadingConstraint: NSLayoutConstraint?
@@ -53,7 +53,7 @@ class StoreCategoryController: UICollectionViewController, UICollectionViewDeleg
     var heightConstraint: NSLayoutConstraint?
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let fullscreenController = StoreItemsFullscreenController()
+        let fullscreenController = StoreItemsController()
         let fullscreenView = fullscreenController.view!
         
         fullscreenView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleRemoveView)))
@@ -61,7 +61,7 @@ class StoreCategoryController: UICollectionViewController, UICollectionViewDeleg
         
         addChild(fullscreenController)
         
-        self.itemsFullscreenController = fullscreenController
+        self.itemsController = fullscreenController
         
         guard let cell = collectionView.cellForItem(at: indexPath) else { return }
         
@@ -113,7 +113,7 @@ class StoreCategoryController: UICollectionViewController, UICollectionViewDeleg
         
         }, completion: { _ in
             gesture.view?.removeFromSuperview()
-            self.itemsFullscreenController.removeFromParent()
+            self.itemsController.removeFromParent()
         })
     }
     
