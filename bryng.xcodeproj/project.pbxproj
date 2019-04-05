@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8006A9132257510500A83E0D /* StoreItemsFullscreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8006A9122257510500A83E0D /* StoreItemsFullscreenController.swift */; };
 		800BBAA922480AB900110A0C /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800BBAA822480AB900110A0C /* ProfileController.swift */; };
 		800BBAAC22480C4600110A0C /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800BBAAB22480C4600110A0C /* UIView+Layout.swift */; };
 		800BBAAE2248122300110A0C /* UIButton+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800BBAAD2248122300110A0C /* UIButton+Layout.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8006A9122257510500A83E0D /* StoreItemsFullscreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemsFullscreenController.swift; sourceTree = "<group>"; };
 		800BBAA822480AB900110A0C /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		800BBAAB22480C4600110A0C /* UIView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 		800BBAAD2248122300110A0C /* UIButton+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Layout.swift"; sourceTree = "<group>"; };
@@ -111,35 +113,20 @@
 		80AB976422566EB0002507B9 /* Store */ = {
 			isa = PBXGroup;
 			children = (
-				80AB976522566EC7002507B9 /* Category */,
 				802973BE224F57E900A362D6 /* StoreController.swift */,
+				80AB976622566EE6002507B9 /* StoreCategoryController.swift */,
+				8006A9122257510500A83E0D /* StoreItemsFullscreenController.swift */,
 			);
 			path = Store;
-			sourceTree = "<group>";
-		};
-		80AB976522566EC7002507B9 /* Category */ = {
-			isa = PBXGroup;
-			children = (
-				80AB976622566EE6002507B9 /* StoreCategoryController.swift */,
-			);
-			path = Category;
 			sourceTree = "<group>";
 		};
 		80AB97682256740D002507B9 /* Store */ = {
 			isa = PBXGroup;
 			children = (
-				80AB976922567414002507B9 /* Category */,
+				80AB976A22567425002507B9 /* StoreCategoryCell.swift */,
 				808533B52255263D005BF967 /* GroceryShopCell.swift */,
 			);
 			path = Store;
-			sourceTree = "<group>";
-		};
-		80AB976922567414002507B9 /* Category */ = {
-			isa = PBXGroup;
-			children = (
-				80AB976A22567425002507B9 /* StoreCategoryCell.swift */,
-			);
-			path = Category;
 			sourceTree = "<group>";
 		};
 		80AB977022567C87002507B9 /* Util */ = {
@@ -282,6 +269,7 @@
 				808533B62255263D005BF967 /* GroceryShopCell.swift in Sources */,
 				800BBAAC22480C4600110A0C /* UIView+Layout.swift in Sources */,
 				80B002792247E9BA00E92DDB /* bryng.xcdatamodeld in Sources */,
+				8006A9132257510500A83E0D /* StoreItemsFullscreenController.swift in Sources */,
 				80B002732247E9BA00E92DDB /* ViewController.swift in Sources */,
 				80C6EC8E224BFF55008E6EA9 /* GroceryShop.swift in Sources */,
 				800BBAAE2248122300110A0C /* UIButton+Layout.swift in Sources */,
