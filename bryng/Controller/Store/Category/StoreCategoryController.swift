@@ -53,30 +53,30 @@ class StoreCategoryController: UICollectionViewController, UICollectionViewDeleg
     var heightConstraint: NSLayoutConstraint?
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let fullscreenController = StoreItemsController()
-        fullscreenController.dismissHandler = {
+        let storeItemsController = StoreItemsController()
+        storeItemsController.dismissHandler = {
             self.handleRemoveView()
         }
         
-        let fullscreenView = fullscreenController.view!
-        view.addSubview(fullscreenView)
+        let storeItemsView = storeItemsController.view!
+        view.addSubview(storeItemsView)
         
-        addChild(fullscreenController)
+        addChild(storeItemsController)
         
-        self.itemsController = fullscreenController
+        self.itemsController = storeItemsController
         
         guard let cell = collectionView.cellForItem(at: indexPath) else { return }
         
         guard let startingFrame = cell.superview?.convert(cell.frame, to: nil) else { return }
         
         self.startingFrame = startingFrame
-        fullscreenView.layer.cornerRadius = 16
+        storeItemsView.layer.cornerRadius = 16
         
-        fullscreenView.translatesAutoresizingMaskIntoConstraints = false
-        topConstraint = fullscreenView.topAnchor.constraint(equalTo: view.topAnchor, constant: startingFrame.origin.y)
-        leadingConstraint = fullscreenView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: startingFrame.origin.x)
-        widthConstraint = fullscreenView.widthAnchor.constraint(equalToConstant: startingFrame.width)
-        heightConstraint = fullscreenView.heightAnchor.constraint(equalToConstant: startingFrame.height)
+        storeItemsView.translatesAutoresizingMaskIntoConstraints = false
+        topConstraint = storeItemsView.topAnchor.constraint(equalTo: view.topAnchor, constant: startingFrame.origin.y)
+        leadingConstraint = storeItemsView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: startingFrame.origin.x)
+        widthConstraint = storeItemsView.widthAnchor.constraint(equalToConstant: startingFrame.width)
+        heightConstraint = storeItemsView.heightAnchor.constraint(equalToConstant: startingFrame.height)
         
         [topConstraint, leadingConstraint, widthConstraint, heightConstraint].forEach({$0?.isActive = true})
         self.view.layoutIfNeeded()
