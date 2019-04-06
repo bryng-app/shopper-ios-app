@@ -54,9 +54,11 @@ class StoreCategoryController: UICollectionViewController, UICollectionViewDeleg
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let fullscreenController = StoreItemsController()
-        let fullscreenView = fullscreenController.view!
+        fullscreenController.dismissHandler = {
+            self.handleRemoveView()
+        }
         
-        fullscreenView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleRemoveView)))
+        let fullscreenView = fullscreenController.view!
         view.addSubview(fullscreenView)
         
         addChild(fullscreenController)
@@ -96,7 +98,7 @@ class StoreCategoryController: UICollectionViewController, UICollectionViewDeleg
     
     fileprivate var startingFrame: CGRect?
     
-    @objc fileprivate func handleRemoveView(gesture: UITapGestureRecognizer) {
+    @objc fileprivate func handleRemoveView() {
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
             
             guard let startingFrame = self.startingFrame else { return }
@@ -112,7 +114,7 @@ class StoreCategoryController: UICollectionViewController, UICollectionViewDeleg
             self.tabBarController?.tabBar.transform = .identity
         
         }, completion: { _ in
-            gesture.view?.removeFromSuperview()
+            self.itemsController.view.removeFromSuperview()
             self.itemsController.removeFromParent()
         })
     }

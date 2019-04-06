@@ -12,18 +12,26 @@ class StoreItemsController: UICollectionViewController, UICollectionViewDelegate
     
     fileprivate let headerId = "headerId"
     
+    var dismissHandler: (() -> ())?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.backgroundColor = .green
+        collectionView.backgroundColor = .white
         
         collectionView.register(StoreItemsHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath)
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! StoreItemsHeader
+        header.closeButton.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
         return header
+    }
+    
+    @objc fileprivate func handleDismiss(button: UIButton) {
+        button.isHidden = true
+        dismissHandler?()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
