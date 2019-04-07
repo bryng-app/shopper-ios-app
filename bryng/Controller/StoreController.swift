@@ -59,6 +59,7 @@ class StoreController: UICollectionViewController, UICollectionViewDelegateFlowL
         storeHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as? StoreHeaderView
         
         storeHeaderView?.handleDismiss = { [weak self] in
+            self?.storeHeaderView?.animator.stopAnimation(true)
             self?.navigationController?.setNavigationBarHidden(false, animated: false)
             self?.navigationController?.popViewController(animated: true)
         }

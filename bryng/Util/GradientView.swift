@@ -25,7 +25,7 @@ class GradientView: UIView {
         guard let theLayer = self.layer as? CAGradientLayer else { return }
         
         theLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
-        theLayer.locations = [0.5, 1.0]
+        theLayer.locations = [0.5, 1.1]
         theLayer.frame = bounds
     }
     

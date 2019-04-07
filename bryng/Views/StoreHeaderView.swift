@@ -36,7 +36,6 @@ class StoreHeaderView: UICollectionReusableView {
         let gradientView = GradientView(frame: imageView.bounds)
         addSubview(gradientView)
         gradientView.fillSuperview()
-    
         setupVisualEffectBlur()
         
         addSubview(backButton)
@@ -62,12 +61,13 @@ class StoreHeaderView: UICollectionReusableView {
     var animator: UIViewPropertyAnimator!
     
     fileprivate func setupVisualEffectBlur() {
-        animator = UIViewPropertyAnimator(duration: 3.0, curve: .linear, animations: { [weak self] in
-            let blurEffect = UIBlurEffect(style: .regular)
-            let visualEffectView = UIVisualEffectView(effect: blurEffect)
-            
-            // self?.addSubview(visualEffectView)
-            // visualEffectView.fillSuperview()
+        let visualEffectView = UIVisualEffectView(effect: nil)
+        
+        addSubview(visualEffectView)
+        visualEffectView.fillSuperview()
+        
+        animator = UIViewPropertyAnimator(duration: 3.0, curve: .linear, animations: {
+            visualEffectView.effect = UIBlurEffect(style: .regular)
         })
     }
     
