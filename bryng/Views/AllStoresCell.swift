@@ -1,5 +1,5 @@
 //
-//  GroceryShopCell.swift
+//  AllStoresCell.swift
 //  bryng
 //
 //  Created by Florian Woelki on 03.04.19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StoreCell: UICollectionViewCell {
+class AllStoresCell: UICollectionViewCell {
     
     let imageView: UIImageView = {
         let iv = UIImageView()

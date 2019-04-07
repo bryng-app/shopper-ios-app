@@ -1,5 +1,5 @@
 //
-//  StoreController.swift
+//  AllStoresController.swift
 //  bryng
 //
 //  Created by Florian Woelki on 30.03.19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StoreController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
+class AllStoresController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
     
     fileprivate let searchController = UISearchController(searchResultsController: nil)
     
@@ -19,7 +19,7 @@ class StoreController: UICollectionViewController, UICollectionViewDelegateFlowL
         
         collectionView.backgroundColor = #colorLiteral(red: 0.9415884067, green: 0.9415884067, blue: 0.9415884067, alpha: 1)
         
-        collectionView.register(StoreCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.register(AllStoresCell.self, forCellWithReuseIdentifier: cellId)
         
         setupSearchBar()
     }
@@ -49,12 +49,12 @@ class StoreController: UICollectionViewController, UICollectionViewDelegateFlowL
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! StoreCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! AllStoresCell
         
         // TODO: Set parsed data
         cell.didSelectHandler = { [weak self] storeName in
-            let storeShoppingController = StoreCategoryController(storeName: storeName)
-            self?.navigationController?.pushViewController(storeShoppingController, animated: true)
+            let storeController = StoreController()
+            self?.navigationController?.pushViewController(storeController, animated: true)
         }
         
         return cell
