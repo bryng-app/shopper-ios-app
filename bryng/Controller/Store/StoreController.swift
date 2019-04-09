@@ -22,7 +22,6 @@ class StoreController: UICollectionViewController, UICollectionViewDelegateFlowL
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.prefersLargeTitles = false
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
@@ -53,7 +52,6 @@ class StoreController: UICollectionViewController, UICollectionViewDelegateFlowL
         
         storeHeaderView?.handleDismiss = { [weak self] in
             self?.storeHeaderView?.animator.stopAnimation(true)
-            self?.navigationController?.navigationBar.prefersLargeTitles = true
             self?.navigationController?.setNavigationBarHidden(false, animated: false)
             self?.navigationController?.popViewController(animated: true)
         }

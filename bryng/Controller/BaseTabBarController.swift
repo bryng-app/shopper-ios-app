@@ -30,8 +30,6 @@ class BaseTabBarController: UITabBarController {
         
         if hasNavController {
             let navController = UINavigationController(rootViewController: viewController)
-            navController.navigationBar.prefersLargeTitles = true
-            
             viewController.navigationItem.title = title
             return navController
         }
