@@ -17,7 +17,6 @@ class StoreController: UICollectionViewController, UICollectionViewDelegateFlowL
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupCollectionViewLayout()
         setupCollectionView()
     }
     
@@ -27,18 +26,11 @@ class StoreController: UICollectionViewController, UICollectionViewDelegateFlowL
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
-    fileprivate func setupCollectionViewLayout() {
-        if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.sectionInset = .init(top: padding, left: padding, bottom: padding, right: padding)
-        }
-    }
-    
     fileprivate func setupCollectionView() {
         collectionView.backgroundColor = .white
         collectionView.contentInsetAdjustmentBehavior = .never
         
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
-        
+        collectionView.register(StoreItemsGroupCell.self, forCellWithReuseIdentifier: cellId)
         collectionView.register(StoreHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
     }
     
@@ -75,19 +67,23 @@ class StoreController: UICollectionViewController, UICollectionViewDelegateFlowL
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 18
+        return 3
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-        cell.backgroundColor = .black
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return .init(width: view.frame.width - 2 * padding, height: 50)
+        return .init(width: view.frame.width, height: 300)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        return .init(top: 16, left: 0, bottom: 0, right: 0)
     }
     
     init() {

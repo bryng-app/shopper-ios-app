@@ -25,11 +25,16 @@
 		80B0027B2247E9BC00E92DDB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80B0027A2247E9BC00E92DDB /* Assets.xcassets */; };
 		80B0027E2247E9BC00E92DDB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80B0027C2247E9BC00E92DDB /* LaunchScreen.storyboard */; };
 		80B002862247E9D800E92DDB /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B002852247E9D800E92DDB /* BaseTabBarController.swift */; };
+		80C62976225CF02B00B943E1 /* StoreItemRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C62975225CF02B00B943E1 /* StoreItemRowCell.swift */; };
+		80C62978225CF2D200B943E1 /* HorizontalSnappingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C62977225CF2D200B943E1 /* HorizontalSnappingController.swift */; };
+		80C6297A225CF9BF00B943E1 /* SnappingLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C62979225CF9BF00B943E1 /* SnappingLayout.swift */; };
 		80C6EC8E224BFF55008E6EA9 /* GroceryShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C6EC8D224BFF55008E6EA9 /* GroceryShop.swift */; };
 		80CE1B282258EBC900B20351 /* StoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE1B272258EBC900B20351 /* StoreController.swift */; };
 		80CE1B2A2258ED2000B20351 /* StoreHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE1B292258ED2000B20351 /* StoreHeaderView.swift */; };
 		80CE1B2C2258F07300B20351 /* StoreHeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE1B2B2258F07300B20351 /* StoreHeaderLayout.swift */; };
 		80CE1B302259F82000B20351 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE1B2F2259F82000B20351 /* GradientView.swift */; };
+		80DE5EBD225CEC5400A4C175 /* StoreItemsGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DE5EBC225CEC5400A4C175 /* StoreItemsGroupCell.swift */; };
+		80DE5EBF225CED5400A4C175 /* StoreItemsHorizontalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DE5EBE225CED5400A4C175 /* StoreItemsHorizontalController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,11 +59,16 @@
 		80B0027D2247E9BC00E92DDB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		80B0027F2247E9BC00E92DDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80B002852247E9D800E92DDB /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
+		80C62975225CF02B00B943E1 /* StoreItemRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemRowCell.swift; sourceTree = "<group>"; };
+		80C62977225CF2D200B943E1 /* HorizontalSnappingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSnappingController.swift; sourceTree = "<group>"; };
+		80C62979225CF9BF00B943E1 /* SnappingLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnappingLayout.swift; sourceTree = "<group>"; };
 		80C6EC8D224BFF55008E6EA9 /* GroceryShop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryShop.swift; sourceTree = "<group>"; };
 		80CE1B272258EBC900B20351 /* StoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreController.swift; sourceTree = "<group>"; };
 		80CE1B292258ED2000B20351 /* StoreHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreHeaderView.swift; sourceTree = "<group>"; };
 		80CE1B2B2258F07300B20351 /* StoreHeaderLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreHeaderLayout.swift; sourceTree = "<group>"; };
 		80CE1B2F2259F82000B20351 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		80DE5EBC225CEC5400A4C175 /* StoreItemsGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemsGroupCell.swift; sourceTree = "<group>"; };
+		80DE5EBE225CED5400A4C175 /* StoreItemsHorizontalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemsHorizontalController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,11 +86,12 @@
 		800BBAA722480A8D00110A0C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				80DE5EBA225CEBB300A4C175 /* Store */,
 				802973BE224F57E900A362D6 /* AllStoresController.swift */,
 				80B002852247E9D800E92DDB /* BaseTabBarController.swift */,
 				800BBAA822480AB900110A0C /* ProfileController.swift */,
 				800E3F6E224AB3A70030A61A /* MapsController.swift */,
-				80CE1B272258EBC900B20351 /* StoreController.swift */,
+				80C62977225CF2D200B943E1 /* HorizontalSnappingController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -108,6 +119,7 @@
 		808533B422552626005BF967 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				80DE5EBB225CEC4400A4C175 /* Store */,
 				808533B52255263D005BF967 /* AllStoresCell.swift */,
 				80CE1B292258ED2000B20351 /* StoreHeaderView.swift */,
 			);
@@ -120,6 +132,7 @@
 				80AB976E22567C80002507B9 /* VerticalStackView.swift */,
 				80CE1B2B2258F07300B20351 /* StoreHeaderLayout.swift */,
 				80CE1B2F2259F82000B20351 /* GradientView.swift */,
+				80C62979225CF9BF00B943E1 /* SnappingLayout.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -167,6 +180,24 @@
 				80C6EC8D224BFF55008E6EA9 /* GroceryShop.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		80DE5EBA225CEBB300A4C175 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				80CE1B272258EBC900B20351 /* StoreController.swift */,
+				80DE5EBE225CED5400A4C175 /* StoreItemsHorizontalController.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		80DE5EBB225CEC4400A4C175 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				80DE5EBC225CEC5400A4C175 /* StoreItemsGroupCell.swift */,
+				80C62975225CF02B00B943E1 /* StoreItemRowCell.swift */,
+			);
+			path = Store;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,6 +281,7 @@
 				800BBAA922480AB900110A0C /* ProfileController.swift in Sources */,
 				80CE1B282258EBC900B20351 /* StoreController.swift in Sources */,
 				80AB976F22567C80002507B9 /* VerticalStackView.swift in Sources */,
+				80DE5EBD225CEC5400A4C175 /* StoreItemsGroupCell.swift in Sources */,
 				80B002862247E9D800E92DDB /* BaseTabBarController.swift in Sources */,
 				8089786C224A6724003DEF2B /* UIDevice+Name.swift in Sources */,
 				80AB976D22567561002507B9 /* UILabel.swift in Sources */,
@@ -258,11 +290,15 @@
 				80A795882249090B00EF856A /* UISeperator.swift in Sources */,
 				808533B62255263D005BF967 /* AllStoresCell.swift in Sources */,
 				800BBAAC22480C4600110A0C /* UIView+Layout.swift in Sources */,
+				80C6297A225CF9BF00B943E1 /* SnappingLayout.swift in Sources */,
 				80B002792247E9BA00E92DDB /* bryng.xcdatamodeld in Sources */,
 				80B002732247E9BA00E92DDB /* ViewController.swift in Sources */,
 				80C6EC8E224BFF55008E6EA9 /* GroceryShop.swift in Sources */,
+				80DE5EBF225CED5400A4C175 /* StoreItemsHorizontalController.swift in Sources */,
 				80CE1B2A2258ED2000B20351 /* StoreHeaderView.swift in Sources */,
+				80C62976225CF02B00B943E1 /* StoreItemRowCell.swift in Sources */,
 				800BBAAE2248122300110A0C /* UIButton+Layout.swift in Sources */,
+				80C62978225CF2D200B943E1 /* HorizontalSnappingController.swift in Sources */,
 				802973BF224F57E900A362D6 /* AllStoresController.swift in Sources */,
 				80B002712247E9BA00E92DDB /* AppDelegate.swift in Sources */,
 			);
