@@ -9,6 +9,8 @@
 import UIKit
 
 class StoreItemRowCell: UICollectionViewCell {
+
+    var didAddItemToCart: (() -> ())?
     
     let imageView: UIImageView = {
         let iv = UIImageView()
@@ -33,6 +35,7 @@ class StoreItemRowCell: UICollectionViewCell {
         getButton.constrainWidth(constant: 80)
         getButton.constrainHeight(constant: 32)
         getButton.layer.cornerRadius = 32 / 2
+        getButton.addTarget(self, action: #selector(onAddItemToCart), for: .touchUpInside)
         
         let stackView = UIStackView(arrangedSubviews: [
             imageView,
@@ -45,6 +48,10 @@ class StoreItemRowCell: UICollectionViewCell {
         
         addSubview(stackView)
         stackView.fillSuperview()
+    }
+    
+    @objc fileprivate func onAddItemToCart() {
+        didAddItemToCart?()
     }
     
     required init?(coder aDecoder: NSCoder) {

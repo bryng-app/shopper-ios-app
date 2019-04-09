@@ -8,16 +8,30 @@
 
 import UIKit
 
+let addItemToCartNotificationKey = "app.bryng.addItemToCart"
+
 class StoreController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     fileprivate let cellId = "cellId"
     fileprivate let headerId = "headerId"
     fileprivate let padding: CGFloat = 16
     
+    fileprivate let addItemToCart = Notification.Name(rawValue: addItemToCartNotificationKey)
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupCollectionView()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(StoreController.addItemToCart(notification:)), name: addItemToCart, object: nil)
+    }
+    
+    @objc func addItemToCart(notification: NSNotification) {
+        storeHeaderView?.addItemToCart()
     }
     
     override func viewWillAppear(_ animated: Bool) {

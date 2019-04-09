@@ -70,6 +70,13 @@ class StoreHeaderView: UICollectionReusableView {
         handleDismiss?()
     }
     
+    func addItemToCart() {
+        // .badge not working.. causing layout bug
+        var cartItemsCount = Int(cartButton.badgeLabel.text ?? "0") ?? 0
+        cartItemsCount += 1
+        cartButton.badgeLabel.text = "\(String(cartItemsCount))"
+    }
+    
     var animator: UIViewPropertyAnimator!
     
     fileprivate func setupVisualEffectBlur() {

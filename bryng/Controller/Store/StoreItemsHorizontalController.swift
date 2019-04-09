@@ -27,7 +27,11 @@ class StoreItemsHorizontalController: HorizontalSnappingController, UICollection
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! StoreItemRowCell
+        cell.didAddItemToCart = {
+            let name = Notification.Name(rawValue: addItemToCartNotificationKey)
+            NotificationCenter.default.post(name: name, object: nil)
+        }
         return cell
     }
     
