@@ -25,6 +25,13 @@ class StoreHeaderView: UICollectionReusableView {
         return btn
     }()
     
+    let cartButton: BadgeButton = {
+        let btn = BadgeButton()
+        btn.setImage(#imageLiteral(resourceName: "shopping-cart").withRenderingMode(.alwaysTemplate), for: .normal)
+        btn.tintColor = .white
+        return btn
+    }()
+    
     let informationLabel = UILabel()
     
     override init(frame: CGRect) {
@@ -52,6 +59,11 @@ class StoreHeaderView: UICollectionReusableView {
         attributedText.append(NSAttributedString(string: "\nAlle Produkte", attributes: [.font: UIFont.systemFont(ofSize: 20, weight: .regular)]))
         
         informationLabel.attributedText = attributedText
+        
+        addSubview(cartButton)
+        cartButton.anchor(top: nil, leading: nil, bottom: imageView.bottomAnchor, trailing: imageView.trailingAnchor, padding: .init(top: 0, left: 0, bottom: 20, right: 28))
+        cartButton.badgeEdgeInsets = UIEdgeInsets(top: 16, left: 28, bottom: 0, right: 0)
+        cartButton.badge = "0"
     }
     
     @objc fileprivate func handleCloseButton() {

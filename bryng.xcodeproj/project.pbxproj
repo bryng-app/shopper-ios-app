@@ -28,6 +28,7 @@
 		80C62976225CF02B00B943E1 /* StoreItemRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C62975225CF02B00B943E1 /* StoreItemRowCell.swift */; };
 		80C62978225CF2D200B943E1 /* HorizontalSnappingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C62977225CF2D200B943E1 /* HorizontalSnappingController.swift */; };
 		80C6297A225CF9BF00B943E1 /* SnappingLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C62979225CF9BF00B943E1 /* SnappingLayout.swift */; };
+		80C6297C225D22AD00B943E1 /* BadgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C6297B225D22AD00B943E1 /* BadgeButton.swift */; };
 		80C6EC8E224BFF55008E6EA9 /* GroceryShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C6EC8D224BFF55008E6EA9 /* GroceryShop.swift */; };
 		80CE1B282258EBC900B20351 /* StoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE1B272258EBC900B20351 /* StoreController.swift */; };
 		80CE1B2A2258ED2000B20351 /* StoreHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE1B292258ED2000B20351 /* StoreHeaderView.swift */; };
@@ -62,6 +63,7 @@
 		80C62975225CF02B00B943E1 /* StoreItemRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemRowCell.swift; sourceTree = "<group>"; };
 		80C62977225CF2D200B943E1 /* HorizontalSnappingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSnappingController.swift; sourceTree = "<group>"; };
 		80C62979225CF9BF00B943E1 /* SnappingLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnappingLayout.swift; sourceTree = "<group>"; };
+		80C6297B225D22AD00B943E1 /* BadgeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeButton.swift; sourceTree = "<group>"; };
 		80C6EC8D224BFF55008E6EA9 /* GroceryShop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryShop.swift; sourceTree = "<group>"; };
 		80CE1B272258EBC900B20351 /* StoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreController.swift; sourceTree = "<group>"; };
 		80CE1B292258ED2000B20351 /* StoreHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreHeaderView.swift; sourceTree = "<group>"; };
@@ -121,7 +123,6 @@
 			children = (
 				80DE5EBB225CEC4400A4C175 /* Store */,
 				808533B52255263D005BF967 /* AllStoresCell.swift */,
-				80CE1B292258ED2000B20351 /* StoreHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -133,6 +134,7 @@
 				80CE1B2B2258F07300B20351 /* StoreHeaderLayout.swift */,
 				80CE1B2F2259F82000B20351 /* GradientView.swift */,
 				80C62979225CF9BF00B943E1 /* SnappingLayout.swift */,
+				80C6297B225D22AD00B943E1 /* BadgeButton.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -196,6 +198,7 @@
 			children = (
 				80DE5EBC225CEC5400A4C175 /* StoreItemsGroupCell.swift */,
 				80C62975225CF02B00B943E1 /* StoreItemRowCell.swift */,
+				80CE1B292258ED2000B20351 /* StoreHeaderView.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				800E3F6F224AB3A70030A61A /* MapsController.swift in Sources */,
 				80A795882249090B00EF856A /* UISeperator.swift in Sources */,
 				808533B62255263D005BF967 /* AllStoresCell.swift in Sources */,
+				80C6297C225D22AD00B943E1 /* BadgeButton.swift in Sources */,
 				800BBAAC22480C4600110A0C /* UIView+Layout.swift in Sources */,
 				80C6297A225CF9BF00B943E1 /* SnappingLayout.swift in Sources */,
 				80B002792247E9BA00E92DDB /* bryng.xcdatamodeld in Sources */,
