@@ -18,25 +18,27 @@ class StoreItemRowCell: UICollectionViewCell {
         return iv
     }()
     
-    let nameLabel = UILabel(text: "Item Name", font: .systemFont(ofSize: 20))
+    let priceLabel = UILabel(text: "0,15€ je", font: .systemFont(ofSize: 20))
+    let nameLabel = UILabel(text: "Apfel", font: .systemFont(ofSize: 15))
     
     let getButton: UIButton = {
         let btn = UIButton(type: .system)
-        btn.setTitle("Einkaufen", for: .normal)
+        btn.setImage(#imageLiteral(resourceName: "add"), for: .normal)
         return btn
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        getButton.backgroundColor = UIColor(white: 0.95, alpha: 1)
         getButton.constrainWidth(constant: 80)
         getButton.constrainHeight(constant: 32)
-        getButton.titleLabel?.font = .boldSystemFont(ofSize: 16)
         getButton.layer.cornerRadius = 32 / 2
         
         let stackView = UIStackView(arrangedSubviews: [
-            imageView, nameLabel, getButton
+            imageView,
+            VerticalStackView(arrangedSubviews: [
+                priceLabel, nameLabel], spacing: 4),
+            getButton
             ])
         stackView.spacing = 16
         stackView.alignment = .center
