@@ -45,7 +45,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     }
     
     fileprivate func checkLocationServices() {
-        if !CLLocationManager.locationServicesEnabled() {
+        if CLLocationManager.locationServicesEnabled() {
             setupLocationManager()
         } else {
             AlertUtil.showAlert(viewController: self, title: "Bitte beachten!", message: "Die App funktioniert nicht richtig, wenn die Standortlokalisierung deaktiviert ist")

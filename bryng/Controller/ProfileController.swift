@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileController: UICollectionViewController {
+class ProfileController: BaseViewController {
     
     let photoButton: UIButton = {
         let button = UIButton(type: .system)
@@ -77,14 +77,6 @@ class ProfileController: UICollectionViewController {
             ], spacing: stackViewSpacing)
         view.addSubview(stackView)
         stackView.anchor(top: photoButton.bottomAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 32, left: 64, bottom: 0, right: 64))
-    }
-    
-    init() {
-        super.init(collectionViewLayout: UICollectionViewFlowLayout())
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
 }

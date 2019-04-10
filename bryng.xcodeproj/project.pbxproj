@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8009AEC4225DEA6C00917602 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8009AEC3225DEA6C00917602 /* MapController.swift */; };
 		8009AEC6225E6E9A00917602 /* AlertUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8009AEC5225E6E9A00917602 /* AlertUtil.swift */; };
+		8009AEC8225E70CB00917602 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8009AEC7225E70CB00917602 /* BaseViewController.swift */; };
 		800BBAA922480AB900110A0C /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800BBAA822480AB900110A0C /* ProfileController.swift */; };
 		800BBAAC22480C4600110A0C /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800BBAAB22480C4600110A0C /* UIView+Layout.swift */; };
 		800BBAAE2248122300110A0C /* UIButton+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800BBAAD2248122300110A0C /* UIButton+Layout.swift */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		8009AEC3225DEA6C00917602 /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		8009AEC5225E6E9A00917602 /* AlertUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertUtil.swift; sourceTree = "<group>"; };
+		8009AEC7225E70CB00917602 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		800BBAA822480AB900110A0C /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		800BBAAB22480C4600110A0C /* UIView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 		800BBAAD2248122300110A0C /* UIButton+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Layout.swift"; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				800E3F6E224AB3A70030A61A /* MapsController.swift */,
 				80C62977225CF2D200B943E1 /* HorizontalSnappingController.swift */,
 				8009AEC3225DEA6C00917602 /* MapController.swift */,
+				8009AEC7225E70CB00917602 /* BaseViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				80CE1B282258EBC900B20351 /* StoreController.swift in Sources */,
 				80AB976F22567C80002507B9 /* VerticalStackView.swift in Sources */,
 				80DE5EBD225CEC5400A4C175 /* StoreItemsGroupCell.swift in Sources */,
+				8009AEC8225E70CB00917602 /* BaseViewController.swift in Sources */,
 				80B002862247E9D800E92DDB /* BaseTabBarController.swift in Sources */,
 				8089786C224A6724003DEF2B /* UIDevice+Name.swift in Sources */,
 				80AB976D22567561002507B9 /* UILabel.swift in Sources */,

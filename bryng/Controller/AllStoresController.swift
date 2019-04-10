@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AllStoresController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
+class AllStoresController: BaseViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
     
     fileprivate let searchController = UISearchController(searchResultsController: nil)
     
@@ -62,14 +62,6 @@ class AllStoresController: UICollectionViewController, UICollectionViewDelegateF
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print(searchText)
-    }
-    
-    init() {
-        super.init(collectionViewLayout: UICollectionViewFlowLayout())
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
 }
