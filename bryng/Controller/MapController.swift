@@ -45,10 +45,10 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     }
     
     fileprivate func checkLocationServices() {
-        if CLLocationManager.locationServicesEnabled() {
+        if !CLLocationManager.locationServicesEnabled() {
             setupLocationManager()
         } else {
-            // TODO: Show alert
+            AlertUtil.showAlert(viewController: self, title: "Bitte beachten!", message: "Die App funktioniert nicht richtig, wenn die Standortlokalisierung deaktiviert ist")
         }
     }
     
@@ -60,13 +60,13 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             locationManager.startUpdatingLocation()
             break
         case .denied:
-            // TODO: Show alert
+            AlertUtil.showAlert(viewController: self, title: "Bitte beachten!", message: "Die App funktioniert nicht richtig, wenn die Standortlokalisierung deaktiviert ist")
             break
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
             break
         case .restricted:
-            // TODO: Show alert
+            AlertUtil.showAlert(viewController: self, title: "Bitte beachten!", message: "Die App funktioniert nicht richtig, wenn die Standortlokalisierung deaktiviert ist")
             break
         case .authorizedAlways:
             break
@@ -76,7 +76,10 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     }
     
     fileprivate func getDirections() {
-        guard let location = locationManager.location?.coordinate else { return } // TODO: Alert user no location
+        guard let location = locationManager.location?.coordinate else {
+            AlertUtil.showAlert(viewController: self, title: "Achtung!", message: "Es wurde keine Location für dich gefunden. Bitte starte die App neu!")
+            return
+        }
         
         let request = createDirectionsRequest(from: location)
         let directions = MKDirections(request: request)
@@ -88,7 +91,10 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
                 return
             }
             
-            guard let response = response else { return } // TODO: Show response not available in alert
+            guard let response = response else {
+                AlertUtil.showAlert(viewController: self, title: "Achtung!", message: "Es wurde keine Route gefunden.")
+                return
+            }
             
             for route in response.routes {
                 self.mapView.addOverlay(route.polyline)
@@ -125,12 +131,11 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else { return }
-        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-        mapView.setRegion(region, animated: true)
-        
         if tempBool {
+            guard let location = locations.last else { return }
+            let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+            let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
+            mapView.setRegion(region, animated: true)
             getDirections()
             tempBool = false
         }
