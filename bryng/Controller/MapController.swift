@@ -100,7 +100,19 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
                 self.mapView.addOverlay(route.polyline)
                 self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
             }
+            
+            self.addDirectionsAnnotations(userLocation: location)
         }
+    }
+    
+    fileprivate func addDirectionsAnnotations(userLocation: CLLocationCoordinate2D) {
+        let userAnnotation = MKPointAnnotation()
+        userAnnotation.coordinate = userLocation
+        userAnnotation.title = "Startpunkt"
+        mapView.addAnnotation(userAnnotation)
+        
+        let rewe = GroceryShop(title: "Norma", locationName: "Heinrich-Grüber-Straße 86, 12621 Berlin", coordinate: CLLocationCoordinate2D(latitude: 52.519430, longitude: 13.597354))
+        mapView.addAnnotation(rewe)
     }
     
     fileprivate func createDirectionsRequest(from coordinate: CLLocationCoordinate2D) -> MKDirections.Request {
