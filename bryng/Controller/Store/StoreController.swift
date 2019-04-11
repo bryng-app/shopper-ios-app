@@ -70,6 +70,18 @@ class StoreController: UICollectionViewController, UICollectionViewDelegateFlowL
             self?.navigationController?.popViewController(animated: true)
         }
         
+        storeHeaderView?.didClickCartButton = { [weak self] in
+            self?.storeHeaderView?.animator.stopAnimation(true)
+            
+            let transition: CATransition = CATransition()
+            transition.duration = 0.5
+            transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+            transition.type = CATransitionType.push
+            transition.subtype = CATransitionSubtype.fromTop
+            self?.navigationController!.view.layer.add(transition, forKey: kCATransition)
+            self?.navigationController?.pushViewController(CartController(), animated: false)
+        }
+        
         return storeHeaderView!
     }
     
