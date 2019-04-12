@@ -51,6 +51,7 @@ class StoreItemRowCell: UICollectionViewCell {
     }
     
     @objc fileprivate func onAddItemToCart() {
+        getButton.pulsate()
         didAddItemToCart?()
     }
     
