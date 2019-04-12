@@ -40,10 +40,7 @@ class StoreHeaderView: UICollectionReusableView {
         
         addSubview(imageView)
         imageView.fillSuperview()
-        
-        // let gradientView = GradientView(frame: imageView.bounds)
-        // addSubview(gradientView)
-        // gradientView.fillSuperview()
+
         setupVisualEffectBlur()
         setupGradientLayer()
 

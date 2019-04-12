@@ -74,7 +74,7 @@ class StoreController: UICollectionViewController, UICollectionViewDelegateFlowL
             self?.storeHeaderView?.animator.stopAnimation(true)
             
             let transition: CATransition = CATransition()
-            transition.duration = 0.5
+            transition.duration = 0.35
             transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
             transition.type = CATransitionType.push
             transition.subtype = CATransitionSubtype.fromTop

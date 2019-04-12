@@ -40,7 +40,7 @@ class CartController: BaseViewController, UICollectionViewDelegateFlowLayout {
         
         cartHeaderView.handleDismiss = { [weak self] in
             let transition: CATransition = CATransition()
-            transition.duration = 0.5
+            transition.duration = 0.35
             transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
             transition.type = CATransitionType.push
             transition.subtype = CATransitionSubtype.fromBottom
