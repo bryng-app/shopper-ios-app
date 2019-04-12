@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		57B1A0A138FFA315388C50D5 /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B1A95FE01EEB6A25907BAE /* CartCell.swift */; };
+		57B1AB2B72C6D7D7AEAFADF0 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B1A4AD1043C74ACE4125E7 /* CoreDataManager.swift */; };
 		8009AEC4225DEA6C00917602 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8009AEC3225DEA6C00917602 /* MapController.swift */; };
 		8009AEC6225E6E9A00917602 /* AlertUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8009AEC5225E6E9A00917602 /* AlertUtil.swift */; };
 		8009AEC8225E70CB00917602 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8009AEC7225E70CB00917602 /* BaseViewController.swift */; };
@@ -43,6 +44,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		57B1A4AD1043C74ACE4125E7 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		57B1A95FE01EEB6A25907BAE /* CartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
 		8009AEC3225DEA6C00917602 /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		8009AEC5225E6E9A00917602 /* AlertUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertUtil.swift; sourceTree = "<group>"; };
@@ -93,6 +95,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		57B1A215BDE9563468B76767 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				57B1A4AD1043C74ACE4125E7 /* CoreDataManager.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		800BBAA722480A8D00110A0C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,6 +191,7 @@
 				80B0027C2247E9BC00E92DDB /* LaunchScreen.storyboard */,
 				80B0027F2247E9BC00E92DDB /* Info.plist */,
 				80B002772247E9BA00E92DDB /* bryng.xcdatamodeld */,
+				57B1A215BDE9563468B76767 /* CoreData */,
 			);
 			path = bryng;
 			sourceTree = "<group>";
@@ -329,6 +340,7 @@
 				8009AEC4225DEA6C00917602 /* MapController.swift in Sources */,
 				80B002712247E9BA00E92DDB /* AppDelegate.swift in Sources */,
 				57B1A0A138FFA315388C50D5 /* CartCell.swift in Sources */,
+				57B1AB2B72C6D7D7AEAFADF0 /* CoreDataManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
