@@ -8,9 +8,9 @@
 
 import UIKit
 
-class ProfileController: BaseViewController {
+class ProfileController: BaseViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
-    let photoButton: UIButton = {
+    /*let photoButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Foto\nauswählen", for: .normal)
         button.titleLabel?.numberOfLines = 0
@@ -23,6 +23,13 @@ class ProfileController: BaseViewController {
         button.backgroundColor = #colorLiteral(red: 0.9706280828, green: 0.3376097977, blue: 0.3618901968, alpha: 1)
         button.setTitleColor(.white, for: .normal)
         return button
+    }()*/
+
+    lazy var profileImageView: UIImageView = {
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "select_photo_empty"))
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectPhoto)))
+        return imageView
     }()
     
     let ordersButton = ButtonWithImage(title: "Meine Bestellungen", imageName: "purchase-order")
@@ -52,14 +59,13 @@ class ProfileController: BaseViewController {
     fileprivate func setupLayout() {
         let stackViewSpacing: CGFloat = UIDevice.current.screenType == .iPhones_5_5s_5c_SE ? 12 : 24
         
-        view.addSubview(photoButton)
+        view.addSubview(profileImageView)
         let photoHeight = collectionView.bounds.height * 0.2
-        photoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        photoButton.widthAnchor.constraint(equalToConstant: photoHeight).isActive = true
-        photoButton.heightAnchor.constraint(equalToConstant: photoHeight).isActive = true
-        photoButton.anchor(top: view.topAnchor, leading: nil, bottom: nil, trailing: nil, padding: .init(top: photoHeight / 2, left: 0, bottom: 0, right: 0))
-        photoButton.layer.cornerRadius = photoHeight / 2
-        
+        profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        profileImageView.widthAnchor.constraint(equalToConstant: photoHeight).isActive = true
+        profileImageView.heightAnchor.constraint(equalToConstant: photoHeight).isActive = true
+        profileImageView.anchor(top: view.topAnchor, leading: nil, bottom: nil, trailing: nil, padding: .init(top: photoHeight / 2, left: 0, bottom: 0, right: 0))
+
         let stackView = VerticalStackView(arrangedSubviews: [
             UISeperator.create(),
             VerticalStackView(arrangedSubviews: [
@@ -76,7 +82,35 @@ class ProfileController: BaseViewController {
             logoutButton
             ], spacing: stackViewSpacing)
         view.addSubview(stackView)
-        stackView.anchor(top: photoButton.bottomAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 32, left: 64, bottom: 0, right: 64))
+        stackView.anchor(top: profileImageView.bottomAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 32, left: 64, bottom: 0, right: 64))
+    }
+    
+    @objc private func handleSelectPhoto() {
+        let imagePickerController = UIImagePickerController()
+        
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
+        
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            profileImageView.image = editedImage
+        } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            profileImageView.image = originalImage
+        }
+        
+        profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
+        profileImageView.clipsToBounds = true
+        profileImageView.layer.borderColor = #colorLiteral(red: 0.9706280828, green: 0.3376097977, blue: 0.3618901968, alpha: 1)
+        profileImageView.layer.borderWidth = 2
+        
+        dismiss(animated: true, completion: nil)
     }
     
 }
