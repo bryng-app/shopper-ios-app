@@ -41,11 +41,12 @@ class StoreHeaderView: UICollectionReusableView {
         addSubview(imageView)
         imageView.fillSuperview()
         
-        let gradientView = GradientView(frame: imageView.bounds)
-        addSubview(gradientView)
-        gradientView.fillSuperview()
+        // let gradientView = GradientView(frame: imageView.bounds)
+        // addSubview(gradientView)
+        // gradientView.fillSuperview()
         setupVisualEffectBlur()
-        
+        setupGradientLayer()
+
         addSubview(backButton)
         backButton.anchor(top: nil, leading: imageView.leadingAnchor, bottom: imageView.bottomAnchor, trailing: nil, padding: .init(top: 0, left: 24, bottom: 16, right: 0))
         backButton.addTarget(self, action: #selector(handleCloseButton), for: .touchUpInside)
@@ -81,6 +82,21 @@ class StoreHeaderView: UICollectionReusableView {
         var cartItemsCount = Int(cartButton.badgeLabel.text ?? "0") ?? 0
         cartItemsCount += 1
         cartButton.badgeLabel.text = "\(String(cartItemsCount))"
+    }
+
+    fileprivate func setupGradientLayer() {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
+        gradientLayer.locations = [0.5, 1.1]
+
+        let gradientContainerView = UIView()
+        addSubview(gradientContainerView)
+        gradientContainerView.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
+        gradientContainerView.layer.addSublayer(gradientLayer)
+
+        gradientLayer.frame = bounds
+
+        gradientLayer.frame.origin.y -= bounds.height
     }
     
     var animator: UIViewPropertyAnimator!
