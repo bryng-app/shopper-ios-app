@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		57B1A0A138FFA315388C50D5 /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B1A95FE01EEB6A25907BAE /* CartCell.swift */; };
 		8009AEC4225DEA6C00917602 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8009AEC3225DEA6C00917602 /* MapController.swift */; };
 		8009AEC6225E6E9A00917602 /* AlertUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8009AEC5225E6E9A00917602 /* AlertUtil.swift */; };
 		8009AEC8225E70CB00917602 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8009AEC7225E70CB00917602 /* BaseViewController.swift */; };
@@ -43,6 +44,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		57B1A95FE01EEB6A25907BAE /* CartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
 		8009AEC3225DEA6C00917602 /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		8009AEC5225E6E9A00917602 /* AlertUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertUtil.swift; sourceTree = "<group>"; };
 		8009AEC7225E70CB00917602 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				80BE6691225FC82000438784 /* CartHeaderView.swift */,
+				57B1A95FE01EEB6A25907BAE /* CartCell.swift */,
 			);
 			path = Cart;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				802973BF224F57E900A362D6 /* AllStoresController.swift in Sources */,
 				8009AEC4225DEA6C00917602 /* MapController.swift in Sources */,
 				80B002712247E9BA00E92DDB /* AppDelegate.swift in Sources */,
+				57B1A0A138FFA315388C50D5 /* CartCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
