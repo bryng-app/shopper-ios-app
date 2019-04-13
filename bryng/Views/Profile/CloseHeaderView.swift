@@ -27,7 +27,7 @@ class CloseHeaderView: UICollectionReusableView {
         backgroundColor = .white
         
         addSubview(closeButton)
-        closeButton.anchor(top: topAnchor, leading: nil, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 5, left: 0, bottom: 5, right: 24))
+        closeButton.anchor(top: topAnchor, leading: nil, bottom: nil, trailing: trailingAnchor, padding: .init(top: 32, left: 0, bottom: 0, right: 24))
         closeButton.addTarget(self, action: #selector(handleClickOnClose), for: .touchUpInside)
         
         addSubview(titleLabel)

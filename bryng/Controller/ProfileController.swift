@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ProfileController: BaseViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
@@ -44,6 +45,8 @@ class ProfileController: BaseViewController, UINavigationControllerDelegate, UII
     fileprivate func setupLayout() {
         let stackViewSpacing: CGFloat = UIDevice.current.screenType == .iPhones_5_5s_5c_SE ? 12 : 24
         
+        fetchProfileImage()
+        
         view.addSubview(profileImageView)
         let photoHeight = collectionView.bounds.height * 0.2
         profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -71,6 +74,30 @@ class ProfileController: BaseViewController, UINavigationControllerDelegate, UII
         
         aboutUsButton.addTarget(self, action: #selector(didTapAboutUs), for: .touchUpInside)
         socialMediaButton.addTarget(self, action: #selector(didTapSocialMedia), for: .touchUpInside)
+    }
+    
+    private func fetchProfileImage() {
+        let context = CoreDataManager.shared.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Profile")
+        do {
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject] {
+                if let imageData = data.value(forKey: "imageData") {
+                    profileImageView.image = UIImage(data: imageData as! Data)
+                    setupCircularImageStyle()
+                }
+            }
+        } catch {
+            print("Failed to fetch profile data")
+        }
+    }
+    
+    private func setupCircularImageStyle() {
+        let photoHeight = collectionView.bounds.height * 0.2
+        profileImageView.layer.cornerRadius = photoHeight / 2
+        profileImageView.clipsToBounds = true
+        profileImageView.layer.borderColor = #colorLiteral(red: 0.9706280828, green: 0.3376097977, blue: 0.3618901968, alpha: 1)
+        profileImageView.layer.borderWidth = 2
     }
     
     @objc private func didTapAboutUs() {
@@ -101,12 +128,29 @@ class ProfileController: BaseViewController, UINavigationControllerDelegate, UII
             profileImageView.image = originalImage
         }
         
-        profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
-        profileImageView.clipsToBounds = true
-        profileImageView.layer.borderColor = #colorLiteral(red: 0.9706280828, green: 0.3376097977, blue: 0.3618901968, alpha: 1)
-        profileImageView.layer.borderWidth = 2
+        setupCircularImageStyle()
         
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true) {
+            // TODO: Store image in database
+            self.handleImageSave()
+        }
+    }
+    
+    private func handleImageSave() {
+        let context = CoreDataManager.shared.persistentContainer.viewContext
+        
+        let profile = NSEntityDescription.insertNewObject(forEntityName: "Profile", into: context)
+        
+        if let profileImage = profileImageView.image {
+            let imageData = profileImage.jpegData(compressionQuality: 0.8)
+            profile.setValue(imageData, forKey: "imageData")
+            
+            do {
+                try context.save()
+            } catch let saveErr {
+                print("Something went wrong while saving: \(saveErr)")
+            }
+        }
     }
     
 }
