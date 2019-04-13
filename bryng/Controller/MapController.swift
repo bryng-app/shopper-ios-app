@@ -104,7 +104,6 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             }
             
             for route in response.routes {
-                print(response.routes.count)
                 self.mapView.addOverlay(route.polyline)
                 self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
             }
