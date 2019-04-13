@@ -68,6 +68,12 @@ class ProfileController: BaseViewController, UINavigationControllerDelegate, UII
             ], spacing: stackViewSpacing)
         view.addSubview(stackView)
         stackView.anchor(top: profileImageView.bottomAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 32, left: 64, bottom: 0, right: 64))
+        
+        aboutUsButton.addTarget(self, action: #selector(didTapAboutUs), for: .touchUpInside)
+    }
+    
+    @objc private func didTapAboutUs() {
+        present(AboutUsController(), animated: true, completion: nil)
     }
     
     @objc private func handleSelectPhoto() {
