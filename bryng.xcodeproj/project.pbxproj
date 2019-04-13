@@ -22,6 +22,8 @@
 		80103047226214F40079ABBB /* SocialMediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80103046226214F40079ABBB /* SocialMediaCell.swift */; };
 		80103049226215AA0079ABBB /* ProfileBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80103048226215AA0079ABBB /* ProfileBaseViewController.swift */; };
 		8010304B226226A70079ABBB /* SocialMediaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8010304A226226A70079ABBB /* SocialMediaModel.swift */; };
+		8010304D2262474D0079ABBB /* OrdersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8010304C2262474D0079ABBB /* OrdersController.swift */; };
+		8010304F22624B7E0079ABBB /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8010304E22624B7E0079ABBB /* OrderCell.swift */; };
 		802973BF224F57E900A362D6 /* AllStoresController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802973BE224F57E900A362D6 /* AllStoresController.swift */; };
 		808533B62255263D005BF967 /* AllStoresCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808533B52255263D005BF967 /* AllStoresCell.swift */; };
 		8089786C224A6724003DEF2B /* UIDevice+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8089786B224A6724003DEF2B /* UIDevice+Name.swift */; };
@@ -65,6 +67,8 @@
 		80103046226214F40079ABBB /* SocialMediaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaCell.swift; sourceTree = "<group>"; };
 		80103048226215AA0079ABBB /* ProfileBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBaseViewController.swift; sourceTree = "<group>"; };
 		8010304A226226A70079ABBB /* SocialMediaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaModel.swift; sourceTree = "<group>"; };
+		8010304C2262474D0079ABBB /* OrdersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersController.swift; sourceTree = "<group>"; };
+		8010304E22624B7E0079ABBB /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
 		802973BE224F57E900A362D6 /* AllStoresController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllStoresController.swift; sourceTree = "<group>"; };
 		808533B52255263D005BF967 /* AllStoresCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllStoresCell.swift; sourceTree = "<group>"; };
 		8089786B224A6724003DEF2B /* UIDevice+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Name.swift"; sourceTree = "<group>"; };
@@ -120,7 +124,6 @@
 				80DE5EBA225CEBB300A4C175 /* Store */,
 				802973BE224F57E900A362D6 /* AllStoresController.swift */,
 				80B002852247E9D800E92DDB /* BaseTabBarController.swift */,
-				800BBAA822480AB900110A0C /* ProfileController.swift */,
 				80C62977225CF2D200B943E1 /* HorizontalSnappingController.swift */,
 				8009AEC3225DEA6C00917602 /* MapController.swift */,
 				8009AEC7225E70CB00917602 /* BaseViewController.swift */,
@@ -151,9 +154,11 @@
 		8010303E2261D98A0079ABBB /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				800BBAA822480AB900110A0C /* ProfileController.swift */,
 				8010303F2261D9980079ABBB /* AboutUsController.swift */,
 				8010304422620FC50079ABBB /* SocialMediaController.swift */,
 				80103048226215AA0079ABBB /* ProfileBaseViewController.swift */,
+				8010304C2262474D0079ABBB /* OrdersController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -163,6 +168,7 @@
 			children = (
 				801030422262056E0079ABBB /* CloseHeaderView.swift */,
 				80103046226214F40079ABBB /* SocialMediaCell.swift */,
+				8010304E22624B7E0079ABBB /* OrderCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -342,6 +348,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8010304D2262474D0079ABBB /* OrdersController.swift in Sources */,
 				800BBAA922480AB900110A0C /* ProfileController.swift in Sources */,
 				80103049226215AA0079ABBB /* ProfileBaseViewController.swift in Sources */,
 				80CE1B282258EBC900B20351 /* StoreController.swift in Sources */,
@@ -361,6 +368,7 @@
 				801030402261D9980079ABBB /* AboutUsController.swift in Sources */,
 				80C6297C225D22AD00B943E1 /* BadgeButton.swift in Sources */,
 				800BBAAC22480C4600110A0C /* UIView+Layout.swift in Sources */,
+				8010304F22624B7E0079ABBB /* OrderCell.swift in Sources */,
 				80C6297A225CF9BF00B943E1 /* SnappingLayout.swift in Sources */,
 				80B002792247E9BA00E92DDB /* bryng.xcdatamodeld in Sources */,
 				8009AEC6225E6E9A00917602 /* AlertUtil.swift in Sources */,

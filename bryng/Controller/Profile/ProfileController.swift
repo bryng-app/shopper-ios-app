@@ -74,6 +74,7 @@ class ProfileController: BaseViewController, UINavigationControllerDelegate, UII
         
         aboutUsButton.addTarget(self, action: #selector(didTapAboutUs), for: .touchUpInside)
         socialMediaButton.addTarget(self, action: #selector(didTapSocialMedia), for: .touchUpInside)
+        ordersButton.addTarget(self, action: #selector(didTapMyOrders), for: .touchUpInside)
     }
     
     private func fetchProfileImage() {
@@ -98,6 +99,10 @@ class ProfileController: BaseViewController, UINavigationControllerDelegate, UII
         profileImageView.clipsToBounds = true
         profileImageView.layer.borderColor = #colorLiteral(red: 0.9706280828, green: 0.3376097977, blue: 0.3618901968, alpha: 1)
         profileImageView.layer.borderWidth = 2
+    }
+    
+    @objc private func didTapMyOrders() {
+        present(OrdersController(), animated: true, completion: nil)
     }
     
     @objc private func didTapAboutUs() {
