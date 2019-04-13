@@ -54,3 +54,9 @@ class ButtonWithImage: UIButton {
     }
     
 }
+
+class ButtonWithLink: UIButton {
+    
+    var link: String!
+    
+}

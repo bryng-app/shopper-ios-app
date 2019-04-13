@@ -18,7 +18,7 @@ class CartController: BaseViewController, UICollectionViewDelegateFlowLayout {
 
         collectionView.backgroundColor = #colorLiteral(red: 0.9415884067, green: 0.9415884067, blue: 0.9415884067, alpha: 1)
 
-        collectionView.register(CartHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
+        collectionView.register(CloseHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
         collectionView.register(CartCell.self, forCellWithReuseIdentifier: cellId)
     }
 
@@ -36,9 +36,12 @@ class CartController: BaseViewController, UICollectionViewDelegateFlowLayout {
     }
 
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let cartHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! CartHeaderView
+        let closeHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! CloseHeaderView
         
-        cartHeaderView.handleDismiss = { [weak self] in
+        closeHeaderView.backgroundColor = #colorLiteral(red: 0.9415884067, green: 0.9415884067, blue: 0.9415884067, alpha: 1)
+        closeHeaderView.titleLabel.text = "Warenkorb"
+        
+        closeHeaderView.handleDismiss = { [weak self] in
             let transition: CATransition = CATransition()
             transition.duration = 0.35
             transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
@@ -48,7 +51,7 @@ class CartController: BaseViewController, UICollectionViewDelegateFlowLayout {
             self?.navigationController?.popViewController(animated: false)
         }
         
-        return cartHeaderView
+        return closeHeaderView
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
