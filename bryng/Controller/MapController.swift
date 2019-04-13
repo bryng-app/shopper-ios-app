@@ -10,7 +10,14 @@ import UIKit
 import MapKit
 import CoreLocation
 
+struct Route {
+    var destination: CLLocationCoordinate2D
+    var distance: Double
+}
+
 class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+    
+    fileprivate var routesDistances = [Route]()
     
     fileprivate var mapView: MKMapView!
     fileprivate let locationManager = CLLocationManager()
@@ -97,6 +104,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             }
             
             for route in response.routes {
+                print(response.routes.count)
                 self.mapView.addOverlay(route.polyline)
                 self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
             }
@@ -111,19 +119,19 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         userAnnotation.title = "Startpunkt"
         mapView.addAnnotation(userAnnotation)
         
-        let rewe = GroceryShop(title: "Norma", locationName: "Heinrich-Grüber-Straße 86, 12621 Berlin", coordinate: CLLocationCoordinate2D(latitude: 52.519430, longitude: 13.597354))
+        let rewe = GroceryShop(title: "Norma", locationName: "Heinrich-Grüber-Straße 86, 12621 Berlin", coordinate: CLLocationCoordinate2D(latitude: 52.518827, longitude: 13.596681))
         mapView.addAnnotation(rewe)
     }
     
     fileprivate func createDirectionsRequest(from coordinate: CLLocationCoordinate2D) -> MKDirections.Request {
-        let destinationCoordinate = CLLocationCoordinate2D(latitude: 52.519430, longitude: 13.597354)
+        let destinationCoordinate = CLLocationCoordinate2D(latitude: 52.518827, longitude: 13.596681)
         let startingLocation = MKPlacemark(coordinate: coordinate)
         let destination = MKPlacemark(coordinate: destinationCoordinate)
         
         let request = MKDirections.Request()
         request.source = MKMapItem(placemark: startingLocation)
         request.destination = MKMapItem(placemark: destination)
-        request.transportType = .automobile
+        request.transportType = .walking
         request.requestsAlternateRoutes = false
         return request
     }
@@ -160,7 +168,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
         renderer.strokeColor = #colorLiteral(red: 0.9706280828, green: 0.3376097977, blue: 0.3618901968, alpha: 1)
-        renderer.lineWidth = 4.0
+        renderer.lineWidth = 5.0
         return renderer
     }
     
