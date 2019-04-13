@@ -21,6 +21,7 @@
 		8010304522620FC50079ABBB /* SocialMediaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8010304422620FC50079ABBB /* SocialMediaController.swift */; };
 		80103047226214F40079ABBB /* SocialMediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80103046226214F40079ABBB /* SocialMediaCell.swift */; };
 		80103049226215AA0079ABBB /* ProfileBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80103048226215AA0079ABBB /* ProfileBaseViewController.swift */; };
+		8010304B226226A70079ABBB /* SocialMediaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8010304A226226A70079ABBB /* SocialMediaModel.swift */; };
 		802973BF224F57E900A362D6 /* AllStoresController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802973BE224F57E900A362D6 /* AllStoresController.swift */; };
 		808533B62255263D005BF967 /* AllStoresCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808533B52255263D005BF967 /* AllStoresCell.swift */; };
 		8089786C224A6724003DEF2B /* UIDevice+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8089786B224A6724003DEF2B /* UIDevice+Name.swift */; };
@@ -63,6 +64,7 @@
 		8010304422620FC50079ABBB /* SocialMediaController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaController.swift; sourceTree = "<group>"; };
 		80103046226214F40079ABBB /* SocialMediaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaCell.swift; sourceTree = "<group>"; };
 		80103048226215AA0079ABBB /* ProfileBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBaseViewController.swift; sourceTree = "<group>"; };
+		8010304A226226A70079ABBB /* SocialMediaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaModel.swift; sourceTree = "<group>"; };
 		802973BE224F57E900A362D6 /* AllStoresController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllStoresController.swift; sourceTree = "<group>"; };
 		808533B52255263D005BF967 /* AllStoresCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllStoresCell.swift; sourceTree = "<group>"; };
 		8089786B224A6724003DEF2B /* UIDevice+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Name.swift"; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				80C6EC8D224BFF55008E6EA9 /* GroceryShop.swift */,
+				8010304A226226A70079ABBB /* SocialMediaModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				8089786C224A6724003DEF2B /* UIDevice+Name.swift in Sources */,
 				80AB976D22567561002507B9 /* UILabel.swift in Sources */,
 				80CE1B2C2258F07300B20351 /* StoreHeaderLayout.swift in Sources */,
+				8010304B226226A70079ABBB /* SocialMediaModel.swift in Sources */,
 				80BE668F225FC5F900438784 /* CartController.swift in Sources */,
 				801030432262056E0079ABBB /* CloseHeaderView.swift in Sources */,
 				80A795882249090B00EF856A /* UISeperator.swift in Sources */,
