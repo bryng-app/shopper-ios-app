@@ -18,6 +18,9 @@
 		800E3F6D224AB3820030A61A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 800E3F6C224AB3820030A61A /* MapKit.framework */; };
 		801030402261D9980079ABBB /* AboutUsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8010303F2261D9980079ABBB /* AboutUsController.swift */; };
 		801030432262056E0079ABBB /* CloseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801030422262056E0079ABBB /* CloseHeaderView.swift */; };
+		8010304522620FC50079ABBB /* SocialMediaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8010304422620FC50079ABBB /* SocialMediaController.swift */; };
+		80103047226214F40079ABBB /* SocialMediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80103046226214F40079ABBB /* SocialMediaCell.swift */; };
+		80103049226215AA0079ABBB /* ProfileBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80103048226215AA0079ABBB /* ProfileBaseViewController.swift */; };
 		802973BF224F57E900A362D6 /* AllStoresController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802973BE224F57E900A362D6 /* AllStoresController.swift */; };
 		808533B62255263D005BF967 /* AllStoresCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808533B52255263D005BF967 /* AllStoresCell.swift */; };
 		8089786C224A6724003DEF2B /* UIDevice+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8089786B224A6724003DEF2B /* UIDevice+Name.swift */; };
@@ -57,6 +60,9 @@
 		800E3F70224AB9B60030A61A /* berlin.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = berlin.gpx; sourceTree = "<group>"; };
 		8010303F2261D9980079ABBB /* AboutUsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsController.swift; sourceTree = "<group>"; };
 		801030422262056E0079ABBB /* CloseHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseHeaderView.swift; sourceTree = "<group>"; };
+		8010304422620FC50079ABBB /* SocialMediaController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaController.swift; sourceTree = "<group>"; };
+		80103046226214F40079ABBB /* SocialMediaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaCell.swift; sourceTree = "<group>"; };
+		80103048226215AA0079ABBB /* ProfileBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBaseViewController.swift; sourceTree = "<group>"; };
 		802973BE224F57E900A362D6 /* AllStoresController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllStoresController.swift; sourceTree = "<group>"; };
 		808533B52255263D005BF967 /* AllStoresCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllStoresCell.swift; sourceTree = "<group>"; };
 		8089786B224A6724003DEF2B /* UIDevice+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Name.swift"; sourceTree = "<group>"; };
@@ -144,6 +150,8 @@
 			isa = PBXGroup;
 			children = (
 				8010303F2261D9980079ABBB /* AboutUsController.swift */,
+				8010304422620FC50079ABBB /* SocialMediaController.swift */,
+				80103048226215AA0079ABBB /* ProfileBaseViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -152,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				801030422262056E0079ABBB /* CloseHeaderView.swift */,
+				80103046226214F40079ABBB /* SocialMediaCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -331,8 +340,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				800BBAA922480AB900110A0C /* ProfileController.swift in Sources */,
+				80103049226215AA0079ABBB /* ProfileBaseViewController.swift in Sources */,
 				80CE1B282258EBC900B20351 /* StoreController.swift in Sources */,
 				80AB976F22567C80002507B9 /* VerticalStackView.swift in Sources */,
+				80103047226214F40079ABBB /* SocialMediaCell.swift in Sources */,
 				80DE5EBD225CEC5400A4C175 /* StoreItemsGroupCell.swift in Sources */,
 				8009AEC8225E70CB00917602 /* BaseViewController.swift in Sources */,
 				80B002862247E9D800E92DDB /* BaseTabBarController.swift in Sources */,
@@ -351,6 +362,7 @@
 				8009AEC6225E6E9A00917602 /* AlertUtil.swift in Sources */,
 				80B002732247E9BA00E92DDB /* ViewController.swift in Sources */,
 				80C6EC8E224BFF55008E6EA9 /* GroceryShop.swift in Sources */,
+				8010304522620FC50079ABBB /* SocialMediaController.swift in Sources */,
 				80DE5EBF225CED5400A4C175 /* StoreItemsHorizontalController.swift in Sources */,
 				80CE1B2A2258ED2000B20351 /* StoreHeaderView.swift in Sources */,
 				80C62976225CF02B00B943E1 /* StoreItemRowCell.swift in Sources */,

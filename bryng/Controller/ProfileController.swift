@@ -70,10 +70,15 @@ class ProfileController: BaseViewController, UINavigationControllerDelegate, UII
         stackView.anchor(top: profileImageView.bottomAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 32, left: 64, bottom: 0, right: 64))
         
         aboutUsButton.addTarget(self, action: #selector(didTapAboutUs), for: .touchUpInside)
+        socialMediaButton.addTarget(self, action: #selector(didTapSocialMedia), for: .touchUpInside)
     }
     
     @objc private func didTapAboutUs() {
         present(AboutUsController(), animated: true, completion: nil)
+    }
+    
+    @objc private func didTapSocialMedia() {
+        present(SocialMediaController(), animated: true, completion: nil)
     }
     
     @objc private func handleSelectPhoto() {
