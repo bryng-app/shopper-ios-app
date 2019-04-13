@@ -9,21 +9,6 @@
 import UIKit
 
 class ProfileController: BaseViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    
-    /*let photoButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Foto\nauswählen", for: .normal)
-        button.titleLabel?.numberOfLines = 0
-        button.titleLabel?.textAlignment = .center
-        if (UIDevice.current.screenType == .iPhones_5_5s_5c_SE) {
-            button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        } else {
-            button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
-        }
-        button.backgroundColor = #colorLiteral(red: 0.9706280828, green: 0.3376097977, blue: 0.3618901968, alpha: 1)
-        button.setTitleColor(.white, for: .normal)
-        return button
-    }()*/
 
     lazy var profileImageView: UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "select_photo_empty"))
