@@ -48,7 +48,8 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         mapView.addSubview(navigationFixedButton)
         navigationFixedButton.constrainWidth(constant: 48)
         navigationFixedButton.constrainHeight(constant: 48)
-        navigationFixedButton.anchor(top: mapView.topAnchor, leading: mapView.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 64, left: 32, bottom: 0, right: 0))
+        navigationFixedButton.anchor(top: nil, leading: nil, bottom: nil, trailing: mapView.trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 16))
+        navigationFixedButton.centerYAnchor.constraint(equalTo: mapView.centerYAnchor).isActive = true
         
         navigationFixedButton.addTarget(self, action: #selector(didTapOnNavigationFixed), for: .touchUpInside)
     }

@@ -71,7 +71,7 @@
       <AdditionalOptions>
       </AdditionalOptions>
       <LocationScenarioReference
-         identifier = "../../berlin.gpx"
+         identifier = "../berlin.gpx"
          referenceType = "0">
       </LocationScenarioReference>
    </LaunchAction>

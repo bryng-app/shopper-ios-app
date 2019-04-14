@@ -18,7 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow()
         window?.makeKeyAndVisible()
-        window?.rootViewController = RegistrationController()
+        // window?.rootViewController = RegistrationController()
+        window?.rootViewController = BaseTabBarController()
         
         return true
     }
