@@ -24,13 +24,44 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     fileprivate let regionInMeters: Double = 1000
     
     fileprivate var directionsArray: [MKDirections] = []
-    fileprivate var tempBool = true // TODO: Remove
+    
+    private var navigationFixedButtonSelected = false
+    private let navigationFixedButton: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.setImage(#imageLiteral(resourceName: "navigation_arrow"), for: .normal)
+        btn.backgroundColor = UIColor(red: 171, green: 178, blue: 186, alpha: 1.0)
+        btn.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        btn.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+        btn.layer.shadowOpacity = 1.0
+        btn.layer.shadowRadius = 0.0
+        btn.layer.masksToBounds = false
+        btn.layer.cornerRadius = 4.0
+        return btn
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupMapView()
         checkLocationServices()
+        
+        mapView.addSubview(navigationFixedButton)
+        navigationFixedButton.constrainWidth(constant: 48)
+        navigationFixedButton.constrainHeight(constant: 48)
+        navigationFixedButton.anchor(top: mapView.topAnchor, leading: mapView.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 64, left: 32, bottom: 0, right: 0))
+        
+        navigationFixedButton.addTarget(self, action: #selector(didTapOnNavigationFixed), for: .touchUpInside)
+    }
+    
+    @objc private func didTapOnNavigationFixed() {
+        if !navigationFixedButtonSelected {
+            navigationFixedButton.setImage(#imageLiteral(resourceName: "navigation_arrow_selected"), for: .normal)
+            navigationFixedButtonSelected = true
+            centerViewOnUserLocation()
+        } else {
+            navigationFixedButton.setImage(#imageLiteral(resourceName: "navigation_arrow"), for: .normal)
+            navigationFixedButtonSelected = false
+        }
     }
     
     fileprivate func setupMapView() {
@@ -149,14 +180,20 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         directionsArray.removeAll()
     }
     
+    var firstTime = false // TODO: Remove
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if tempBool {
+        if !firstTime {
             guard let location = locations.last else { return }
             let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
             mapView.setRegion(region, animated: true)
             getDirections()
-            tempBool = false
+            firstTime = true
+        }
+        
+        if navigationFixedButtonSelected {
+            centerViewOnUserLocation()
         }
     }
     
