@@ -8,8 +8,9 @@
 
 import UIKit
 import CoreData
+import MessageUI
 
-class ProfileController: BaseViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class ProfileController: BaseViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate {
 
     lazy var profileImageView: UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "select_photo_empty"))
@@ -76,6 +77,7 @@ class ProfileController: BaseViewController, UINavigationControllerDelegate, UII
         socialMediaButton.addTarget(self, action: #selector(didTapSocialMedia), for: .touchUpInside)
         ordersButton.addTarget(self, action: #selector(didTapMyOrders), for: .touchUpInside)
         profileButton.addTarget(self, action: #selector(didTapMyProfile), for: .touchUpInside)
+        inviteFriendsButton.addTarget(self, action: #selector(didTapInviteFriends), for: .touchUpInside)
     }
     
     private func fetchProfileImage() {
@@ -100,6 +102,50 @@ class ProfileController: BaseViewController, UINavigationControllerDelegate, UII
         profileImageView.clipsToBounds = true
         profileImageView.layer.borderColor = #colorLiteral(red: 0.9706280828, green: 0.3376097977, blue: 0.3618901968, alpha: 1)
         profileImageView.layer.borderWidth = 2
+    }
+    
+    @objc private func didTapInviteFriends() {
+        let actionMessage = "Hey Du!\nIch benutze die neue App bryng, mit der Du Geld verdienen kannst oder Dir einfach und schnell den Einkauf bringen lassen kannst! Echt geile Sache 💪 (https://bryng.app/)"
+        let actions = [
+            UIAlertAction(title: "WhatsApp", style: .default, handler: { (action) in
+                let encodedActionMessage = actionMessage.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                if let url = URL(string: "whatsapp://send?text=\(encodedActionMessage!)") {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                } else {
+                    AlertUtil.showBasicAlert(viewController: self, title: "Etwas ist schief gegangen!", message: "Höchstwahrscheinlich besitzt Du nicht WhatsApp auf Deinem Smartphone")
+                }
+            }),
+            UIAlertAction(title: "Nachricht", style: .default, handler: { [weak self] (action) in
+                if MFMessageComposeViewController.canSendText() {
+                    let controller = MFMessageComposeViewController()
+                    controller.body = actionMessage
+                    controller.messageComposeDelegate = self
+                    self?.present(controller, animated: true, completion: nil)
+                } else {
+                    AlertUtil.showBasicAlert(viewController: self, title: "Etwas ist schief gegangen!", message: "Höchstwahrscheinlich besitzt Du keine Messages App auf Deinem Smartphone")
+                }
+            }),
+            UIAlertAction(title: "E-Mail", style: .default, handler: { [weak self] (action) in
+                if MFMailComposeViewController.canSendMail() {
+                    let mailComposerVC = MFMailComposeViewController()
+                    mailComposerVC.mailComposeDelegate = self
+                    mailComposerVC.setSubject("Benutze jetzt auch bryng!")
+                    mailComposerVC.setMessageBody("Hey Du!\nIch benutze die neue App bryng, mit der Du Geld verdienen kannst oder Dir einfach und schnell den Einkauf bringen lassen kannst! Echt geile Sache 💪 (https://bryng.app/)", isHTML: false)
+                    self?.present(mailComposerVC, animated: true, completion: nil)
+                } else {
+                    AlertUtil.showBasicAlert(viewController: self, title: "Etwas ist schief gegangen!", message: "Höchstwahrscheinlich besitzt Du keine Mail App auf Deinem Smartphone")
+                }
+            })
+        ]
+        AlertUtil.showBasicActionSheet(viewController: self, title: "Lade Deine Freunde ein!", message: "Lade jetzt Deine Freunde ein, damit wir noch mehr Leute erreichen!", actions: actions)
+    }
+    
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
     
     @objc private func didTapMyProfile() {

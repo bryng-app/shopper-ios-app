@@ -55,7 +55,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         if CLLocationManager.locationServicesEnabled() {
             setupLocationManager()
         } else {
-            AlertUtil.showAlert(viewController: self, title: "Bitte beachten!", message: "Die App funktioniert nicht richtig, wenn die Standortlokalisierung deaktiviert ist")
+            AlertUtil.showBasicAlertWithDelay(viewController: self, title: "Bitte beachten!", message: "Die App funktioniert nicht richtig, wenn die Standortlokalisierung deaktiviert ist")
         }
     }
     
@@ -67,13 +67,13 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             locationManager.startUpdatingLocation()
             break
         case .denied:
-            AlertUtil.showAlert(viewController: self, title: "Bitte beachten!", message: "Die App funktioniert nicht richtig, wenn die Standortlokalisierung deaktiviert ist")
+            AlertUtil.showBasicAlertWithDelay(viewController: self, title: "Bitte beachten!", message: "Die App funktioniert nicht richtig, wenn die Standortlokalisierung deaktiviert ist")
             break
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
             break
         case .restricted:
-            AlertUtil.showAlert(viewController: self, title: "Bitte beachten!", message: "Die App funktioniert nicht richtig, wenn die Standortlokalisierung deaktiviert ist")
+            AlertUtil.showBasicAlertWithDelay(viewController: self, title: "Bitte beachten!", message: "Die App funktioniert nicht richtig, wenn die Standortlokalisierung deaktiviert ist")
             break
         case .authorizedAlways:
             break
@@ -84,7 +84,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     
     fileprivate func getDirections() {
         guard let location = locationManager.location?.coordinate else {
-            AlertUtil.showAlert(viewController: self, title: "Achtung!", message: "Es wurde keine Location für dich gefunden. Bitte starte die App neu!")
+            AlertUtil.showBasicAlertWithDelay(viewController: self, title: "Achtung!", message: "Es wurde keine Location für dich gefunden. Bitte starte die App neu!")
             return
         }
         
@@ -99,7 +99,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             }
             
             guard let response = response else {
-                AlertUtil.showAlert(viewController: self, title: "Achtung!", message: "Es wurde keine Route gefunden.")
+                AlertUtil.showBasicAlertWithDelay(viewController: self, title: "Achtung!", message: "Es wurde keine Route gefunden.")
                 return
             }
             

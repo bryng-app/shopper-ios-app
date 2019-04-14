@@ -10,12 +10,23 @@ import UIKit
 
 class AlertUtil {
     
-    static func showAlert(viewController: UIViewController, title: String, message: String) {
+    static func showBasicAlert(viewController: UIViewController?, title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        viewController?.present(alert, animated: true, completion: nil)
+    }
+
+    static func showBasicAlertWithDelay(viewController: UIViewController, title: String, message: String) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) { [weak viewController] in
-            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-            viewController?.present(alert, animated: true, completion: nil)
+            showBasicAlert(viewController: viewController, title: title, message: message)
         }
+    }
+    
+    static func showBasicActionSheet(viewController: UIViewController, title: String, message: String, actions: [UIAlertAction] = [UIAlertAction]()) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        actions.forEach({alert.addAction($0)})
+        alert.addAction(UIAlertAction(title: "Abbrechen", style: .cancel, handler: nil))
+        viewController.present(alert, animated: true, completion: nil)
     }
     
 }
