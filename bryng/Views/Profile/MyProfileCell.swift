@@ -12,52 +12,66 @@ class MyProfileCell: UICollectionViewCell {
     
     var didClickOnSave: (() -> ())?
     
-    let nameTextField: BryngTextField = {
+    lazy var nameTextField: BryngTextField = {
         let tf = BryngTextField(padding: 16, height: 50)
         tf.placeholder = "Dein Name"
-        tf.backgroundColor = #colorLiteral(red: 0.9415884067, green: 0.9415884067, blue: 0.9415884067, alpha: 1)
+        tf.backgroundColor = #colorLiteral(red: 0.8806266191, green: 0.8806266191, blue: 0.8806266191, alpha: 1)
         tf.clearButtonMode = .whileEditing
         tf.autocorrectionType = .no
+        tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         return tf
     }()
     
-    let emailTextField: BryngTextField = {
+    lazy var emailTextField: BryngTextField = {
         let tf = BryngTextField(padding: 16, height: 50, type: .emailAddress)
         tf.placeholder = "Deine E-Mail"
-        tf.backgroundColor = #colorLiteral(red: 0.9415884067, green: 0.9415884067, blue: 0.9415884067, alpha: 1)
+        tf.backgroundColor = #colorLiteral(red: 0.8806266191, green: 0.8806266191, blue: 0.8806266191, alpha: 1)
         tf.clearButtonMode = .whileEditing
         tf.autocorrectionType = .no
+        tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         return tf
     }()
     
-    let usernameTextField: BryngTextField = {
-        let tf = BryngTextField(padding: 16, height: 50)
-        tf.placeholder = "Dein Nutzername"
-        tf.backgroundColor = #colorLiteral(red: 0.9415884067, green: 0.9415884067, blue: 0.9415884067, alpha: 1)
-        tf.clearButtonMode = .whileEditing
-        tf.autocorrectionType = .no
-        return tf
-    }()
-    
-    let phoneTextField: BryngTextField = {
+    lazy var phoneTextField: BryngTextField = {
         let tf = BryngTextField(padding: 16, height: 50, type: .phonePad)
         tf.placeholder = "Deine Telefonnummer"
-        tf.backgroundColor = #colorLiteral(red: 0.9415884067, green: 0.9415884067, blue: 0.9415884067, alpha: 1)
+        tf.backgroundColor = #colorLiteral(red: 0.8806266191, green: 0.8806266191, blue: 0.8806266191, alpha: 1)
         tf.clearButtonMode = .whileEditing
         tf.autocorrectionType = .no
+        tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         return tf
     }()
+    
+    @objc private func handleTextChange(textField: UITextField) {
+        if textField == nameTextField {
+            myProfileViewModel.name = textField.text
+        } else if textField == emailTextField {
+            myProfileViewModel.email = textField.text
+        } else {
+            myProfileViewModel.phoneNumber = textField.text
+        }
+    }
+    
+    var myProfileViewModel = MyProfileViewModel()
     
     lazy var saveButton: UIButton = {
         let btn = UIButton(type: .system)
         btn.setTitle("Speichern", for: .normal)
-        btn.setTitleColor(.blue, for: .normal)
+        btn.setTitleColor(.white, for: .normal)
+        btn.backgroundColor = #colorLiteral(red: 1, green: 0.356151558, blue: 0.3902737024, alpha: 1)
         btn.titleLabel?.font = .boldSystemFont(ofSize: 14)
-        btn.backgroundColor = #colorLiteral(red: 0.9415884067, green: 0.9415884067, blue: 0.9415884067, alpha: 1)
         btn.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        btn.layer.cornerRadius = 16
+        btn.layer.cornerRadius = 25
         btn.addTarget(self, action: #selector(didTapSave), for: .touchUpInside)
         return btn
+    }()
+    
+    let feedbackLabel: UILabel = {
+        let label = UILabel(text: "Bitte fülle alle Textfelder aus!")
+        label.textColor = #colorLiteral(red: 1, green: 0.356151558, blue: 0.3902737024, alpha: 1)
+        label.textAlignment = .center
+        label.isHidden = true
+        return label
     }()
     
     override init(frame: CGRect) {
@@ -73,13 +87,14 @@ class MyProfileCell: UICollectionViewCell {
         let stackView = VerticalStackView(arrangedSubviews: [
             nameTextField,
             emailTextField,
-            usernameTextField,
             phoneTextField,
-            saveButton
+            saveButton,
+            feedbackLabel
             ], spacing: 16)
         
         addSubview(stackView)
-        stackView.fillSuperview(padding: .init(top: 32, left: 32, bottom: 32, right: 32))
+        stackView.anchor(top: nil, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 0, left: 32, bottom: 0, right: 32))
+        stackView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
     
     @objc private func didTapSave() {

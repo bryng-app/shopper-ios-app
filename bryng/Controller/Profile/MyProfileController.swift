@@ -7,10 +7,14 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 class MyProfileController: ProfileBaseViewController {
     
     private let cellId = "cellId"
+    
+    private var isFormValid = false
+    private var myProfileViewModel: MyProfileViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,10 +35,31 @@ class MyProfileController: ProfileBaseViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! MyProfileCell
-        cell.didClickOnSave = { [weak self] in
-            self?.dismiss(animated: true, completion: nil)
+        
+        myProfileViewModel = cell.myProfileViewModel
+        setupMyProfileViewModelObserver()
+        
+        cell.didClickOnSave = {
+            if self.isFormValid {
+                let progressHUD = JGProgressHUD(style: .dark)
+                progressHUD.textLabel.text = "Speichere Daten"
+                progressHUD.dismiss(afterDelay: 0.5, animated: true)
+                progressHUD.show(in: self.view)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                    self.dismiss(animated: true, completion: nil)
+                })
+            } else {
+                cell.feedbackLabel.isHidden = false
+            }
         }
+        
         return cell
+    }
+    
+    private func setupMyProfileViewModelObserver() {
+        myProfileViewModel.isFormValidObserver = { [unowned self] (isFormValid) in
+            self.isFormValid = isFormValid
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -50,7 +75,7 @@ class MyProfileController: ProfileBaseViewController {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.frame.width - 32, height: 380)
+        return .init(width: view.frame.width - 32, height: 350)
     }
     
 }

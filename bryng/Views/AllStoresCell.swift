@@ -25,9 +25,9 @@ class AllStoresCell: UICollectionViewCell {
     let goToButton: UIButton = {
         let btn = UIButton(type: .system)
         btn.setTitle("Einkaufen", for: .normal)
-        btn.setTitleColor(.blue, for: .normal)
+        btn.setTitleColor(.white, for: .normal)
+        btn.backgroundColor = #colorLiteral(red: 1, green: 0.356151558, blue: 0.3902737024, alpha: 1)
         btn.titleLabel?.font = .boldSystemFont(ofSize: 14)
-        btn.backgroundColor = UIColor(white: 0.95, alpha: 1)
         btn.widthAnchor.constraint(equalToConstant: 95).isActive = true
         btn.heightAnchor.constraint(equalToConstant: 36).isActive = true
         btn.layer.cornerRadius = 16

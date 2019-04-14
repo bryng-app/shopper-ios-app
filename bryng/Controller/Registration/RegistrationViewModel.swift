@@ -10,11 +10,7 @@ import UIKit
 
 class RegistrationViewModel {
     
-    var name: String? {
-        didSet {
-            checkFormValidity()
-        }
-    }
+    var name: String? { didSet { checkFormValidity() } }
     var email: String? { didSet { checkFormValidity() } }
     var password: String? { didSet { checkFormValidity() } }
     
@@ -23,7 +19,6 @@ class RegistrationViewModel {
         isFormValidObserver?(isFormValid)
     }
     
-    // Reactive programming
     var isFormValidObserver: ((Bool) -> ())?
     
 }

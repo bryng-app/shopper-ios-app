@@ -25,7 +25,8 @@ class StoreItemRowCell: UICollectionViewCell {
     
     let getButton: UIButton = {
         let btn = UIButton(type: .system)
-        btn.setImage(#imageLiteral(resourceName: "add"), for: .normal)
+        btn.setImage(#imageLiteral(resourceName: "add").withRenderingMode(.alwaysTemplate), for: .normal)
+        btn.tintColor = #colorLiteral(red: 1, green: 0.356151558, blue: 0.3902737024, alpha: 1)
         return btn
     }()
     

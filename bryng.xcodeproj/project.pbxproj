@@ -53,6 +53,7 @@
 		80E36BC222636DD300612AF1 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E36BC122636DD300612AF1 /* RegistrationController.swift */; };
 		80E36BC52263790900612AF1 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E36BC42263790900612AF1 /* RegistrationViewModel.swift */; };
 		80E36BC72263977A00612AF1 /* BryngTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E36BC62263977A00612AF1 /* BryngTextField.swift */; };
+		80E36BC922639D0600612AF1 /* MyProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E36BC822639D0600612AF1 /* MyProfileViewModel.swift */; };
 		D3AB3C24C5169BCA6D044CCD /* Pods_bryng.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCD2FA0954B2811912B44D9 /* Pods_bryng.framework */; };
 /* End PBXBuildFile section */
 
@@ -108,6 +109,7 @@
 		80E36BC122636DD300612AF1 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		80E36BC42263790900612AF1 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		80E36BC62263977A00612AF1 /* BryngTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BryngTextField.swift; sourceTree = "<group>"; };
+		80E36BC822639D0600612AF1 /* MyProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewModel.swift; sourceTree = "<group>"; };
 		CB4F1AD20BFA9CAA9A17C774 /* Pods-bryng.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bryng.release.xcconfig"; path = "Target Support Files/Pods-bryng/Pods-bryng.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -186,6 +188,7 @@
 				80103048226215AA0079ABBB /* ProfileBaseViewController.swift */,
 				8010304C2262474D0079ABBB /* OrdersController.swift */,
 				80E36BBD22633F3100612AF1 /* MyProfileController.swift */,
+				80E36BC822639D0600612AF1 /* MyProfileViewModel.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -473,6 +476,7 @@
 				80E36BC02263435200612AF1 /* MyProfileCell.swift in Sources */,
 				80C62976225CF02B00B943E1 /* StoreItemRowCell.swift in Sources */,
 				800BBAAE2248122300110A0C /* UIButton+Layout.swift in Sources */,
+				80E36BC922639D0600612AF1 /* MyProfileViewModel.swift in Sources */,
 				80C62978225CF2D200B943E1 /* HorizontalSnappingController.swift in Sources */,
 				802973BF224F57E900A362D6 /* AllStoresController.swift in Sources */,
 				8009AEC4225DEA6C00917602 /* MapController.swift in Sources */,

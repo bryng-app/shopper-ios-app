@@ -14,7 +14,7 @@ class RegistrationController: UIViewController {
     // UI Components
     let selectPhotoButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Select Photo", for: .normal)
+        button.setTitle("Dein Foto", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 32, weight: .heavy)
         button.backgroundColor = .white
         button.setTitleColor(.black, for: .normal)
