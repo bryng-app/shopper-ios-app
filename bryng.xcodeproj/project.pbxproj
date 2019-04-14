@@ -50,9 +50,14 @@
 		80DE5EBF225CED5400A4C175 /* StoreItemsHorizontalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DE5EBE225CED5400A4C175 /* StoreItemsHorizontalController.swift */; };
 		80E36BBE22633F3100612AF1 /* MyProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E36BBD22633F3100612AF1 /* MyProfileController.swift */; };
 		80E36BC02263435200612AF1 /* MyProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E36BBF2263435200612AF1 /* MyProfileCell.swift */; };
+		80E36BC222636DD300612AF1 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E36BC122636DD300612AF1 /* RegistrationController.swift */; };
+		80E36BC52263790900612AF1 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E36BC42263790900612AF1 /* RegistrationViewModel.swift */; };
+		D3AB3C24C5169BCA6D044CCD /* Pods_bryng.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCD2FA0954B2811912B44D9 /* Pods_bryng.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		29D845F85EED33E73DF8A290 /* Pods-bryng.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bryng.debug.xcconfig"; path = "Target Support Files/Pods-bryng/Pods-bryng.debug.xcconfig"; sourceTree = "<group>"; };
+		3DCD2FA0954B2811912B44D9 /* Pods_bryng.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bryng.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		57B1A4AD1043C74ACE4125E7 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		57B1A95FE01EEB6A25907BAE /* CartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
 		8009AEC3225DEA6C00917602 /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
@@ -99,6 +104,9 @@
 		80DE5EBE225CED5400A4C175 /* StoreItemsHorizontalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemsHorizontalController.swift; sourceTree = "<group>"; };
 		80E36BBD22633F3100612AF1 /* MyProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileController.swift; sourceTree = "<group>"; };
 		80E36BBF2263435200612AF1 /* MyProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileCell.swift; sourceTree = "<group>"; };
+		80E36BC122636DD300612AF1 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
+		80E36BC42263790900612AF1 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
+		CB4F1AD20BFA9CAA9A17C774 /* Pods-bryng.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bryng.release.xcconfig"; path = "Target Support Files/Pods-bryng/Pods-bryng.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,12 +115,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				800E3F6D224AB3820030A61A /* MapKit.framework in Frameworks */,
+				D3AB3C24C5169BCA6D044CCD /* Pods_bryng.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		454D023E9842F8993CDA02A5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				29D845F85EED33E73DF8A290 /* Pods-bryng.debug.xcconfig */,
+				CB4F1AD20BFA9CAA9A17C774 /* Pods-bryng.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		57B1A215BDE9563468B76767 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +142,7 @@
 		800BBAA722480A8D00110A0C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				80E36BC3226378F700612AF1 /* Registration */,
 				8010303E2261D98A0079ABBB /* Profile */,
 				80DE5EBA225CEBB300A4C175 /* Store */,
 				802973BE224F57E900A362D6 /* AllStoresController.swift */,
@@ -151,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				800E3F6C224AB3820030A61A /* MapKit.framework */,
+				3DCD2FA0954B2811912B44D9 /* Pods_bryng.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -208,6 +228,7 @@
 				80B0026F2247E9BA00E92DDB /* bryng */,
 				80B0026E2247E9BA00E92DDB /* Products */,
 				800E3F6B224AB3820030A61A /* Frameworks */,
+				454D023E9842F8993CDA02A5 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -277,6 +298,15 @@
 			path = Store;
 			sourceTree = "<group>";
 		};
+		80E36BC3226378F700612AF1 /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				80E36BC122636DD300612AF1 /* RegistrationController.swift */,
+				80E36BC42263790900612AF1 /* RegistrationViewModel.swift */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -284,9 +314,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 80B002822247E9BC00E92DDB /* Build configuration list for PBXNativeTarget "bryng" */;
 			buildPhases = (
+				3529BEF306002B5D2E95FDFA /* [CP] Check Pods Manifest.lock */,
 				80B002692247E9BA00E92DDB /* Sources */,
 				80B0026A2247E9BA00E92DDB /* Frameworks */,
 				80B0026B2247E9BA00E92DDB /* Resources */,
+				F5A1678321C4C8E2E0685B0E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -349,6 +381,55 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3529BEF306002B5D2E95FDFA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-bryng-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F5A1678321C4C8E2E0685B0E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-bryng/Pods-bryng-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JGProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-bryng/Pods-bryng-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		80B002692247E9BA00E92DDB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -373,6 +454,7 @@
 				808533B62255263D005BF967 /* AllStoresCell.swift in Sources */,
 				801030402261D9980079ABBB /* AboutUsController.swift in Sources */,
 				80C6297C225D22AD00B943E1 /* BadgeButton.swift in Sources */,
+				80E36BC52263790900612AF1 /* RegistrationViewModel.swift in Sources */,
 				800BBAAC22480C4600110A0C /* UIView+Layout.swift in Sources */,
 				8010304F22624B7E0079ABBB /* OrderCell.swift in Sources */,
 				80C6297A225CF9BF00B943E1 /* SnappingLayout.swift in Sources */,
@@ -392,6 +474,7 @@
 				8009AEC4225DEA6C00917602 /* MapController.swift in Sources */,
 				80B002712247E9BA00E92DDB /* AppDelegate.swift in Sources */,
 				57B1A0A138FFA315388C50D5 /* CartCell.swift in Sources */,
+				80E36BC222636DD300612AF1 /* RegistrationController.swift in Sources */,
 				57B1AB2B72C6D7D7AEAFADF0 /* CoreDataManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -536,6 +619,7 @@
 		};
 		80B002832247E9BC00E92DDB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 29D845F85EED33E73DF8A290 /* Pods-bryng.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -554,6 +638,7 @@
 		};
 		80B002842247E9BC00E92DDB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB4F1AD20BFA9CAA9A17C774 /* Pods-bryng.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
