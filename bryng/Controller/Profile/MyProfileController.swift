@@ -20,6 +20,13 @@ class MyProfileController: ProfileBaseViewController {
         collectionView.backgroundColor = #colorLiteral(red: 0.9415884067, green: 0.9415884067, blue: 0.9415884067, alpha: 1)
         
         collectionView.register(MyProfileCell.self, forCellWithReuseIdentifier: cellId)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        collectionView.addGestureRecognizer(tap)
+    }
+    
+    @objc private func dismissKeyboard() {
+        collectionView.endEditing(true)
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
