@@ -44,7 +44,12 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         
         setupMapView()
         checkLocationServices()
+        setupLayout()
         
+        addStoreAnnotations()
+    }
+    
+    private func setupLayout() {
         mapView.addSubview(navigationFixedButton)
         navigationFixedButton.constrainWidth(constant: 48)
         navigationFixedButton.constrainHeight(constant: 48)
@@ -83,6 +88,10 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
     }
     
+    func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
+        centerViewOnUserLocation()
+    }
+    
     fileprivate func checkLocationServices() {
         if CLLocationManager.locationServicesEnabled() {
             setupLocationManager()
@@ -114,13 +123,15 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         }
     }
     
-    fileprivate func getDirections() {
-        guard let location = locationManager.location?.coordinate else {
+    fileprivate func drawDirections(to toLocation: CLLocationCoordinate2D?) {
+        guard let fromLocation = locationManager.location?.coordinate else {
             AlertUtil.showBasicAlertWithDelay(viewController: self, title: "Achtung!", message: "Es wurde keine Location für dich gefunden. Bitte starte die App neu!")
             return
         }
         
-        let request = createDirectionsRequest(from: location)
+        guard let toLocation = toLocation else { return }
+        
+        let request = createDirectionsRequest(from: fromLocation, to: toLocation)
         let directions = MKDirections(request: request)
         resetMapView(withNew: directions)
         
@@ -137,27 +148,18 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             
             for route in response.routes {
                 self.mapView.addOverlay(route.polyline)
-                self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
             }
-            
-            self.addDirectionsAnnotations(userLocation: location)
         }
     }
     
-    fileprivate func addDirectionsAnnotations(userLocation: CLLocationCoordinate2D) {
-        let userAnnotation = MKPointAnnotation()
-        userAnnotation.coordinate = userLocation
-        userAnnotation.title = "Startpunkt"
-        mapView.addAnnotation(userAnnotation)
-        
+    fileprivate func addStoreAnnotations() {
         let rewe = GroceryShop(title: "Norma", locationName: "Heinrich-Grüber-Straße 86, 12621 Berlin", coordinate: CLLocationCoordinate2D(latitude: 52.518827, longitude: 13.596681))
         mapView.addAnnotation(rewe)
     }
     
-    fileprivate func createDirectionsRequest(from coordinate: CLLocationCoordinate2D) -> MKDirections.Request {
-        let destinationCoordinate = CLLocationCoordinate2D(latitude: 52.518827, longitude: 13.596681)
-        let startingLocation = MKPlacemark(coordinate: coordinate)
-        let destination = MKPlacemark(coordinate: destinationCoordinate)
+    fileprivate func createDirectionsRequest(from fromLocationCoordinate: CLLocationCoordinate2D, to toLocationCoordinate: CLLocationCoordinate2D) -> MKDirections.Request {
+        let startingLocation = MKPlacemark(coordinate: fromLocationCoordinate)
+        let destination = MKPlacemark(coordinate: toLocationCoordinate)
         
         let request = MKDirections.Request()
         request.source = MKMapItem(placemark: startingLocation)
@@ -181,18 +183,16 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         directionsArray.removeAll()
     }
     
-    var firstTime = false // TODO: Remove
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        let userAnnotation = MKPointAnnotation()
+        userAnnotation.coordinate = locationManager.location?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
+        userAnnotation.title = "Startpunkt"
+        mapView.addAnnotation(userAnnotation)
+        
+        drawDirections(to: view.annotation?.coordinate)
+    }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if !firstTime {
-            guard let location = locations.last else { return }
-            let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-            let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-            mapView.setRegion(region, animated: true)
-            getDirections()
-            firstTime = true
-        }
-        
         if navigationFixedButtonSelected {
             centerViewOnUserLocation()
         }
