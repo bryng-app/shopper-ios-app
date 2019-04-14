@@ -13,6 +13,7 @@ class ProfileBaseViewController: BaseViewController, UICollectionViewDelegateFlo
     var headerTitle = "Profile Title"
     var headerBackgroundColor = UIColor.white
     
+    var headerView: CloseHeaderView!
     fileprivate let headerId = "headerId"
     
     override func viewDidLoad() {
@@ -24,13 +25,17 @@ class ProfileBaseViewController: BaseViewController, UICollectionViewDelegateFlo
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! CloseHeaderView
+        headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as? CloseHeaderView
         headerView.titleLabel.text = headerTitle
         headerView.backgroundColor = headerBackgroundColor
         headerView.handleDismiss = { [weak self] in
             self?.dismiss(animated: true, completion: nil)
         }
+        setupLayout()
         return headerView
+    }
+    
+    func setupLayout() {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {

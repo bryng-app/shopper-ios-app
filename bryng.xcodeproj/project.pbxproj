@@ -48,6 +48,8 @@
 		80CE1B2C2258F07300B20351 /* StoreHeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CE1B2B2258F07300B20351 /* StoreHeaderLayout.swift */; };
 		80DE5EBD225CEC5400A4C175 /* StoreItemsGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DE5EBC225CEC5400A4C175 /* StoreItemsGroupCell.swift */; };
 		80DE5EBF225CED5400A4C175 /* StoreItemsHorizontalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DE5EBE225CED5400A4C175 /* StoreItemsHorizontalController.swift */; };
+		80E36BBE22633F3100612AF1 /* MyProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E36BBD22633F3100612AF1 /* MyProfileController.swift */; };
+		80E36BC02263435200612AF1 /* MyProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E36BBF2263435200612AF1 /* MyProfileCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,6 +97,8 @@
 		80CE1B2B2258F07300B20351 /* StoreHeaderLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreHeaderLayout.swift; sourceTree = "<group>"; };
 		80DE5EBC225CEC5400A4C175 /* StoreItemsGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemsGroupCell.swift; sourceTree = "<group>"; };
 		80DE5EBE225CED5400A4C175 /* StoreItemsHorizontalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemsHorizontalController.swift; sourceTree = "<group>"; };
+		80E36BBD22633F3100612AF1 /* MyProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileController.swift; sourceTree = "<group>"; };
+		80E36BBF2263435200612AF1 /* MyProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +163,7 @@
 				8010304422620FC50079ABBB /* SocialMediaController.swift */,
 				80103048226215AA0079ABBB /* ProfileBaseViewController.swift */,
 				8010304C2262474D0079ABBB /* OrdersController.swift */,
+				80E36BBD22633F3100612AF1 /* MyProfileController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -169,6 +174,7 @@
 				801030422262056E0079ABBB /* CloseHeaderView.swift */,
 				80103046226214F40079ABBB /* SocialMediaCell.swift */,
 				8010304E22624B7E0079ABBB /* OrderCell.swift */,
+				80E36BBF2263435200612AF1 /* MyProfileCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -375,8 +381,10 @@
 				80B002732247E9BA00E92DDB /* ViewController.swift in Sources */,
 				80C6EC8E224BFF55008E6EA9 /* GroceryShop.swift in Sources */,
 				8010304522620FC50079ABBB /* SocialMediaController.swift in Sources */,
+				80E36BBE22633F3100612AF1 /* MyProfileController.swift in Sources */,
 				80DE5EBF225CED5400A4C175 /* StoreItemsHorizontalController.swift in Sources */,
 				80CE1B2A2258ED2000B20351 /* StoreHeaderView.swift in Sources */,
+				80E36BC02263435200612AF1 /* MyProfileCell.swift in Sources */,
 				80C62976225CF02B00B943E1 /* StoreItemRowCell.swift in Sources */,
 				800BBAAE2248122300110A0C /* UIButton+Layout.swift in Sources */,
 				80C62978225CF2D200B943E1 /* HorizontalSnappingController.swift in Sources */,
