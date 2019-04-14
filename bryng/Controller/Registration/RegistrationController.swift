@@ -9,32 +9,6 @@
 import UIKit
 import JGProgressHUD
 
-class CustomTextField: UITextField {
-    let padding: CGFloat
-    
-    init(padding: CGFloat) {
-        self.padding = padding
-        super.init(frame: .zero)
-        layer.cornerRadius = 25
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError()
-    }
-    
-    override func textRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.insetBy(dx: padding, dy: 0)
-    }
-    
-    override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.insetBy(dx: padding, dy: 0)
-    }
-    
-    override var intrinsicContentSize: CGSize {
-        return .init(width: 0, height: 50)
-    }
-}
-
 class RegistrationController: UIViewController {
     
     // UI Components
@@ -49,23 +23,23 @@ class RegistrationController: UIViewController {
         return button
     }()
     
-    let nameTextField: CustomTextField = {
-        let tf = CustomTextField(padding: 16)
+    let nameTextField: BryngTextField = {
+        let tf = BryngTextField(padding: 16, height: 50)
         tf.placeholder = "Dein Name"
         tf.backgroundColor = .white
         tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         return tf
     }()
-    let emailTextField: CustomTextField = {
-        let tf = CustomTextField(padding: 16)
+    let emailTextField: BryngTextField = {
+        let tf = BryngTextField(padding: 16, height: 50)
         tf.placeholder = "Deine E-Mail"
         tf.keyboardType = .emailAddress
         tf.backgroundColor = .white
         tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         return tf
     }()
-    let passwordTextField: CustomTextField = {
-        let tf = CustomTextField(padding: 16)
+    let passwordTextField: BryngTextField = {
+        let tf = BryngTextField(padding: 16, height: 50)
         tf.placeholder = "Dein Passwort"
         tf.isSecureTextEntry = true
         tf.backgroundColor = .white

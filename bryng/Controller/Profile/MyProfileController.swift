@@ -50,7 +50,7 @@ class MyProfileController: ProfileBaseViewController {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.frame.width - 32, height: 360)
+        return .init(width: view.frame.width - 32, height: 380)
     }
     
 }
