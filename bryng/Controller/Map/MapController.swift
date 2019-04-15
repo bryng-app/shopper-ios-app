@@ -39,6 +39,9 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         return btn
     }()
     
+    private let mapStoreInformationView = MapStoreInformationView()
+    private let heightTransition: CGFloat = 200
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,6 +50,9 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         setupLayout()
         
         addStoreAnnotations()
+        
+        mapStoreInformationView.frame = .init(x: 0, y: self.view.frame.size.height, width: self.view.frame.size.width, height: 200)
+        self.view.addSubview(mapStoreInformationView)
     }
     
     private func setupLayout() {
@@ -175,9 +181,13 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         }
     }
     
-    fileprivate func resetMapView(withNew directions: MKDirections) {
+    fileprivate func resetMapView(withNew directions: MKDirections?) {
         mapView.removeOverlays(mapView.overlays)
-        directionsArray.append(directions)
+        
+        if let directions = directions {
+            directionsArray.append(directions)
+        }
+        
         let _ = directionsArray.map { $0.cancel() }
         directionsArray.removeAll()
     }
@@ -189,6 +199,20 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         mapView.addAnnotation(userAnnotation)
         
         drawDirections(to: view.annotation?.coordinate)
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.navigationFixedButton.transform = CGAffineTransform(translationX: 0, y: -(self.heightTransition / 2 + 16))
+            self.mapStoreInformationView.transform = CGAffineTransform(translationX: 0, y: -self.heightTransition)
+        }, completion: nil)
+    }
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        resetMapView(withNew: nil)
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.navigationFixedButton.transform = CGAffineTransform(translationX: 0, y: 0)
+            self.mapStoreInformationView.transform = CGAffineTransform(translationX: 0, y: self.heightTransition)
+        }, completion: nil)
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
