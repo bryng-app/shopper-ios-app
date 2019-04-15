@@ -29,13 +29,13 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     private let navigationFixedButton: UIButton = {
         let btn = UIButton(type: .system)
         btn.setImage(#imageLiteral(resourceName: "navigation_arrow"), for: .normal)
-        btn.backgroundColor = UIColor(red: 171, green: 178, blue: 186, alpha: 1.0)
+        btn.backgroundColor = .white
         btn.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-        btn.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-        btn.layer.shadowOpacity = 1.0
+        btn.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        btn.layer.shadowOpacity = 0.5
         btn.layer.shadowRadius = 0.0
         btn.layer.masksToBounds = false
-        btn.layer.cornerRadius = 4.0
+        btn.layer.cornerRadius = 8
         return btn
     }()
     
@@ -53,8 +53,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         mapView.addSubview(navigationFixedButton)
         navigationFixedButton.constrainWidth(constant: 48)
         navigationFixedButton.constrainHeight(constant: 48)
-        navigationFixedButton.anchor(top: nil, leading: nil, bottom: nil, trailing: mapView.trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 16))
-        navigationFixedButton.centerYAnchor.constraint(equalTo: mapView.centerYAnchor).isActive = true
+        navigationFixedButton.anchor(top: nil, leading: nil, bottom: mapView.bottomAnchor, trailing: mapView.trailingAnchor, padding: .init(top: 0, left: 0, bottom: 100, right: 16))
         
         navigationFixedButton.addTarget(self, action: #selector(didTapOnNavigationFixed), for: .touchUpInside)
     }
