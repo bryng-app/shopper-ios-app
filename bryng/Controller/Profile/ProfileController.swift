@@ -105,39 +105,10 @@ class ProfileController: BaseViewController, UINavigationControllerDelegate, UII
     }
     
     @objc private func didTapInviteFriends() {
-        let actionMessage = "Hey Du!\nIch benutze die neue App bryng, mit der Du Geld verdienen kannst oder Dir einfach und schnell den Einkauf bringen lassen kannst! Echt geile Sache 💪 (https://bryng.app/)"
-        let actions = [
-            UIAlertAction(title: "WhatsApp", style: .default, handler: { (action) in
-                let encodedActionMessage = actionMessage.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-                if let url = URL(string: "whatsapp://send?text=\(encodedActionMessage!)") {
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                } else {
-                    AlertUtil.showBasicAlert(viewController: self, title: "Etwas ist schief gegangen!", message: "Höchstwahrscheinlich besitzt Du nicht WhatsApp auf Deinem Smartphone")
-                }
-            }),
-            UIAlertAction(title: "Nachricht", style: .default, handler: { [weak self] (action) in
-                if MFMessageComposeViewController.canSendText() {
-                    let controller = MFMessageComposeViewController()
-                    controller.body = actionMessage
-                    controller.messageComposeDelegate = self
-                    self?.present(controller, animated: true, completion: nil)
-                } else {
-                    AlertUtil.showBasicAlert(viewController: self, title: "Etwas ist schief gegangen!", message: "Höchstwahrscheinlich besitzt Du keine Messages App auf Deinem Smartphone")
-                }
-            }),
-            UIAlertAction(title: "E-Mail", style: .default, handler: { [weak self] (action) in
-                if MFMailComposeViewController.canSendMail() {
-                    let mailComposerVC = MFMailComposeViewController()
-                    mailComposerVC.mailComposeDelegate = self
-                    mailComposerVC.setSubject("Benutze jetzt auch bryng!")
-                    mailComposerVC.setMessageBody("Hey Du!\nIch benutze die neue App bryng, mit der Du Geld verdienen kannst oder Dir einfach und schnell den Einkauf bringen lassen kannst! Echt geile Sache 💪 (https://bryng.app/)", isHTML: false)
-                    self?.present(mailComposerVC, animated: true, completion: nil)
-                } else {
-                    AlertUtil.showBasicAlert(viewController: self, title: "Etwas ist schief gegangen!", message: "Höchstwahrscheinlich besitzt Du keine Mail App auf Deinem Smartphone")
-                }
-            })
-        ]
-        AlertUtil.showBasicActionSheet(viewController: self, title: "Lade Deine Freunde ein!", message: "Lade jetzt Deine Freunde ein, damit wir noch mehr Leute erreichen!", actions: actions)
+        let inviteMessage = "Hey Du!\nIch benutze die neue App bryng, mit der Du Geld verdienen kannst oder Dir einfach und schnell den Einkauf bringen lassen kannst! Echt geile Sache 💪 (https://bryng.app/)"
+        
+        let vc = UIActivityViewController(activityItems: [inviteMessage], applicationActivities: [])
+        present(vc, animated: true)
     }
     
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
