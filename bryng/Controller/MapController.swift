@@ -40,7 +40,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     }()
     
     private let mapStoreInformationView = MapStoreInformationView()
-    private let heightTransition: CGFloat = 200
+    private let mapStoreInformationViewHeight: CGFloat = 250
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +51,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         
         addStoreAnnotations()
         
-        mapStoreInformationView.frame = .init(x: 0, y: self.view.frame.size.height, width: self.view.frame.size.width, height: 200)
+        mapStoreInformationView.frame = .init(x: 0, y: self.view.frame.size.height, width: self.view.frame.size.width, height: mapStoreInformationViewHeight)
         self.view.addSubview(mapStoreInformationView)
     }
     
@@ -201,8 +201,8 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         drawDirections(to: view.annotation?.coordinate)
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            self.navigationFixedButton.transform = CGAffineTransform(translationX: 0, y: -(self.heightTransition / 2 + 16))
-            self.mapStoreInformationView.transform = CGAffineTransform(translationX: 0, y: -self.heightTransition)
+            self.navigationFixedButton.transform = CGAffineTransform(translationX: 0, y: -(self.mapStoreInformationViewHeight / 2 + 40))
+            self.mapStoreInformationView.transform = CGAffineTransform(translationX: 0, y: -self.mapStoreInformationViewHeight)
         }, completion: nil)
     }
     
@@ -211,7 +211,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.navigationFixedButton.transform = CGAffineTransform(translationX: 0, y: 0)
-            self.mapStoreInformationView.transform = CGAffineTransform(translationX: 0, y: self.heightTransition)
+            self.mapStoreInformationView.transform = CGAffineTransform(translationX: 0, y: self.mapStoreInformationViewHeight)
         }, completion: nil)
     }
     

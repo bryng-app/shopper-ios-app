@@ -145,25 +145,16 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
-		8001EB1F22646B1C00D4514F /* Map */ = {
-			isa = PBXGroup;
-			children = (
-				8009AEC3225DEA6C00917602 /* MapController.swift */,
-				8001EB222264706400D4514F /* MapStoreInformationView.swift */,
-			);
-			path = Map;
-			sourceTree = "<group>";
-		};
 		800BBAA722480A8D00110A0C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				8001EB1F22646B1C00D4514F /* Map */,
 				80E36BC3226378F700612AF1 /* Registration */,
 				8010303E2261D98A0079ABBB /* Profile */,
 				80DE5EBA225CEBB300A4C175 /* Store */,
 				802973BE224F57E900A362D6 /* AllStoresController.swift */,
 				80B002852247E9D800E92DDB /* BaseTabBarController.swift */,
 				80C62977225CF2D200B943E1 /* HorizontalSnappingController.swift */,
+				8009AEC3225DEA6C00917602 /* MapController.swift */,
 				8009AEC7225E70CB00917602 /* BaseViewController.swift */,
 			);
 			path = Controller;
@@ -221,6 +212,7 @@
 				80103041226205520079ABBB /* Profile */,
 				80DE5EBB225CEC4400A4C175 /* Store */,
 				808533B52255263D005BF967 /* AllStoresCell.swift */,
+				8001EB222264706400D4514F /* MapStoreInformationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
