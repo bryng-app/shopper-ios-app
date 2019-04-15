@@ -48,11 +48,23 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         setupMapView()
         checkLocationServices()
         setupLayout()
+        setupMapStoreInformationView()
         
         addStoreAnnotations()
         
         mapStoreInformationView.frame = .init(x: 0, y: self.view.frame.size.height, width: self.view.frame.size.width, height: mapStoreInformationViewHeight)
         self.view.addSubview(mapStoreInformationView)
+    }
+    
+    private func setupMapStoreInformationView() {
+        mapStoreInformationView.didClickOnGoTo = {
+            guard let viewController = self.tabBarController?.viewControllers?[1] as? UINavigationController else { return }
+            
+            guard let allStoresController = viewController.topViewController as? AllStoresController else { return }
+            
+            allStoresController.tabBarController?.selectedIndex = 1
+            allStoresController.goToStoreController()
+        }
     }
     
     private func setupLayout() {

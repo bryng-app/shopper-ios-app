@@ -53,11 +53,15 @@ class AllStoresController: BaseViewController, UICollectionViewDelegateFlowLayou
         
         // TODO: Set parsed data
         cell.didSelectHandler = { [weak self] storeName in
-            let storeController = StoreController()
-            self?.navigationController?.pushViewController(storeController, animated: true)
+            self?.goToStoreController()
         }
         
         return cell
+    }
+    
+    func goToStoreController() {
+        let storeController = StoreController()
+        navigationController?.pushViewController(storeController, animated: true)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
