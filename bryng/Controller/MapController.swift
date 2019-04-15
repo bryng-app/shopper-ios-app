@@ -200,6 +200,21 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         
         drawDirections(to: view.annotation?.coordinate)
         
+        let userLocation = CLLocation(latitude: userAnnotation.coordinate.latitude, longitude: userAnnotation.coordinate.longitude)
+        guard let endAnnotation = view.annotation else { return }
+        let endLocation = CLLocation(latitude: endAnnotation.coordinate.latitude, longitude: endAnnotation.coordinate.longitude)
+        
+        let distance = userLocation.distance(from: endLocation)
+        var distanceOutput = ""
+        if distance < 1000 {
+            distanceOutput = "\(Double(round(100 * distance) / 100))m"
+        } else {
+            distanceOutput = "\(Double(round(distance)))km"
+        }
+        
+        mapStoreInformationView.distanceLabel.text = distanceOutput
+        mapStoreInformationView.nameLabel.text = "Norma"
+        
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.navigationFixedButton.transform = CGAffineTransform(translationX: 0, y: -(self.mapStoreInformationViewHeight / 2 + 40))
             self.mapStoreInformationView.transform = CGAffineTransform(translationX: 0, y: -self.mapStoreInformationViewHeight)
