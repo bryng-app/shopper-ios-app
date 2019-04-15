@@ -13,9 +13,15 @@ class CartController: BaseViewController, UICollectionViewDelegateFlowLayout {
     private let headerId = "headerId"
     private let cellId = "cellId"
     
+    private var cartProducts = [CartModel]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        cartProducts.append(CartModel(name: "Apfel", amount: 2))
+        cartProducts.append(CartModel(name: "Ding", amount: 4))
+        cartProducts.append(CartModel(name: "Banane", amount: 5))
+        
         collectionView.backgroundColor = #colorLiteral(red: 0.9415884067, green: 0.9415884067, blue: 0.9415884067, alpha: 1)
 
         collectionView.register(CloseHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
@@ -59,7 +65,15 @@ class CartController: BaseViewController, UICollectionViewDelegateFlowLayout {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! CartCell
+    
+        cell.productNameLabel.text = cartProducts[indexPath.row].name
+        cell.priceLabel.text = "Anzahl: \(cartProducts[indexPath.row].amount)"
+        cell.handleDelete = {
+            self.cartProducts.remove(at: indexPath.row)
+            collectionView.reloadData()
+        }
+        
         return cell
     }
 
@@ -72,7 +86,7 @@ class CartController: BaseViewController, UICollectionViewDelegateFlowLayout {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return cartProducts.count
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

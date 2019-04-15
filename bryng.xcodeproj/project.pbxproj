@@ -17,6 +17,7 @@
 		800BBAAC22480C4600110A0C /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800BBAAB22480C4600110A0C /* UIView+Layout.swift */; };
 		800BBAAE2248122300110A0C /* UIButton+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800BBAAD2248122300110A0C /* UIButton+Layout.swift */; };
 		800E3F6D224AB3820030A61A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 800E3F6C224AB3820030A61A /* MapKit.framework */; };
+		800FCF7022650F9E0007A651 /* CartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800FCF6F22650F9E0007A651 /* CartModel.swift */; };
 		801030402261D9980079ABBB /* AboutUsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8010303F2261D9980079ABBB /* AboutUsController.swift */; };
 		801030432262056E0079ABBB /* CloseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801030422262056E0079ABBB /* CloseHeaderView.swift */; };
 		8010304522620FC50079ABBB /* SocialMediaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8010304422620FC50079ABBB /* SocialMediaController.swift */; };
@@ -72,6 +73,7 @@
 		800BBAAD2248122300110A0C /* UIButton+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Layout.swift"; sourceTree = "<group>"; };
 		800E3F6C224AB3820030A61A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		800E3F70224AB9B60030A61A /* berlin.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = berlin.gpx; sourceTree = "<group>"; };
+		800FCF6F22650F9E0007A651 /* CartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartModel.swift; sourceTree = "<group>"; };
 		8010303F2261D9980079ABBB /* AboutUsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsController.swift; sourceTree = "<group>"; };
 		801030422262056E0079ABBB /* CloseHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseHeaderView.swift; sourceTree = "<group>"; };
 		8010304422620FC50079ABBB /* SocialMediaController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaController.swift; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 			children = (
 				80C6EC8D224BFF55008E6EA9 /* GroceryShop.swift */,
 				8010304A226226A70079ABBB /* SocialMediaModel.swift */,
+				800FCF6F22650F9E0007A651 /* CartModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -444,6 +447,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				800FCF7022650F9E0007A651 /* CartModel.swift in Sources */,
 				8010304D2262474D0079ABBB /* OrdersController.swift in Sources */,
 				800BBAA922480AB900110A0C /* ProfileController.swift in Sources */,
 				80103049226215AA0079ABBB /* ProfileBaseViewController.swift in Sources */,
