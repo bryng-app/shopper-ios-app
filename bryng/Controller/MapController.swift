@@ -105,10 +105,6 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
     }
     
-    func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
-        centerViewOnUserLocation()
-    }
-    
     fileprivate func checkLocationServices() {
         if CLLocationManager.locationServicesEnabled() {
             setupLocationManager()
@@ -205,14 +201,15 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        let userAnnotation = MKPointAnnotation()
+        /*let userAnnotation = MKPointAnnotation()
         userAnnotation.coordinate = locationManager.location?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
         userAnnotation.title = "Startpunkt"
-        mapView.addAnnotation(userAnnotation)
+        mapView.addAnnotation(userAnnotation)*/
+        let userCoordinate = locationManager.location?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
         
         drawDirections(to: view.annotation?.coordinate)
         
-        let userLocation = CLLocation(latitude: userAnnotation.coordinate.latitude, longitude: userAnnotation.coordinate.longitude)
+        let userLocation = CLLocation(latitude: userCoordinate.latitude, longitude: userCoordinate.longitude)
         guard let endAnnotation = view.annotation else { return }
         let endLocation = CLLocation(latitude: endAnnotation.coordinate.latitude, longitude: endAnnotation.coordinate.longitude)
         
@@ -242,9 +239,12 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         }, completion: nil)
     }
     
+    private var firstTimeLoaded = true
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if navigationFixedButtonSelected {
+        if navigationFixedButtonSelected || firstTimeLoaded {
             centerViewOnUserLocation()
+            firstTimeLoaded = false
         }
     }
     
@@ -256,6 +256,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         let renderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
         renderer.strokeColor = #colorLiteral(red: 0.9706280828, green: 0.3376097977, blue: 0.3618901968, alpha: 1)
         renderer.lineWidth = 5.0
+        renderer.lineDashPattern = [5, 10]
         return renderer
     }
     

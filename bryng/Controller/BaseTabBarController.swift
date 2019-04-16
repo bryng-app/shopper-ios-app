@@ -16,8 +16,8 @@ class BaseTabBarController: UITabBarController {
         tabBar.tintColor = .black
         
         viewControllers = [
-            createViewController(viewController: AllStoresController(), title: "Geschäfte", unfilledImageName: "shop", filledImageName: "shop-filled", hasNavController: true),
             createViewController(viewController: MapController(), title: "Maps", unfilledImageName: "map-marker", filledImageName: "map-marker-filled"),
+            createViewController(viewController: AllStoresController(), title: "Geschäfte", unfilledImageName: "shop", filledImageName: "shop-filled", hasNavController: true),
             createViewController(viewController: ProfileController(), title: "Profil", unfilledImageName: "contacts", filledImageName: "contacts-filled"),
         ]
     }
