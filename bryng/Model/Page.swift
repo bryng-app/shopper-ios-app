@@ -6,11 +6,12 @@
 //  Copyright © 2019 bryng. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct Page {
     
     var headline: String
     var text: String
+    var image: UIImage?
     
 }

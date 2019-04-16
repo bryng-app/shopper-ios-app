@@ -78,9 +78,9 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
         super.viewDidLoad()
         
         pages = [
-            Page(headline: "Kaufe Deine Lebensmittel bei uns in der App", text: "Heutzutage sollte es nicht mehr schwierig sein Lebensmittel online zukaufen. Bei uns kannst du ganz einfach Deine gewünschten Lebensmittel, wie aus einem Regal, nehmen und kaufen!"),
-            Page(headline: "Lasse Deine Lebensmittel bryngen", text: "Es klingt einfach ist aber genial! Lasse Deine Lebensmittel zu Deinem gewünschten Standort bringen. Es ist egal, ob Du auf Arbeit oder Zuhause bist!"),
-            Page(headline: "Lerne neue Leute kennen", text: "Wir haben keine Mitarbeiter. Dementsprechend kannst Du jeden Tag neue Leute kennenlernen, denn sie bringen Dir Deine Lebensmittel!"),
+            Page(headline: "Kaufe Deine Lebensmittel bei uns in der App", text: "Heutzutage sollte es nicht mehr schwierig sein Lebensmittel online zukaufen. Bei uns kannst du ganz einfach Deine gewünschten Lebensmittel, wie aus einem Regal, nehmen und kaufen!", image: #imageLiteral(resourceName: "preview_page_1")),
+            Page(headline: "Lasse Deine Lebensmittel bryngen", text: "Es klingt einfach ist aber genial! Lasse Deine Lebensmittel zu Deinem gewünschten Standort bringen. Es ist egal, ob Du auf Arbeit oder Zuhause bist!", image: #imageLiteral(resourceName: "preview_page_2")),
+            Page(headline: "Lerne neue Leute kennen", text: "Wir haben keine Mitarbeiter. Dementsprechend kannst Du jeden Tag neue Leute kennenlernen, denn sie bringen Dir Deine Lebensmittel!", image: #imageLiteral(resourceName: "bryng_logo")),
         ]
         
         collectionView.backgroundColor = .white

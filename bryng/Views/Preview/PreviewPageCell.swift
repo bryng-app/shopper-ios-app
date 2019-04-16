@@ -22,11 +22,16 @@ class PreviewPageCell: UICollectionViewCell {
             descriptionTextView.textAlignment = .center
             descriptionTextView.isEditable = false
             descriptionTextView.isScrollEnabled = false
+            
+            guard let image = page.image else { return }
+            
+            imageView.image = image
         }
     }
     
     var handleTipOnGetStarted: (() -> ())?
     
+    private let imageView = UIImageView()
     private let descriptionTextView = UITextView()
     
     private lazy var getStartedButton: UIButton = {
@@ -50,15 +55,20 @@ class PreviewPageCell: UICollectionViewCell {
         
         backgroundColor = .white
         
-        addSubview(descriptionTextView)
-        descriptionTextView.constrainWidth(constant: frame.width - 80)
-        descriptionTextView.centerInSuperview()
+        addSubview(imageView)
+        imageView.anchor(top: topAnchor, leading: nil, bottom: nil, trailing: nil, padding: .init(top: 128, left: 0, bottom: 0, right: 0))
+        imageView.centerXInSuperview()
+        imageView.constrainHeight(constant: 245)
         
         addSubview(getStartedButton)
         getStartedButton.anchor(top: nil, leading: nil, bottom: bottomAnchor, trailing: nil, padding: .init(top: 0, left: 0, bottom: 114, right: 0))
         getStartedButton.centerXInSuperview()
         getStartedButton.constrainHeight(constant: 48)
         getStartedButton.constrainWidth(constant: 150)
+        
+        addSubview(descriptionTextView)
+        descriptionTextView.constrainWidth(constant: frame.width)
+        descriptionTextView.anchor(top: imageView.bottomAnchor, leading: leadingAnchor, bottom: getStartedButton.topAnchor, trailing: trailingAnchor, padding: .init(top: 32, left: 40, bottom: 0, right: 40))
     }
     
     required init?(coder aDecoder: NSCoder) {
