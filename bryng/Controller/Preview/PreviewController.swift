@@ -78,9 +78,9 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
         super.viewDidLoad()
         
         pages = [
-            Page(headline: "Das ist unsere erste Headline", text: "Das ist irgendein komischer Text der hier unbedingt rein muss!!"),
-            Page(headline: "Zweite Headline", text: "Das ist irgendein komischer Text der hier unbedingt rein muss!!!!!!!!"),
-            Page(headline: "Das Dritte Headline", text: "Das ist irgendein komischer Text der hier unbedingt rein muss!!!!!!!!!!!!!"),
+            Page(headline: "Kaufe Deine Lebensmittel bei uns in der App", text: "Heutzutage sollte es nicht mehr schwierig sein Lebensmittel online zukaufen. Bei uns kannst du ganz einfach Deine gewünschten Lebensmittel, wie aus einem Regal, nehmen und kaufen!"),
+            Page(headline: "Lasse Deine Lebensmittel bryngen", text: "Es klingt einfach ist aber genial! Lasse Deine Lebensmittel zu Deinem gewünschten Standort bringen. Es ist egal, ob Du auf Arbeit oder Zuhause bist!"),
+            Page(headline: "Lerne neue Leute kennen", text: "Wir haben keine Mitarbeiter. Dementsprechend kannst Du jeden Tag neue Leute kennenlernen, denn sie bringen Dir Deine Lebensmittel!"),
         ]
         
         collectionView.backgroundColor = .white

@@ -14,9 +14,9 @@ class PreviewPageCell: UICollectionViewCell {
         didSet {
             guard let page = page else { return }
             
-            let attributedText = NSMutableAttributedString(string: page.headline, attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 13)])
+            let attributedText = NSMutableAttributedString(string: page.headline, attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 20)])
             
-            attributedText.append(NSMutableAttributedString(string: "\n\n\n\(page.text)", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13), NSAttributedString.Key.foregroundColor: UIColor.gray]))
+            attributedText.append(NSMutableAttributedString(string: "\n\n\n\(page.text)", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.gray]))
             
             descriptionTextView.attributedText = attributedText
             descriptionTextView.textAlignment = .center
@@ -51,7 +51,7 @@ class PreviewPageCell: UICollectionViewCell {
         backgroundColor = .white
         
         addSubview(descriptionTextView)
-        descriptionTextView.constrainWidth(constant: frame.width - 24)
+        descriptionTextView.constrainWidth(constant: frame.width - 80)
         descriptionTextView.centerInSuperview()
         
         addSubview(getStartedButton)
