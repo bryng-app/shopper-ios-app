@@ -14,9 +14,8 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
     
     private let previousButton: UIButton = {
         let btn = UIButton(type: .system)
-        btn.setTitle("Prev", for: .normal)
-        btn.titleLabel?.font = .boldSystemFont(ofSize: 14)
-        btn.setTitleColor(.gray, for: .normal)
+        btn.setImage(#imageLiteral(resourceName: "arrow_left").withRenderingMode(.alwaysTemplate), for: .normal)
+        btn.tintColor = .gray
         btn.addTarget(self, action: #selector(didTapPrevious), for: .touchUpInside)
         return btn
     }()
@@ -26,12 +25,13 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
         let indexPath = IndexPath(item: nextIndex, section: 0)
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         pageControl.currentPage = nextIndex
+        changeCurrentPage(index: nextIndex)
     }
     
-    private lazy var nextButton: UIButton = {
+    private let nextButton: UIButton = {
         let btn = UIButton(type: .system)
-        btn.setTitle("Next", for: .normal)
-        btn.titleLabel?.font = .boldSystemFont(ofSize: 14)
+        btn.setImage(#imageLiteral(resourceName: "arrow_right").withRenderingMode(.alwaysTemplate), for: .normal)
+        btn.tintColor = #colorLiteral(red: 1, green: 0.356151558, blue: 0.3902737024, alpha: 1)
         btn.addTarget(self, action: #selector(didTapNext), for: .touchUpInside)
         return btn
     }()
@@ -40,21 +40,37 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
         let nextIndex = min(pageControl.currentPage + 1, 4 - 1)
         let indexPath = IndexPath(item: nextIndex, section: 0)
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-        pageControl.currentPage = nextIndex
+        changeCurrentPage(index: nextIndex)
     }
     
     private let pageControl: UIPageControl = {
         let pc = UIPageControl()
         pc.currentPage = 0
         pc.numberOfPages = 4
-        pc.currentPageIndicatorTintColor = .red
+        pc.currentPageIndicatorTintColor = #colorLiteral(red: 1, green: 0.356151558, blue: 0.3902737024, alpha: 1)
         pc.pageIndicatorTintColor = .gray
         return pc
     }()
     
     override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         let x = targetContentOffset.pointee.x
-        pageControl.currentPage = Int(x / view.frame.width)
+        changeCurrentPage(index: Int(x / view.frame.width))
+    }
+    
+    private func changeCurrentPage(index: Int) {
+        pageControl.currentPage = index
+        
+        if index == 0 {
+            previousButton.tintColor = .gray
+        } else {
+            previousButton.tintColor = #colorLiteral(red: 1, green: 0.356151558, blue: 0.3902737024, alpha: 1)
+        }
+        
+        if index == 3 {
+            nextButton.tintColor = .gray
+        } else {
+            nextButton.tintColor = #colorLiteral(red: 1, green: 0.356151558, blue: 0.3902737024, alpha: 1)
+        }
     }
     
     override func viewDidLoad() {
@@ -83,7 +99,12 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! PreviewPageCell
+        
+        cell.handleTipOnGetStarted = { [weak self] in
+            self?.present(RegistrationController(), animated: true, completion: nil)
+        }
+        
         return cell
     }
     
