@@ -10,6 +10,8 @@
 		57B1A0A138FFA315388C50D5 /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B1A95FE01EEB6A25907BAE /* CartCell.swift */; };
 		57B1AB2B72C6D7D7AEAFADF0 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B1A4AD1043C74ACE4125E7 /* CoreDataManager.swift */; };
 		8001EB232264706400D4514F /* MapStoreInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8001EB222264706400D4514F /* MapStoreInformationView.swift */; };
+		8002BDB92265EB1700CECB4C /* PreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8002BDB82265EB1700CECB4C /* PreviewController.swift */; };
+		8002BDBE2265EF7400CECB4C /* PreviewPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8002BDBD2265EF7400CECB4C /* PreviewPageCell.swift */; };
 		8009AEC4225DEA6C00917602 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8009AEC3225DEA6C00917602 /* MapController.swift */; };
 		8009AEC6225E6E9A00917602 /* AlertUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8009AEC5225E6E9A00917602 /* AlertUtil.swift */; };
 		8009AEC8225E70CB00917602 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8009AEC7225E70CB00917602 /* BaseViewController.swift */; };
@@ -65,6 +67,8 @@
 		57B1A4AD1043C74ACE4125E7 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		57B1A95FE01EEB6A25907BAE /* CartCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
 		8001EB222264706400D4514F /* MapStoreInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapStoreInformationView.swift; sourceTree = "<group>"; };
+		8002BDB82265EB1700CECB4C /* PreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewController.swift; sourceTree = "<group>"; };
+		8002BDBD2265EF7400CECB4C /* PreviewPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPageCell.swift; sourceTree = "<group>"; };
 		8009AEC3225DEA6C00917602 /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		8009AEC5225E6E9A00917602 /* AlertUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertUtil.swift; sourceTree = "<group>"; };
 		8009AEC7225E70CB00917602 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -147,9 +151,26 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
+		8002BDB72265EAAE00CECB4C /* Preview */ = {
+			isa = PBXGroup;
+			children = (
+				8002BDB82265EB1700CECB4C /* PreviewController.swift */,
+			);
+			path = Preview;
+			sourceTree = "<group>";
+		};
+		8002BDBC2265EF6900CECB4C /* Preview */ = {
+			isa = PBXGroup;
+			children = (
+				8002BDBD2265EF7400CECB4C /* PreviewPageCell.swift */,
+			);
+			path = Preview;
+			sourceTree = "<group>";
+		};
 		800BBAA722480A8D00110A0C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				8002BDB72265EAAE00CECB4C /* Preview */,
 				80E36BC3226378F700612AF1 /* Registration */,
 				8010303E2261D98A0079ABBB /* Profile */,
 				80DE5EBA225CEBB300A4C175 /* Store */,
@@ -211,6 +232,7 @@
 		808533B422552626005BF967 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8002BDBC2265EF6900CECB4C /* Preview */,
 				80103041226205520079ABBB /* Profile */,
 				80DE5EBB225CEC4400A4C175 /* Store */,
 				808533B52255263D005BF967 /* AllStoresCell.swift */,
@@ -455,12 +477,14 @@
 				80AB976F22567C80002507B9 /* VerticalStackView.swift in Sources */,
 				80103047226214F40079ABBB /* SocialMediaCell.swift in Sources */,
 				80DE5EBD225CEC5400A4C175 /* StoreItemsGroupCell.swift in Sources */,
+				8002BDB92265EB1700CECB4C /* PreviewController.swift in Sources */,
 				8009AEC8225E70CB00917602 /* BaseViewController.swift in Sources */,
 				80B002862247E9D800E92DDB /* BaseTabBarController.swift in Sources */,
 				8089786C224A6724003DEF2B /* UIDevice+Name.swift in Sources */,
 				80AB976D22567561002507B9 /* UILabel.swift in Sources */,
 				80CE1B2C2258F07300B20351 /* StoreHeaderLayout.swift in Sources */,
 				80E36BC72263977A00612AF1 /* BryngTextField.swift in Sources */,
+				8002BDBE2265EF7400CECB4C /* PreviewPageCell.swift in Sources */,
 				8010304B226226A70079ABBB /* SocialMediaModel.swift in Sources */,
 				80BE668F225FC5F900438784 /* CartController.swift in Sources */,
 				801030432262056E0079ABBB /* CloseHeaderView.swift in Sources */,
