@@ -19,9 +19,9 @@ class MyProfileController: ProfileBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        headerBackgroundColor = #colorLiteral(red: 0.9415884067, green: 0.9415884067, blue: 0.9415884067, alpha: 1)
+        headerBackgroundColor = .modernGray
         headerTitle = "Profil"
-        collectionView.backgroundColor = #colorLiteral(red: 0.9415884067, green: 0.9415884067, blue: 0.9415884067, alpha: 1)
+        collectionView.backgroundColor = .modernGray
         
         collectionView.register(MyProfileCell.self, forCellWithReuseIdentifier: cellId)
         

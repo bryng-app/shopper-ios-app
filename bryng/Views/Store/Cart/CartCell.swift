@@ -25,7 +25,7 @@ class CartCell: UICollectionViewCell {
         let btn = UIButton(type: .system)
         btn.setTitle("Löschen", for: .normal)
         btn.setTitleColor(.white, for: .normal)
-        btn.backgroundColor = #colorLiteral(red: 1, green: 0.356151558, blue: 0.3902737024, alpha: 1)
+        btn.backgroundColor = UIColor.primaryColor
         btn.titleLabel?.font = .boldSystemFont(ofSize: 14)
         btn.widthAnchor.constraint(equalToConstant: 95).isActive = true
         btn.heightAnchor.constraint(equalToConstant: 36).isActive = true

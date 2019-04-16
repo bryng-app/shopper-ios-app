@@ -31,7 +31,7 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
     private let nextButton: UIButton = {
         let btn = UIButton(type: .system)
         btn.setImage(#imageLiteral(resourceName: "arrow_right").withRenderingMode(.alwaysTemplate), for: .normal)
-        btn.tintColor = #colorLiteral(red: 1, green: 0.356151558, blue: 0.3902737024, alpha: 1)
+        btn.tintColor = UIColor.primaryColor
         btn.addTarget(self, action: #selector(didTapNext), for: .touchUpInside)
         return btn
     }()
@@ -47,7 +47,7 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
         let pc = UIPageControl()
         pc.currentPage = 0
         pc.numberOfPages = 4
-        pc.currentPageIndicatorTintColor = #colorLiteral(red: 1, green: 0.356151558, blue: 0.3902737024, alpha: 1)
+        pc.currentPageIndicatorTintColor = UIColor.primaryColor
         pc.pageIndicatorTintColor = .gray
         return pc
     }()
@@ -63,13 +63,13 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
         if index == 0 {
             previousButton.tintColor = .gray
         } else {
-            previousButton.tintColor = #colorLiteral(red: 1, green: 0.356151558, blue: 0.3902737024, alpha: 1)
+            previousButton.tintColor = UIColor.primaryColor
         }
         
         if index == 3 {
             nextButton.tintColor = .gray
         } else {
-            nextButton.tintColor = #colorLiteral(red: 1, green: 0.356151558, blue: 0.3902737024, alpha: 1)
+            nextButton.tintColor = UIColor.primaryColor
         }
     }
     

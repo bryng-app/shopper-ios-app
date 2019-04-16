@@ -18,7 +18,7 @@ class BadgeButton: UIButton {
         }
     }
 
-    public var badgeBackgroundColor = #colorLiteral(red: 1, green: 0.356151558, blue: 0.3902737024, alpha: 1) {
+    public var badgeBackgroundColor = UIColor.primaryColor {
         didSet {
             badgeLabel.backgroundColor = badgeBackgroundColor
         }

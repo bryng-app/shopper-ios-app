@@ -30,7 +30,7 @@ class ProfileController: BaseViewController, UINavigationControllerDelegate, UII
     let logoutButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Ausloggen", for: .normal)
-        button.setTitleColor(#colorLiteral(red: 0.9706280828, green: 0.3376097977, blue: 0.3618901968, alpha: 1), for: .normal)
+        button.setTitleColor(UIColor.primaryColor, for: .normal)
         button.layer.cornerRadius = 24
         return button
     }()
@@ -100,7 +100,7 @@ class ProfileController: BaseViewController, UINavigationControllerDelegate, UII
         let photoHeight = collectionView.bounds.height * 0.2
         profileImageView.layer.cornerRadius = photoHeight / 2
         profileImageView.clipsToBounds = true
-        profileImageView.layer.borderColor = #colorLiteral(red: 0.9706280828, green: 0.3376097977, blue: 0.3618901968, alpha: 1)
+        profileImageView.layer.borderColor = UIColor.primaryColor.cgColor
         profileImageView.layer.borderWidth = 2
     }
     

@@ -19,8 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         window?.makeKeyAndVisible()
         // window?.rootViewController = RegistrationController()
-        window?.rootViewController = BaseTabBarController()
-        // window?.rootViewController = PreviewController()
+        // window?.rootViewController = BaseTabBarController()
+        window?.rootViewController = PreviewController()
         
         return true
     }

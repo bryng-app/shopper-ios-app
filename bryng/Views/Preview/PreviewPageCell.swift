@@ -31,10 +31,10 @@ class PreviewPageCell: UICollectionViewCell {
     private lazy var getStartedButton: UIButton = {
         let btn = UIButton(type: .system)
         btn.setTitle("Jetzt einkaufen!", for: .normal)
-        btn.setTitleColor(.gray, for: .normal)
+        btn.setTitleColor(UIColor.primaryColor, for: .normal)
         btn.titleLabel?.font = .boldSystemFont(ofSize: 14)
         btn.layer.borderWidth = 1
-        btn.layer.borderColor = UIColor.gray.cgColor
+        btn.layer.borderColor = UIColor.primaryColor.cgColor
         btn.layer.cornerRadius = 8
         btn.addTarget(self, action: #selector(didTapOnGetStarted), for: .touchUpInside)
         return btn

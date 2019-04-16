@@ -22,7 +22,7 @@ class CartController: BaseViewController, UICollectionViewDelegateFlowLayout {
         cartProducts.append(CartModel(name: "Ding", amount: 4))
         cartProducts.append(CartModel(name: "Banane", amount: 5))
         
-        collectionView.backgroundColor = #colorLiteral(red: 0.9415884067, green: 0.9415884067, blue: 0.9415884067, alpha: 1)
+        collectionView.backgroundColor = .modernGray
 
         collectionView.register(CloseHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
         collectionView.register(CartCell.self, forCellWithReuseIdentifier: cellId)
@@ -44,7 +44,7 @@ class CartController: BaseViewController, UICollectionViewDelegateFlowLayout {
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let closeHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! CloseHeaderView
         
-        closeHeaderView.backgroundColor = #colorLiteral(red: 0.9415884067, green: 0.9415884067, blue: 0.9415884067, alpha: 1)
+        closeHeaderView.backgroundColor = .modernGray
         closeHeaderView.titleLabel.text = "Warenkorb"
         
         closeHeaderView.handleDismiss = { [weak self] in

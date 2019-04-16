@@ -20,9 +20,9 @@ class OrdersController: ProfileBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        headerBackgroundColor = #colorLiteral(red: 0.9415884067, green: 0.9415884067, blue: 0.9415884067, alpha: 1)
+        headerBackgroundColor = .modernGray
         headerTitle = "Bestellungen"
-        collectionView.backgroundColor = #colorLiteral(red: 0.9415884067, green: 0.9415884067, blue: 0.9415884067, alpha: 1)
+        collectionView.backgroundColor = .modernGray
         
         collectionView.register(OrderCell.self, forCellWithReuseIdentifier: cellId)
         

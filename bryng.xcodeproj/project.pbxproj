@@ -58,6 +58,7 @@
 		80E36BC52263790900612AF1 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E36BC42263790900612AF1 /* RegistrationViewModel.swift */; };
 		80E36BC72263977A00612AF1 /* BryngTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E36BC62263977A00612AF1 /* BryngTextField.swift */; };
 		80E36BC922639D0600612AF1 /* MyProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E36BC822639D0600612AF1 /* MyProfileViewModel.swift */; };
+		80F6F65C2266310800C7B591 /* UIColor+Variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F6F65B2266310800C7B591 /* UIColor+Variables.swift */; };
 		D3AB3C24C5169BCA6D044CCD /* Pods_bryng.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DCD2FA0954B2811912B44D9 /* Pods_bryng.framework */; };
 /* End PBXBuildFile section */
 
@@ -118,6 +119,7 @@
 		80E36BC42263790900612AF1 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		80E36BC62263977A00612AF1 /* BryngTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BryngTextField.swift; sourceTree = "<group>"; };
 		80E36BC822639D0600612AF1 /* MyProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewModel.swift; sourceTree = "<group>"; };
+		80F6F65B2266310800C7B591 /* UIColor+Variables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Variables.swift"; sourceTree = "<group>"; };
 		CB4F1AD20BFA9CAA9A17C774 /* Pods-bryng.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bryng.release.xcconfig"; path = "Target Support Files/Pods-bryng/Pods-bryng.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -191,6 +193,7 @@
 				80A795872249090B00EF856A /* UISeperator.swift */,
 				8089786B224A6724003DEF2B /* UIDevice+Name.swift */,
 				80AB976C22567561002507B9 /* UILabel.swift */,
+				80F6F65B2266310800C7B591 /* UIColor+Variables.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 				8010304522620FC50079ABBB /* SocialMediaController.swift in Sources */,
 				80E36BBE22633F3100612AF1 /* MyProfileController.swift in Sources */,
 				80DE5EBF225CED5400A4C175 /* StoreItemsHorizontalController.swift in Sources */,
+				80F6F65C2266310800C7B591 /* UIColor+Variables.swift in Sources */,
 				80CE1B2A2258ED2000B20351 /* StoreHeaderView.swift in Sources */,
 				80E36BC02263435200612AF1 /* MyProfileCell.swift in Sources */,
 				80C62976225CF02B00B943E1 /* StoreItemRowCell.swift in Sources */,

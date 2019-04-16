@@ -19,9 +19,9 @@ class SocialMediaController: ProfileBaseViewController {
         
         fillSocialMediaData()
         
-        headerBackgroundColor = #colorLiteral(red: 0.9415884067, green: 0.9415884067, blue: 0.9415884067, alpha: 1)
+        headerBackgroundColor = .modernGray
         headerTitle = "Social Media"
-        collectionView.backgroundColor = #colorLiteral(red: 0.9415884067, green: 0.9415884067, blue: 0.9415884067, alpha: 1)
+        collectionView.backgroundColor = .modernGray
         
         collectionView.register(SocialMediaCell.self, forCellWithReuseIdentifier: cellId)
     }

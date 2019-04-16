@@ -15,7 +15,7 @@ class MyProfileCell: UICollectionViewCell {
     lazy var nameTextField: BryngTextField = {
         let tf = BryngTextField(padding: 16, height: 50)
         tf.placeholder = "Dein Name"
-        tf.backgroundColor = #colorLiteral(red: 0.9330472797, green: 0.9330472797, blue: 0.9330472797, alpha: 1)
+        tf.backgroundColor = UIColor.textFieldColor
         tf.clearButtonMode = .whileEditing
         tf.autocorrectionType = .no
         tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
@@ -25,7 +25,7 @@ class MyProfileCell: UICollectionViewCell {
     lazy var emailTextField: BryngTextField = {
         let tf = BryngTextField(padding: 16, height: 50, type: .emailAddress)
         tf.placeholder = "Deine E-Mail"
-        tf.backgroundColor = #colorLiteral(red: 0.9330472797, green: 0.9330472797, blue: 0.9330472797, alpha: 1)
+        tf.backgroundColor = UIColor.textFieldColor
         tf.clearButtonMode = .whileEditing
         tf.autocorrectionType = .no
         tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
@@ -35,7 +35,7 @@ class MyProfileCell: UICollectionViewCell {
     lazy var phoneTextField: BryngTextField = {
         let tf = BryngTextField(padding: 16, height: 50, type: .phonePad)
         tf.placeholder = "Deine Telefonnummer"
-        tf.backgroundColor = #colorLiteral(red: 0.9330472797, green: 0.9330472797, blue: 0.9330472797, alpha: 1)
+        tf.backgroundColor = UIColor.textFieldColor
         tf.clearButtonMode = .whileEditing
         tf.autocorrectionType = .no
         tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
@@ -58,7 +58,7 @@ class MyProfileCell: UICollectionViewCell {
         let btn = UIButton(type: .system)
         btn.setTitle("Speichern", for: .normal)
         btn.setTitleColor(.white, for: .normal)
-        btn.backgroundColor = #colorLiteral(red: 1, green: 0.356151558, blue: 0.3902737024, alpha: 1)
+        btn.backgroundColor = UIColor.primaryColor
         btn.titleLabel?.font = .boldSystemFont(ofSize: 14)
         btn.heightAnchor.constraint(equalToConstant: 50).isActive = true
         btn.layer.cornerRadius = 25
@@ -68,7 +68,7 @@ class MyProfileCell: UICollectionViewCell {
     
     let feedbackLabel: UILabel = {
         let label = UILabel(text: "Bitte fülle alle Textfelder aus!")
-        label.textColor = #colorLiteral(red: 1, green: 0.356151558, blue: 0.3902737024, alpha: 1)
+        label.textColor = UIColor.primaryColor
         label.textAlignment = .center
         label.isHidden = true
         return label

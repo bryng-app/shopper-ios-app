@@ -17,7 +17,7 @@ class AllStoresController: BaseViewController, UICollectionViewDelegateFlowLayou
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.backgroundColor = #colorLiteral(red: 0.9415884067, green: 0.9415884067, blue: 0.9415884067, alpha: 1)
+        collectionView.backgroundColor = .modernGray
         
         collectionView.register(AllStoresCell.self, forCellWithReuseIdentifier: cellId)
         
