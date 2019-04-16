@@ -10,6 +10,7 @@ import UIKit
 
 class PreviewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
+    private var pages = [Page]()
     private let cellId = "cellId"
     
     private let previousButton: UIButton = {
@@ -37,16 +38,16 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
     }()
     
     @objc private func didTapNext() {
-        let nextIndex = min(pageControl.currentPage + 1, 4 - 1)
+        let nextIndex = min(pageControl.currentPage + 1, pages.count - 1)
         let indexPath = IndexPath(item: nextIndex, section: 0)
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         changeCurrentPage(index: nextIndex)
     }
     
-    private let pageControl: UIPageControl = {
+    private lazy var pageControl: UIPageControl = {
         let pc = UIPageControl()
         pc.currentPage = 0
-        pc.numberOfPages = 4
+        pc.numberOfPages = pages.count
         pc.currentPageIndicatorTintColor = UIColor.primaryColor
         pc.pageIndicatorTintColor = .gray
         return pc
@@ -66,7 +67,7 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
             previousButton.tintColor = UIColor.primaryColor
         }
         
-        if index == 3 {
+        if index == pages.count - 1 {
             nextButton.tintColor = .gray
         } else {
             nextButton.tintColor = UIColor.primaryColor
@@ -75,6 +76,12 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        pages = [
+            Page(headline: "Das ist unsere erste Headline", text: "Das ist irgendein komischer Text der hier unbedingt rein muss!!"),
+            Page(headline: "Zweite Headline", text: "Das ist irgendein komischer Text der hier unbedingt rein muss!!!!!!!!"),
+            Page(headline: "Das Dritte Headline", text: "Das ist irgendein komischer Text der hier unbedingt rein muss!!!!!!!!!!!!!"),
+        ]
         
         collectionView.backgroundColor = .white
         collectionView.register(PreviewPageCell.self, forCellWithReuseIdentifier: cellId)
@@ -95,12 +102,13 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return pages.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! PreviewPageCell
         
+        cell.page = pages[indexPath.row]
         cell.handleTipOnGetStarted = { [weak self] in
             self?.present(RegistrationController(), animated: true, completion: nil)
         }
