@@ -22,11 +22,24 @@ class CartController: UITableViewController {
             CartProduct(name: "Banane", amount: 8)
         ]
         
-        tableView.backgroundColor = .modernGray
+        tableView.backgroundColor = .white
         tableView.allowsSelection = false
         tableView.tableFooterView = UIView()
         
         tableView.register(CartCell.self, forCellReuseIdentifier: cellId)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = true
+        edgesForExtendedLayout = UIRectEdge.bottom
+        extendedLayoutIncludesOpaqueBars = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tabBarController?.tabBar.isHidden = false
+        extendedLayoutIncludesOpaqueBars = false
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -49,7 +62,13 @@ class CartController: UITableViewController {
         let headerView = CartHeader()
         
         headerView.handleDismiss = { [weak self] in
-            self?.dismiss(animated: true, completion: nil)
+            let transition: CATransition = CATransition()
+            transition.duration = 0.35
+            transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+            transition.type = CATransitionType.push
+            transition.subtype = CATransitionSubtype.fromBottom
+            self?.navigationController!.view.layer.add(transition, forKey: kCATransition)
+            self?.navigationController?.popViewController(animated: false)
         }
         
         return headerView
