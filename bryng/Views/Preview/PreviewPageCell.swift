@@ -26,6 +26,12 @@ class PreviewPageCell: UICollectionViewCell {
             guard let pageImage = page.image else { return }
             
             imageView.image = pageImage
+            if page.headline == "Lasse Deine Lebensmittel bryngen" {
+                imageView.constrainWidth(constant: 300)
+            } else {
+                imageView.constrainWidth(constant: 245)
+            }
+            imageView.constrainHeight(constant: 235)
         }
     }
     
@@ -58,8 +64,6 @@ class PreviewPageCell: UICollectionViewCell {
         addSubview(imageView)
         imageView.anchor(top: topAnchor, leading: nil, bottom: nil, trailing: nil, padding: .init(top: 128, left: 0, bottom: 0, right: 0))
         imageView.centerXInSuperview()
-        imageView.constrainHeight(constant: 235)
-        imageView.constrainWidth(constant: 245)
         
         addSubview(getStartedButton)
         getStartedButton.anchor(top: nil, leading: nil, bottom: bottomAnchor, trailing: nil, padding: .init(top: 0, left: 0, bottom: 114, right: 0))
