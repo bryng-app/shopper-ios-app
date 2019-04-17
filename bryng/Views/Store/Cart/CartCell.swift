@@ -1,69 +1,111 @@
 //
-// Created by Florian Woelki on 2019-04-12.
-// Copyright (c) 2019 bryng. All rights reserved.
+//  NewCartCell.swift
+//  bryng
+//
+//  Created by Florian Woelki on 17.04.19.
+//  Copyright © 2019 bryng. All rights reserved.
 //
 
 import UIKit
 
-class CartCell: UICollectionViewCell {
+class CartCell: UITableViewCell {
     
-    var handleDelete: (() -> ())?
+    var cartProduct: CartProduct? {
+        didSet {
+            guard let cartProduct = cartProduct else { return }
+            
+            productNameLabel.text = cartProduct.name
+            amount = cartProduct.amount
+            amountLabel.text = "Anzahl: \(cartProduct.amount)"
+        }
+    }
     
-    let imageView: UIImageView = {
+    private let productImageView: UIImageView = {
         let iv = UIImageView()
         iv.backgroundColor = .red
-        iv.widthAnchor.constraint(equalToConstant: 64).isActive = true
-        iv.heightAnchor.constraint(equalToConstant: 64).isActive = true
         return iv
     }()
     
-    let productNameLabel = UILabel(text: "Apfel")
-    let priceLabel = UILabel(text: "0,15€ je", font: .systemFont(ofSize: 14))
-    let amountLabel = UILabel(text: "Anzahl: 3", font: .systemFont(ofSize: 14))
+    private let productNameLabel = UILabel(text: "Apfel", font: .boldSystemFont(ofSize: 16))
+    private let priceLabel = UILabel(text: "0,15€ je", font: .systemFont(ofSize: 14))
+    private let amountLabel = UILabel(text: "Anzahl: 0", font: .systemFont(ofSize: 14))
     
-    lazy var deleteButton: UIButton = {
+    private var amount = 0
+    
+    private lazy var addAmountButton: UIButton = {
         let btn = UIButton(type: .system)
-        btn.setTitle("Löschen", for: .normal)
-        btn.setTitleColor(.white, for: .normal)
-        btn.backgroundColor = UIColor.primaryColor
-        btn.titleLabel?.font = .boldSystemFont(ofSize: 14)
-        btn.widthAnchor.constraint(equalToConstant: 95).isActive = true
-        btn.heightAnchor.constraint(equalToConstant: 36).isActive = true
-        btn.layer.cornerRadius = 16
-        btn.addTarget(self, action: #selector(didTapOnDelete), for: .touchUpInside)
+        btn.setImage(#imageLiteral(resourceName: "add").withRenderingMode(.alwaysTemplate), for: .normal)
+        btn.tintColor = .primaryColor
+        btn.addTarget(self, action: #selector(didTapOnAddAmount), for: .touchUpInside)
         return btn
     }()
     
-    @objc private func didTapOnDelete() {
-        handleDelete?()
+    @objc private func didTapOnAddAmount() {
+        amount += 1
+        amountLabel.text = "Anzahl: \(amount)"
+        
+        removeAmountButton.tintColor = .primaryColor
     }
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-
-        backgroundColor = .white
-        layer.cornerRadius = 16
+    
+    private lazy var removeAmountButton: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.setImage(#imageLiteral(resourceName: "remove").withRenderingMode(.alwaysTemplate), for: .normal)
+        btn.tintColor = .primaryColor
+        btn.addTarget(self, action: #selector(didTapOnRemoveAmount), for: .touchUpInside)
+        return btn
+    }()
+    
+    @objc private func didTapOnRemoveAmount() {
+        if amount > 1 {
+            removeAmountButton.tintColor = .primaryColor
+            
+            amount -= 1
+            if amount == 1 {
+                removeAmountButton.tintColor = .gray
+            }
+            amountLabel.text = "Anzahl: \(amount)"
+        }
+    }
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         setupLayout()
     }
     
     private func setupLayout() {
+        addSubview(productImageView)
+        productImageView.constrainHeight(constant: 64)
+        productImageView.constrainWidth(constant: 64)
+        productImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive = true
+        productImageView.centerYInSuperview()
+        
         let labelStackView = VerticalStackView(arrangedSubviews: [
-            productNameLabel, priceLabel, amountLabel
+            productNameLabel,
+            amountLabel,
+            priceLabel
             ], spacing: 0)
         
-        let stackView = UIStackView(arrangedSubviews: [
-            imageView, labelStackView, deleteButton
-            ])
-        stackView.spacing = 12
-        stackView.alignment = .center
+        addSubview(labelStackView)
+        labelStackView.translatesAutoresizingMaskIntoConstraints = false
+        labelStackView.leftAnchor.constraint(equalTo: productImageView.rightAnchor, constant: 16).isActive = true
+        labelStackView.centerYInSuperview()
         
-        addSubview(stackView)
-        stackView.fillSuperview(padding: .init(top: 16, left: 24, bottom: 16, right: 24))
+        let editAmountStackView = UIStackView(arrangedSubviews: [
+            addAmountButton,
+            removeAmountButton
+            ])
+        editAmountStackView.spacing = 8
+        editAmountStackView.alignment = .center
+        
+        addSubview(editAmountStackView)
+        editAmountStackView.translatesAutoresizingMaskIntoConstraints = false
+        editAmountStackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -16).isActive = true
+        editAmountStackView.centerYInSuperview()
     }
-
-    required init(coder: NSCoder) {
+    
+    required init?(coder aDecoder: NSCoder) {
         fatalError()
     }
-
+    
 }

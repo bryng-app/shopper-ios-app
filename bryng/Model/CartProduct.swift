@@ -1,16 +1,16 @@
 //
-//  CartModel.swift
+//  Product.swift
 //  bryng
 //
-//  Created by Florian Woelki on 15.04.19.
+//  Created by Florian Woelki on 17.04.19.
 //  Copyright © 2019 bryng. All rights reserved.
 //
 
 import Foundation
 
-struct CartModel {
+struct CartProduct {
     
     let name: String
-    var amount: Int
+    let amount: Int
     
 }

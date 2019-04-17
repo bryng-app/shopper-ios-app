@@ -1,95 +1,71 @@
 //
-//  CartController.swift
+//  NewCartController.swift
 //  bryng
 //
-//  Created by Florian Woelki on 11.04.19.
+//  Created by Florian Woelki on 17.04.19.
 //  Copyright © 2019 bryng. All rights reserved.
 //
 
 import UIKit
 
-class CartController: BaseViewController, UICollectionViewDelegateFlowLayout {
-    
-    private let headerId = "headerId"
+class CartController: UITableViewController {
+
+    private var cartProducts = [CartProduct]()
     private let cellId = "cellId"
-    
-    private var cartProducts = [CartModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        cartProducts.append(CartModel(name: "Apfel", amount: 2))
-        cartProducts.append(CartModel(name: "Ding", amount: 4))
-        cartProducts.append(CartModel(name: "Banane", amount: 5))
+        cartProducts = [
+            CartProduct(name: "Apfel", amount: 3),
+            CartProduct(name: "Manderine", amount: 2),
+            CartProduct(name: "Banane", amount: 8)
+        ]
         
-        collectionView.backgroundColor = .modernGray
-
-        collectionView.register(CloseHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
-        collectionView.register(CartCell.self, forCellWithReuseIdentifier: cellId)
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        tabBarController?.tabBar.isHidden = true
-        edgesForExtendedLayout = UIRectEdge.bottom
-        extendedLayoutIncludesOpaqueBars = true
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        tabBarController?.tabBar.isHidden = false
-        extendedLayoutIncludesOpaqueBars = false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let closeHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! CloseHeaderView
+        tableView.backgroundColor = .modernGray
+        tableView.allowsSelection = false
+        tableView.tableFooterView = UIView()
         
-        closeHeaderView.backgroundColor = .modernGray
-        closeHeaderView.titleLabel.text = "Warenkorb"
-        
-        closeHeaderView.handleDismiss = { [weak self] in
-            let transition: CATransition = CATransition()
-            transition.duration = 0.35
-            transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-            transition.type = CATransitionType.push
-            transition.subtype = CATransitionSubtype.fromBottom
-            self?.navigationController!.view.layer.add(transition, forKey: kCATransition)
-            self?.navigationController?.popViewController(animated: false)
-        }
-        
-        return closeHeaderView
+        tableView.register(CartCell.self, forCellReuseIdentifier: cellId)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return .init(width: view.frame.width, height: 100)
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! CartCell
-    
-        cell.productNameLabel.text = cartProducts[indexPath.row].name
-        cell.priceLabel.text = "Anzahl: \(cartProducts[indexPath.row].amount)"
-        cell.handleDelete = {
-            self.cartProducts.remove(at: indexPath.row)
-            collectionView.reloadData()
-        }
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CartCell
+        
+        cell.cartProduct = cartProducts[indexPath.row]
         
         return cell
     }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 24
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 125
     }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return .init(top: 24, left: 0, bottom: 24, right: 0)
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cartProducts.count
     }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.frame.width - 32, height: 125)
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = CartHeader()
+        
+        headerView.handleDismiss = { [weak self] in
+            self?.dismiss(animated: true, completion: nil)
+        }
+        
+        return headerView
     }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 100
+    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Löschen") { (action, indexPath) in
+            self.cartProducts.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        
+        return [deleteAction]
+    }
+    
 }
