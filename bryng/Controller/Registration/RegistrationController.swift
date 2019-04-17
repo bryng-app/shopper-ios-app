@@ -105,7 +105,7 @@ class RegistrationController: UIViewController {
         registrationViewModel.isFormValidObserver = { [unowned self] (isFormValid) in
             self.registerButton.isEnabled = isFormValid
             if isFormValid {
-                self.registerButton.backgroundColor = UIColor.primaryColor
+                self.registerButton.backgroundColor = #colorLiteral(red: 0.8036853601, green: 0.2847245294, blue: 0.4008832808, alpha: 1)
                 self.registerButton.setTitleColor(.white, for: .normal)
             } else {
                 self.registerButton.backgroundColor = .lightGray
