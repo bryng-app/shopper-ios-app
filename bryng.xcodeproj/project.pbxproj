@@ -36,6 +36,10 @@
 		802973BF224F57E900A362D6 /* AllStoresController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802973BE224F57E900A362D6 /* AllStoresController.swift */; };
 		808533B62255263D005BF967 /* AllStoresCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808533B52255263D005BF967 /* AllStoresCell.swift */; };
 		8089786C224A6724003DEF2B /* UIDevice+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8089786B224A6724003DEF2B /* UIDevice+Name.swift */; };
+		80945AD92268F7A700341894 /* Queries.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 80945AD82268F7A700341894 /* Queries.graphql */; };
+		80945ADB226905F500341894 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80945ADA226905F500341894 /* API.swift */; };
+		80945ADF22690D9700341894 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 80945ADE22690D9700341894 /* schema.json */; };
+		80945AE122690EB200341894 /* GraphQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80945AE022690EB200341894 /* GraphQL.swift */; };
 		80A795882249090B00EF856A /* UISeperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A795872249090B00EF856A /* UISeperator.swift */; };
 		80AB976D22567561002507B9 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AB976C22567561002507B9 /* UILabel.swift */; };
 		80AB976F22567C80002507B9 /* VerticalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AB976E22567C80002507B9 /* VerticalStackView.swift */; };
@@ -100,6 +104,10 @@
 		802973BE224F57E900A362D6 /* AllStoresController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllStoresController.swift; sourceTree = "<group>"; };
 		808533B52255263D005BF967 /* AllStoresCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllStoresCell.swift; sourceTree = "<group>"; };
 		8089786B224A6724003DEF2B /* UIDevice+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Name.swift"; sourceTree = "<group>"; };
+		80945AD82268F7A700341894 /* Queries.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Queries.graphql; sourceTree = "<group>"; };
+		80945ADA226905F500341894 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		80945ADE22690D9700341894 /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
+		80945AE022690EB200341894 /* GraphQL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQL.swift; sourceTree = "<group>"; };
 		80A795872249090B00EF856A /* UISeperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISeperator.swift; sourceTree = "<group>"; };
 		80AB976C22567561002507B9 /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
 		80AB976E22567C80002507B9 /* VerticalStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalStackView.swift; sourceTree = "<group>"; };
@@ -265,6 +273,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		80945AE22269105800341894 /* GraphQL */ = {
+			isa = PBXGroup;
+			children = (
+				80945AE022690EB200341894 /* GraphQL.swift */,
+				80945AD82268F7A700341894 /* Queries.graphql */,
+			);
+			path = GraphQL;
+			sourceTree = "<group>";
+		};
 		80AB977022567C87002507B9 /* Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -300,6 +317,7 @@
 		80B0026F2247E9BA00E92DDB /* bryng */ = {
 			isa = PBXGroup;
 			children = (
+				80945AE22269105800341894 /* GraphQL */,
 				57B1A215BDE9563468B76767 /* CoreData */,
 				80AB977022567C87002507B9 /* Util */,
 				808533B422552626005BF967 /* Views */,
@@ -308,9 +326,11 @@
 				800BBAA722480A8D00110A0C /* Controller */,
 				80B002702247E9BA00E92DDB /* AppDelegate.swift */,
 				80B002722247E9BA00E92DDB /* ViewController.swift */,
+				80945ADA226905F500341894 /* API.swift */,
 				80B002742247E9BA00E92DDB /* Main.storyboard */,
 				80B0027A2247E9BC00E92DDB /* Assets.xcassets */,
 				80B0027C2247E9BC00E92DDB /* LaunchScreen.storyboard */,
+				80945ADE22690D9700341894 /* schema.json */,
 				80B0027F2247E9BC00E92DDB /* Info.plist */,
 				80B002772247E9BA00E92DDB /* bryng.xcdatamodeld */,
 			);
@@ -375,6 +395,7 @@
 			buildConfigurationList = 80B002822247E9BC00E92DDB /* Build configuration list for PBXNativeTarget "bryng" */;
 			buildPhases = (
 				3529BEF306002B5D2E95FDFA /* [CP] Check Pods Manifest.lock */,
+				800D32672268EAA000DF1C89 /* Generate Apollo GraphQL API */,
 				80B002692247E9BA00E92DDB /* Sources */,
 				80B0026A2247E9BA00E92DDB /* Frameworks */,
 				80B0026B2247E9BA00E92DDB /* Resources */,
@@ -434,6 +455,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				80B0027E2247E9BC00E92DDB /* LaunchScreen.storyboard in Resources */,
+				80945ADF22690D9700341894 /* schema.json in Resources */,
+				80945AD92268F7A700341894 /* Queries.graphql in Resources */,
 				80B0027B2247E9BC00E92DDB /* Assets.xcassets in Resources */,
 				80B002762247E9BA00E92DDB /* Main.storyboard in Resources */,
 			);
@@ -464,6 +487,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		800D32672268EAA000DF1C89 /* Generate Apollo GraphQL API */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Generate Apollo GraphQL API";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "APOLLO_FRAMEWORK_PATH=\"$(eval find $FRAMEWORK_SEARCH_PATHS -name \"Apollo.framework\" -maxdepth 1)\"\n\nif [ -z \"$APOLLO_FRAMEWORK_PATH\" ]; then\necho \"error: Couldn't find Apollo.framework in FRAMEWORK_SEARCH_PATHS; make sure to add the framework to your project.\"\nexit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n$APOLLO_FRAMEWORK_PATH/check-and-run-apollo-cli.sh codegen:generate --queries=\"$(find . -name '*.graphql')\" --schema=schema.json API.swift\n";
+		};
 		F5A1678321C4C8E2E0685B0E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -473,6 +514,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-bryng/Pods-bryng-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Apollo/Apollo.framework",
 				"${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
@@ -480,6 +522,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Apollo.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JGProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
@@ -529,6 +572,8 @@
 				8001EB232264706400D4514F /* MapStoreInformationView.swift in Sources */,
 				80B002792247E9BA00E92DDB /* bryng.xcdatamodeld in Sources */,
 				8009AEC6225E6E9A00917602 /* AlertUtil.swift in Sources */,
+				80945ADB226905F500341894 /* API.swift in Sources */,
+				80945AE122690EB200341894 /* GraphQL.swift in Sources */,
 				80B002732247E9BA00E92DDB /* ViewController.swift in Sources */,
 				80C6EC8E224BFF55008E6EA9 /* GroceryShop.swift in Sources */,
 				8010304522620FC50079ABBB /* SocialMediaController.swift in Sources */,
@@ -697,6 +742,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 577Y5S5458;
 				INFOPLIST_FILE = bryng/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -716,6 +762,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 577Y5S5458;
 				INFOPLIST_FILE = bryng/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

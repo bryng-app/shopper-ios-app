@@ -22,6 +22,17 @@ class BaseTabBarController: UITabBarController {
         ]
         
         selectedViewController = viewControllers![1]
+        
+        let allUsersQuery = AllUsersQuery()
+        GraphQL.shared.apollo.fetch(query: allUsersQuery) { result, error in
+            if let error = error {
+                print(error)
+                return
+            }
+            
+            guard let users = result?.data?.allUsers else { return }
+            print(users)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {

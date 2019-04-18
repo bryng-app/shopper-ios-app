@@ -8,5 +8,6 @@ target 'bryng' do
   # Pods for bryng
   pod 'SDWebImage','~>4.4.2'
   pod 'JGProgressHUD','~>2.0.3'
+  pod 'Apollo','~>0.10'
 
 end

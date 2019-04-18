@@ -1,22 +1,28 @@
 PODS:
+  - Apollo (0.10.1):
+    - Apollo/Core (= 0.10.1)
+  - Apollo/Core (0.10.1)
   - JGProgressHUD (2.0.3)
   - SDWebImage (4.4.5):
     - SDWebImage/Core (= 4.4.5)
   - SDWebImage/Core (4.4.5)
 
 DEPENDENCIES:
+  - Apollo (~> 0.10)
   - JGProgressHUD (~> 2.0.3)
   - SDWebImage (~> 4.4.2)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Apollo
     - JGProgressHUD
     - SDWebImage
 
 SPEC CHECKSUMS:
+  Apollo: 4d690a9b2e48e8820182df4b988d7a253e1ee589
   JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
   SDWebImage: ecc03494e973b93b80213649d32175f8d2d17d4d
 
-PODFILE CHECKSUM: cd61c2766df9dac01196757b6c6067c320d34b2a
+PODFILE CHECKSUM: a4eabb4534d571567aa82761a14caf5e549e0bd4
 
 COCOAPODS: 1.6.0
