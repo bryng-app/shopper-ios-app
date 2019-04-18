@@ -15,6 +15,8 @@
 		8001EB232264706400D4514F /* MapStoreInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8001EB222264706400D4514F /* MapStoreInformationView.swift */; };
 		8002BDB92265EB1700CECB4C /* PreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8002BDB82265EB1700CECB4C /* PreviewController.swift */; };
 		8002BDBE2265EF7400CECB4C /* PreviewPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8002BDBD2265EF7400CECB4C /* PreviewPageCell.swift */; };
+		8003E85B22687197005200C5 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003E85A22687197005200C5 /* LoginController.swift */; };
+		8003E85D2268728D005200C5 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003E85C2268728D005200C5 /* LoginViewModel.swift */; };
 		8009AEC4225DEA6C00917602 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8009AEC3225DEA6C00917602 /* MapController.swift */; };
 		8009AEC6225E6E9A00917602 /* AlertUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8009AEC5225E6E9A00917602 /* AlertUtil.swift */; };
 		8009AEC8225E70CB00917602 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8009AEC7225E70CB00917602 /* BaseViewController.swift */; };
@@ -75,6 +77,8 @@
 		8001EB222264706400D4514F /* MapStoreInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapStoreInformationView.swift; sourceTree = "<group>"; };
 		8002BDB82265EB1700CECB4C /* PreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewController.swift; sourceTree = "<group>"; };
 		8002BDBD2265EF7400CECB4C /* PreviewPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPageCell.swift; sourceTree = "<group>"; };
+		8003E85A22687197005200C5 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		8003E85C2268728D005200C5 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		8009AEC3225DEA6C00917602 /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		8009AEC5225E6E9A00917602 /* AlertUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertUtil.swift; sourceTree = "<group>"; };
 		8009AEC7225E70CB00917602 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -173,9 +177,19 @@
 			path = Preview;
 			sourceTree = "<group>";
 		};
+		8003E85922687167005200C5 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				8003E85A22687197005200C5 /* LoginController.swift */,
+				8003E85C2268728D005200C5 /* LoginViewModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		800BBAA722480A8D00110A0C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				8003E85922687167005200C5 /* Login */,
 				8002BDB72265EAAE00CECB4C /* Preview */,
 				80E36BC3226378F700612AF1 /* Registration */,
 				8010303E2261D98A0079ABBB /* Profile */,
@@ -283,6 +297,7 @@
 		80B0026F2247E9BA00E92DDB /* bryng */ = {
 			isa = PBXGroup;
 			children = (
+				57B1A215BDE9563468B76767 /* CoreData */,
 				80AB977022567C87002507B9 /* Util */,
 				808533B422552626005BF967 /* Views */,
 				80C6EC8C224BFF40008E6EA9 /* Model */,
@@ -295,7 +310,6 @@
 				80B0027C2247E9BC00E92DDB /* LaunchScreen.storyboard */,
 				80B0027F2247E9BC00E92DDB /* Info.plist */,
 				80B002772247E9BA00E92DDB /* bryng.xcdatamodeld */,
-				57B1A215BDE9563468B76767 /* CoreData */,
 			);
 			path = bryng;
 			sourceTree = "<group>";
@@ -486,6 +500,7 @@
 				80AB976F22567C80002507B9 /* VerticalStackView.swift in Sources */,
 				80103047226214F40079ABBB /* SocialMediaCell.swift in Sources */,
 				80DE5EBD225CEC5400A4C175 /* StoreItemsGroupCell.swift in Sources */,
+				8003E85D2268728D005200C5 /* LoginViewModel.swift in Sources */,
 				8002BDB92265EB1700CECB4C /* PreviewController.swift in Sources */,
 				8009AEC8225E70CB00917602 /* BaseViewController.swift in Sources */,
 				8000764D22672145008B09EA /* CartCell.swift in Sources */,
@@ -506,6 +521,7 @@
 				80E36BC52263790900612AF1 /* RegistrationViewModel.swift in Sources */,
 				800BBAAC22480C4600110A0C /* UIView+Layout.swift in Sources */,
 				8010304F22624B7E0079ABBB /* OrderCell.swift in Sources */,
+				8003E85B22687197005200C5 /* LoginController.swift in Sources */,
 				80C6297A225CF9BF00B943E1 /* SnappingLayout.swift in Sources */,
 				8001EB232264706400D4514F /* MapStoreInformationView.swift in Sources */,
 				80B002792247E9BA00E92DDB /* bryng.xcdatamodeld in Sources */,

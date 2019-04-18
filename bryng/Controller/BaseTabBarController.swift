@@ -22,19 +22,29 @@ class BaseTabBarController: UITabBarController {
         ]
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if !CoreDataManager.shared.isLoggedIn() {
+            let navController = UINavigationController(rootViewController: RegistrationController())
+            navController.isNavigationBarHidden = true
+            present(navController, animated: true)
+        }
+    }
+    
     fileprivate func createViewController(viewController: UIViewController, title: String, unfilledImageName: String, filledImageName: String, hasNavController: Bool = false) -> UIViewController {
         viewController.view.backgroundColor = .white
         viewController.tabBarItem.title = title
         viewController.tabBarItem.image = UIImage(named: unfilledImageName)
         viewController.tabBarItem.selectedImage = UIImage(named: filledImageName)
         
+        let navController = UINavigationController(rootViewController: viewController)
         if hasNavController {
-            let navController = UINavigationController(rootViewController: viewController)
             viewController.navigationItem.title = title
-            return navController
+        } else {
+            navController.isNavigationBarHidden = true
         }
-        
-        return viewController
+        return navController
     }
     
 }

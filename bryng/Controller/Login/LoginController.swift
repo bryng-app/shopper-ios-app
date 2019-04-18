@@ -1,35 +1,17 @@
 //
-//  RegistrationController.swift
+//  LoginController.swift
 //  bryng
 //
-//  Created by Florian Woelki on 14.04.19.
+//  Created by Florian Woelki on 18.04.19.
 //  Copyright © 2019 bryng. All rights reserved.
 //
 
 import UIKit
+import CoreData
 import JGProgressHUD
 
-class RegistrationController: UIViewController {
+class LoginController: UIViewController {
     
-    // UI Components
-    let selectPhotoButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Dein Foto", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 32, weight: .heavy)
-        button.backgroundColor = .white
-        button.setTitleColor(.black, for: .normal)
-        button.heightAnchor.constraint(equalToConstant: 275).isActive = true
-        button.layer.cornerRadius = 16
-        return button
-    }()
-    
-    let nameTextField: BryngTextField = {
-        let tf = BryngTextField(padding: 24, height: 50)
-        tf.placeholder = "Dein Name"
-        tf.backgroundColor = .white
-        tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
-        return tf
-    }()
     let emailTextField: BryngTextField = {
         let tf = BryngTextField(padding: 24, height: 50)
         tf.placeholder = "Deine E-Mail"
@@ -48,18 +30,16 @@ class RegistrationController: UIViewController {
     }()
     
     @objc private func handleTextChange(textField: UITextField) {
-        if textField == nameTextField {
-            registrationViewModel.name = textField.text
-        } else if textField == emailTextField {
-            registrationViewModel.email = textField.text
+        if textField == emailTextField {
+            loginViewModel.email = textField.text
         } else {
-            registrationViewModel.password = textField.text
+            loginViewModel.password = textField.text
         }
     }
     
-    let registerButton: UIButton = {
+    let loginButton: UIButton = {
         let btn = UIButton(type: .system)
-        btn.setTitle("Registrieren", for: .normal)
+        btn.setTitle("Login", for: .normal)
         btn.setTitleColor(.white, for: .normal)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
         btn.backgroundColor = .lightGray
@@ -67,36 +47,36 @@ class RegistrationController: UIViewController {
         btn.isEnabled = false
         btn.heightAnchor.constraint(equalToConstant: 44).isActive = true
         btn.layer.cornerRadius = 22
-        btn.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
+        btn.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
         return btn
     }()
     
-    let goToLoginButton: UIButton = {
+    let goToRegisterButton: UIButton = {
         let btn = UIButton(type: .system)
-        btn.setTitle("Einloggen", for: .normal)
+        btn.setTitle("Registrieren", for: .normal)
         btn.setTitleColor(.white, for: .normal)
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .light)
-        btn.addTarget(self, action: #selector(didTapOnLogin), for: .touchUpInside)
+        btn.addTarget(self, action: #selector(didTapOnRegister), for: .touchUpInside)
         return btn
     }()
     
-    @objc private func didTapOnLogin() {
-        let loginController = LoginController()
-        navigationController?.pushViewController(loginController, animated: true)
+    @objc private func didTapOnRegister() {
+        navigationController?.popViewController(animated: true)
     }
     
-    let registrationHUD = JGProgressHUD(style: .dark)
+    let loginHUD = JGProgressHUD(style: .dark)
     
-    @objc private func handleRegister() {
+    @objc private func handleLogin() {
         CoreDataManager.shared.updateLoginSession(isLoggedIn: true)
         
-        registrationHUD.textLabel.text = "Du wirst registriert!"
-        registrationHUD.show(in: view)
-        registrationHUD.dismiss(afterDelay: 2.5, animated: true)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+        dismiss(animated: true)
+        // TOOD: Find fix for progress bar
+        /*loginHUD.textLabel.text = "Du wirst eingeloggt!"
+        loginHUD.show(in: view)
+        loginHUD.dismiss(afterDelay: 2.5, animated: true)*/
+        /*DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
             self?.dismiss(animated: true)
-            // self?.present(BaseTabBarController(), animated: true, completion: nil)
-        }
+         }*/
     }
     
     override func viewDidLoad() {
@@ -116,17 +96,17 @@ class RegistrationController: UIViewController {
     
     // MARK:- Private
     
-    let registrationViewModel = RegistrationViewModel()
+    let loginViewModel = LoginViewModel()
     
     private func setupRegistrationViewModelObserver() {
-        registrationViewModel.isFormValidObserver = { [unowned self] (isFormValid) in
-            self.registerButton.isEnabled = isFormValid
+        loginViewModel.isFormValidObserver = { [unowned self] (isFormValid) in
+            self.loginButton.isEnabled = isFormValid
             if isFormValid {
-                self.registerButton.backgroundColor = #colorLiteral(red: 0.8036853601, green: 0.2847245294, blue: 0.4008832808, alpha: 1)
-                self.registerButton.setTitleColor(.white, for: .normal)
+                self.loginButton.backgroundColor = #colorLiteral(red: 0.8036853601, green: 0.2847245294, blue: 0.4008832808, alpha: 1)
+                self.loginButton.setTitleColor(.white, for: .normal)
             } else {
-                self.registerButton.backgroundColor = .lightGray
-                self.registerButton.setTitleColor(.gray, for: .normal)
+                self.loginButton.backgroundColor = .lightGray
+                self.loginButton.setTitleColor(.gray, for: .normal)
             }
         }
     }
@@ -158,15 +138,13 @@ class RegistrationController: UIViewController {
         let bottomSpace = view.frame.height - stackView.frame.origin.y - stackView.frame.height
         
         let difference = keyboardFrame.height - bottomSpace
-        self.view.transform = CGAffineTransform(translationX: 0, y: -difference - 8)
+        self.view.transform = CGAffineTransform(translationX: 0, y: difference - 8)
     }
     
     lazy var stackView = VerticalStackView(arrangedSubviews: [
-        selectPhotoButton,
-        nameTextField,
         emailTextField,
         passwordTextField,
-        registerButton
+        loginButton
         ], spacing: 8)
     
     private func setupLayout() {
@@ -174,8 +152,8 @@ class RegistrationController: UIViewController {
         stackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
         stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
-        view.addSubview(goToLoginButton)
-        goToLoginButton.anchor(top: nil, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
+        view.addSubview(goToRegisterButton)
+        goToRegisterButton.anchor(top: nil, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
     }
     
     private func setupGradientLayer() {
@@ -189,3 +167,4 @@ class RegistrationController: UIViewController {
     }
     
 }
+

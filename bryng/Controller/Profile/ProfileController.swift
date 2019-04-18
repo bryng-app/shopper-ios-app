@@ -27,13 +27,22 @@ class ProfileController: BaseViewController, UINavigationControllerDelegate, UII
     let socialMediaButton = ButtonWithImage(title: "Social Media", imageName: "share")
     let aboutUsButton = ButtonWithImage(title: "Über uns", imageName: "about")
     
-    let logoutButton: UIButton = {
+    lazy var logoutButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Ausloggen", for: .normal)
         button.setTitleColor(UIColor.primaryColor, for: .normal)
         button.layer.cornerRadius = 24
+        button.addTarget(self, action: #selector(didTapOnLogout), for: .touchUpInside)
         return button
     }()
+    
+    @objc private func didTapOnLogout() {
+        CoreDataManager.shared.updateLoginSession(isLoggedIn: false)
+        
+        let navController = UINavigationController(rootViewController: RegistrationController())
+        navController.isNavigationBarHidden = true
+        present(navController, animated: true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
