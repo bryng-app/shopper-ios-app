@@ -8,28 +8,30 @@
 
 import UIKit
 
-class AllStoresController: BaseViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
+class AllStoresController: BaseViewController, UICollectionViewDelegateFlowLayout /* UISearchBarDelegate */ {
     
-    fileprivate let searchController = UISearchController(searchResultsController: nil)
+    //fileprivate let searchController = UISearchController(searchResultsController: nil)
     
     fileprivate let cellId = "cellId"
+    fileprivate let headerId = "headerId"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView.backgroundColor = .modernGray
         
+        collectionView.register(CloseHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
         collectionView.register(AllStoresCell.self, forCellWithReuseIdentifier: cellId)
         
         setupSearchBar()
     }
     
     fileprivate func setupSearchBar() {
-        definesPresentationContext = true
+        /*definesPresentationContext = true
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.dimsBackgroundDuringPresentation = true
-        searchController.searchBar.delegate = self
+        searchController.searchBar.delegate = self*/
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -64,8 +66,22 @@ class AllStoresController: BaseViewController, UICollectionViewDelegateFlowLayou
         navigationController?.pushViewController(storeController, animated: true)
     }
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    /*func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print(searchText)
+    }*/
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let closeHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! CloseHeaderView
+        closeHeaderView.titleLabel.text = "Geschäfte"
+        closeHeaderView.closeButton.isHidden = true
+        closeHeaderView.backgroundColor = .modernGray
+        
+        return closeHeaderView
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        
+        return .init(width: view.frame.width, height: 100)
     }
     
 }

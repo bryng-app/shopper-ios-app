@@ -15,7 +15,7 @@ class RegistrationController: UIViewController {
     let selectPhotoButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Dein Foto", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 32, weight: .heavy)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 32)
         button.backgroundColor = .white
         button.setTitleColor(.black, for: .normal)
         button.heightAnchor.constraint(equalToConstant: 275).isActive = true
@@ -95,7 +95,6 @@ class RegistrationController: UIViewController {
         registrationHUD.dismiss(afterDelay: 2.5, animated: true)
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
             self?.dismiss(animated: true)
-            // self?.present(BaseTabBarController(), animated: true, completion: nil)
         }
     }
     

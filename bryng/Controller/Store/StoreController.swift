@@ -36,7 +36,7 @@ class StoreController: UICollectionViewController, UICollectionViewDelegateFlowL
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        // self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     fileprivate func setupCollectionView() {
@@ -66,7 +66,7 @@ class StoreController: UICollectionViewController, UICollectionViewDelegateFlowL
         
         storeHeaderView?.handleDismiss = { [weak self] in
             self?.storeHeaderView?.animator.stopAnimation(true)
-            self?.navigationController?.setNavigationBarHidden(false, animated: false)
+            // self?.navigationController?.setNavigationBarHidden(false, animated: false)
             self?.navigationController?.popViewController(animated: true)
         }
         
