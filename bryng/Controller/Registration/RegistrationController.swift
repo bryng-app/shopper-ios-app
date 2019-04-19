@@ -9,6 +9,20 @@
 import UIKit
 import JGProgressHUD
 
+extension RegistrationController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.originalImage] as? UIImage
+        self.selectPhotoButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
+        dismiss(animated: true)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true)
+    }
+    
+}
+
 class RegistrationController: UIViewController {
     
     // UI Components
@@ -20,14 +34,24 @@ class RegistrationController: UIViewController {
         button.setTitleColor(.black, for: .normal)
         button.heightAnchor.constraint(equalToConstant: 275).isActive = true
         button.layer.cornerRadius = 16
+        button.addTarget(self, action: #selector(handleSelectPhoto), for: .touchUpInside)
+        button.imageView?.contentMode = .scaleAspectFill
+        button.clipsToBounds = true
         return button
     }()
+    
+    @objc fileprivate func handleSelectPhoto() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true)
+    }
     
     let nameTextField: BryngTextField = {
         let tf = BryngTextField(padding: 24, height: 50)
         tf.placeholder = "Dein Name"
         tf.backgroundColor = .white
         tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
+        tf.autocapitalizationType = .none
         return tf
     }()
     let emailTextField: BryngTextField = {
@@ -36,6 +60,7 @@ class RegistrationController: UIViewController {
         tf.keyboardType = .emailAddress
         tf.backgroundColor = .white
         tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
+        tf.autocapitalizationType = .none
         return tf
     }()
     let passwordTextField: BryngTextField = {
@@ -88,13 +113,41 @@ class RegistrationController: UIViewController {
     let registrationHUD = JGProgressHUD(style: .dark)
     
     @objc private func handleRegister() {
-        CoreDataManager.shared.updateLoginSession(isLoggedIn: true)
-        
-        registrationHUD.textLabel.text = "Du wirst registriert!"
+        registrationHUD.textLabel.text = "Überprüfe..."
         registrationHUD.show(in: view)
-        registrationHUD.dismiss(afterDelay: 2.5, animated: true)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
-            self?.dismiss(animated: true)
+        
+        checkData { [weak self] (validated) in
+            if validated {
+                CoreDataManager.shared.updateLoginSession(isLoggedIn: true)
+                
+                self?.dismiss(animated: true)
+            } else {
+                print("Something went wrong! Please try again")
+            }
+            
+            self?.registrationHUD.dismiss(animated: true)
+        }
+    }
+    
+    private func checkData(callback: @escaping (_ validated: Bool) -> Void) {
+        if let fullname = nameTextField.text, let email = emailTextField.text, let password = passwordTextField.text {
+            let registerMutation = RegisterMutation(fullname: fullname, email: email, password: password, username: fullname.trimmingCharacters(in: .whitespaces), phoneNumber: nil, age: nil, avatar: nil)
+            
+            GraphQL.shared.apollo.perform(mutation: registerMutation) { result, error in
+                if let error = error {
+                    print(error)
+                    callback(false)
+                    return
+                }
+                
+                guard let register = result?.data?.createUser else {
+                    callback(false)
+                    return
+                }
+                
+                print(register.token)
+                callback(true)
+            }
         }
     }
     
@@ -103,9 +156,13 @@ class RegistrationController: UIViewController {
         
         setupGradientLayer()
         setupLayout()
-        setupNotificationObservers()
         setupTabGesture()
         setupRegistrationViewModelObserver()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setupNotificationObservers()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

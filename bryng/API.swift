@@ -154,3 +154,94 @@ public final class LoginMutation: GraphQLMutation {
     }
   }
 }
+
+public final class RegisterMutation: GraphQLMutation {
+  public let operationDefinition =
+    "mutation Register($fullname: String!, $email: String!, $password: String!, $username: String!, $phoneNumber: String, $age: Int, $avatar: String) {\n  createUser(fullname: $fullname, email: $email, password: $password, username: $username, phoneNumber: $phoneNumber, age: $age, avatar: $avatar) {\n    __typename\n    token\n  }\n}"
+
+  public var fullname: String
+  public var email: String
+  public var password: String
+  public var username: String
+  public var phoneNumber: String?
+  public var age: Int?
+  public var avatar: String?
+
+  public init(fullname: String, email: String, password: String, username: String, phoneNumber: String? = nil, age: Int? = nil, avatar: String? = nil) {
+    self.fullname = fullname
+    self.email = email
+    self.password = password
+    self.username = username
+    self.phoneNumber = phoneNumber
+    self.age = age
+    self.avatar = avatar
+  }
+
+  public var variables: GraphQLMap? {
+    return ["fullname": fullname, "email": email, "password": password, "username": username, "phoneNumber": phoneNumber, "age": age, "avatar": avatar]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Mutation"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("createUser", arguments: ["fullname": GraphQLVariable("fullname"), "email": GraphQLVariable("email"), "password": GraphQLVariable("password"), "username": GraphQLVariable("username"), "phoneNumber": GraphQLVariable("phoneNumber"), "age": GraphQLVariable("age"), "avatar": GraphQLVariable("avatar")], type: .object(CreateUser.selections)),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(createUser: CreateUser? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "createUser": createUser.flatMap { (value: CreateUser) -> ResultMap in value.resultMap }])
+    }
+
+    public var createUser: CreateUser? {
+      get {
+        return (resultMap["createUser"] as? ResultMap).flatMap { CreateUser(unsafeResultMap: $0) }
+      }
+      set {
+        resultMap.updateValue(newValue?.resultMap, forKey: "createUser")
+      }
+    }
+
+    public struct CreateUser: GraphQLSelectionSet {
+      public static let possibleTypes = ["Auth"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("token", type: .nonNull(.scalar(String.self))),
+      ]
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(token: String) {
+        self.init(unsafeResultMap: ["__typename": "Auth", "token": token])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var token: String {
+        get {
+          return resultMap["token"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "token")
+        }
+      }
+    }
+  }
+}

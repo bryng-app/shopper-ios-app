@@ -972,6 +972,16 @@
                   "ofType": null
                 },
                 "defaultValue": null
+              },
+              {
+                "name": "avatar",
+                "description": "",
+                "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                },
+                "defaultValue": null
               }
             ],
             "type": {

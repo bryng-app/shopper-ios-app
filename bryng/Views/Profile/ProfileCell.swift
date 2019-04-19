@@ -23,7 +23,7 @@ class ProfileCell: UICollectionViewCell, UINavigationControllerDelegate, UIImage
     lazy var profileImageView: UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "select_photo_empty"))
         imageView.isUserInteractionEnabled = true
-        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectPhoto)))
+        // imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectPhoto)))
         return imageView
     }()
     

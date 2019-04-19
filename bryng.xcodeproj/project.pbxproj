@@ -26,6 +26,7 @@
 		800BBAAE2248122300110A0C /* UIButton+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800BBAAD2248122300110A0C /* UIButton+Layout.swift */; };
 		800E3F6D224AB3820030A61A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 800E3F6C224AB3820030A61A /* MapKit.framework */; };
 		800F7A8A2269FFAB00020848 /* Login.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 800F7A892269FFAB00020848 /* Login.graphql */; };
+		800F7A8C226A0A4D00020848 /* Register.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 800F7A8B226A0A4D00020848 /* Register.graphql */; };
 		801030402261D9980079ABBB /* AboutUsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8010303F2261D9980079ABBB /* AboutUsController.swift */; };
 		801030432262056E0079ABBB /* CloseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801030422262056E0079ABBB /* CloseHeaderView.swift */; };
 		8010304522620FC50079ABBB /* SocialMediaController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8010304422620FC50079ABBB /* SocialMediaController.swift */; };
@@ -95,6 +96,7 @@
 		800E3F6C224AB3820030A61A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		800E3F70224AB9B60030A61A /* berlin.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = berlin.gpx; sourceTree = "<group>"; };
 		800F7A892269FFAB00020848 /* Login.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Login.graphql; sourceTree = "<group>"; };
+		800F7A8B226A0A4D00020848 /* Register.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Register.graphql; sourceTree = "<group>"; };
 		8010303F2261D9980079ABBB /* AboutUsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsController.swift; sourceTree = "<group>"; };
 		801030422262056E0079ABBB /* CloseHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseHeaderView.swift; sourceTree = "<group>"; };
 		8010304422620FC50079ABBB /* SocialMediaController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaController.swift; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 				80945AE022690EB200341894 /* GraphQL.swift */,
 				80945AD82268F7A700341894 /* Queries.graphql */,
 				800F7A892269FFAB00020848 /* Login.graphql */,
+				800F7A8B226A0A4D00020848 /* Register.graphql */,
 			);
 			path = GraphQL;
 			sourceTree = "<group>";
@@ -461,6 +464,7 @@
 				800F7A8A2269FFAB00020848 /* Login.graphql in Resources */,
 				80945ADF22690D9700341894 /* schema.json in Resources */,
 				80945AD92268F7A700341894 /* Queries.graphql in Resources */,
+				800F7A8C226A0A4D00020848 /* Register.graphql in Resources */,
 				80B0027B2247E9BC00E92DDB /* Assets.xcassets in Resources */,
 				80B002762247E9BA00E92DDB /* Main.storyboard in Resources */,
 			);
