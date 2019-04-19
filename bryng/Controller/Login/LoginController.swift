@@ -18,6 +18,7 @@ class LoginController: UIViewController {
         tf.keyboardType = .emailAddress
         tf.backgroundColor = .white
         tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
+        tf.autocapitalizationType = .none
         return tf
     }()
     let passwordTextField: BryngTextField = {
@@ -28,6 +29,8 @@ class LoginController: UIViewController {
         tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         return tf
     }()
+    
+    fileprivate let feedbackLabel = UILabel(text: "Deine E-Mail oder Dein Passwort ist falsch!", font: .systemFont(ofSize: 14))
     
     @objc private func handleTextChange(textField: UITextField) {
         if textField == emailTextField {
@@ -67,20 +70,55 @@ class LoginController: UIViewController {
     let loginHUD = JGProgressHUD(style: .dark)
     
     @objc private func handleLogin() {
-        CoreDataManager.shared.updateLoginSession(isLoggedIn: true)
-        
-        dismiss(animated: true)
-        // TOOD: Find fix for progress bar
-        /*loginHUD.textLabel.text = "Du wirst eingeloggt!"
+        loginHUD.textLabel.text = "Überprüfe..."
         loginHUD.show(in: view)
-        loginHUD.dismiss(afterDelay: 2.5, animated: true)*/
-        /*DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
-            self?.dismiss(animated: true)
-         }*/
+        
+        self.loginButton.backgroundColor = .lightGray
+        self.loginButton.setTitleColor(.gray, for: .normal)
+        
+        checkData { [weak self] (validated) in
+            self?.loginHUD.dismiss(animated: true)
+            if validated {
+                CoreDataManager.shared.updateLoginSession(isLoggedIn: true)
+                
+                self?.dismiss(animated: true)
+            } else {
+                self?.feedbackLabel.isHidden = false
+            }
+            
+            self?.loginButton.backgroundColor = #colorLiteral(red: 0.8036853601, green: 0.2847245294, blue: 0.4008832808, alpha: 1)
+            self?.loginButton.setTitleColor(.white, for: .normal)
+        }
+    }
+    
+    private func checkData(callback: @escaping (_ validated: Bool) -> Void) {
+        if let email = emailTextField.text, let password = passwordTextField.text {
+            let loginMutation = LoginMutation(email: email, password: password)
+            
+            GraphQL.shared.apollo.perform(mutation: loginMutation) { result, error in
+                if let error = error {
+                    print(error)
+                    callback(false)
+                    return
+                }
+                
+                guard let login = result?.data?.login else {
+                    callback(false)
+                    return
+                }
+                
+                print(login.token)
+                callback(true)
+            }
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        feedbackLabel.isHidden = true
+        feedbackLabel.textAlignment = .center
+        feedbackLabel.textColor = .white
         
         setupGradientLayer()
         setupLayout()
@@ -151,6 +189,9 @@ class LoginController: UIViewController {
         view.addSubview(stackView)
         stackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
         stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
+        view.addSubview(feedbackLabel)
+        feedbackLabel.anchor(top: stackView.bottomAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 16, left: 0, bottom: 0, right: 0))
         
         view.addSubview(goToRegisterButton)
         goToRegisterButton.anchor(top: nil, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
