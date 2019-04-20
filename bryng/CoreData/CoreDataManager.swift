@@ -27,7 +27,7 @@ class CoreDataManager {
         do {
             let results = try viewContext.fetch(fetchRequest)
             for result in results as! [NSManagedObject] {
-                return result.value(forKey: "isLoggedIn") as! Bool
+                return result.value(forKey: "token") != nil
             }
         } catch {
             print("Failed to fetch Login Session. \(error)")
@@ -36,12 +36,28 @@ class CoreDataManager {
         return false
     }
     
-    func updateLoginSession(isLoggedIn: Bool) {
+    func updateLoginSession(token: String?) {
         let viewContext = CoreDataManager.shared.persistentContainer.viewContext
         
         // Check if LoginSession exists
         var fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LoginSession")
         var entitiesCount = 0
+        
+        guard let token = token else {
+            // Remove token
+            if let result = try? viewContext.fetch(fetchRequest) {
+                for object in result {
+                    viewContext.delete(object as! NSManagedObject)
+                }
+            }
+            
+            do {
+                try viewContext.save()
+            } catch let error as NSError {
+                print("Could not save Login Session. \(error)")
+            }
+            return
+        }
         
         do {
             entitiesCount = try viewContext.count(for: fetchRequest)
@@ -55,14 +71,14 @@ class CoreDataManager {
             do {
                 let results = try viewContext.fetch(fetchRequest) as? [NSManagedObject]
                 if results?.count != 0 {
-                    results![0].setValue(isLoggedIn, forKey: "isLoggedIn")
+                    results![0].setValue(token, forKey: "token")
                 }
             } catch {
                 print("Fetch failed: \(error)")
             }
         } else {
             let loginSession = NSEntityDescription.insertNewObject(forEntityName: "LoginSession", into: viewContext)
-            loginSession.setValue(isLoggedIn, forKey: "isLoggedIn")
+            loginSession.setValue(token, forKey: "token")
         }
         
         do {

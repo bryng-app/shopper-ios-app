@@ -8,6 +8,7 @@
 
 import UIKit
 import JGProgressHUD
+import Apollo
 
 extension RegistrationController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -118,8 +119,6 @@ class RegistrationController: UIViewController {
         
         checkData { [weak self] (validated) in
             if validated {
-                CoreDataManager.shared.updateLoginSession(isLoggedIn: true)
-                
                 self?.dismiss(animated: true)
             } else {
                 print("Something went wrong! Please try again")
@@ -145,9 +144,33 @@ class RegistrationController: UIViewController {
                     return
                 }
                 
-                print(register.token)
+                self.addLoginToken(token: register.token)
+                
                 callback(true)
             }
+        }
+    }
+    
+    private func addLoginToken(token: String) {
+        let configuration = URLSessionConfiguration.default
+        configuration.httpAdditionalHeaders = ["Authorization": "Bearer \(token)"]
+        
+        let url = URL(string: GraphQL.shared.graphQLUrl)!
+        let apollo = ApolloClient(networkTransport: HTTPNetworkTransport(url: url, configuration: configuration))
+        
+        let addLoginTokenMutation = AddLoginTokenMutation()
+        
+        apollo.perform(mutation: addLoginTokenMutation) { result, error in
+            if let error = error {
+                print(error)
+                return
+            }
+            
+            guard let addLoginToken = result?.data?.addLoginToken else { return }
+
+            let loginToken = addLoginToken.token
+            
+            CoreDataManager.shared.updateLoginSession(token: loginToken)
         }
     }
     

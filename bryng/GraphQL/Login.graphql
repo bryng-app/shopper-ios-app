@@ -3,3 +3,9 @@ mutation Login($email: String!, $password: String!) {
     token
   }
 }
+
+mutation AddLoginToken {
+  addLoginToken {
+    token
+  }
+}

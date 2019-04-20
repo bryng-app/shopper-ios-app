@@ -35,12 +35,12 @@
 		8010304B226226A70079ABBB /* SocialMediaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8010304A226226A70079ABBB /* SocialMediaModel.swift */; };
 		8010304D2262474D0079ABBB /* OrdersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8010304C2262474D0079ABBB /* OrdersController.swift */; };
 		8010304F22624B7E0079ABBB /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8010304E22624B7E0079ABBB /* OrderCell.swift */; };
+		8012E885226AF1E40082746B /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 8012E884226AF1E40082746B /* schema.json */; };
 		802973BF224F57E900A362D6 /* AllStoresController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802973BE224F57E900A362D6 /* AllStoresController.swift */; };
 		808533B62255263D005BF967 /* AllStoresCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808533B52255263D005BF967 /* AllStoresCell.swift */; };
 		8089786C224A6724003DEF2B /* UIDevice+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8089786B224A6724003DEF2B /* UIDevice+Name.swift */; };
 		80945AD92268F7A700341894 /* Queries.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 80945AD82268F7A700341894 /* Queries.graphql */; };
 		80945ADB226905F500341894 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80945ADA226905F500341894 /* API.swift */; };
-		80945ADF22690D9700341894 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 80945ADE22690D9700341894 /* schema.json */; };
 		80945AE122690EB200341894 /* GraphQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80945AE022690EB200341894 /* GraphQL.swift */; };
 		80A795882249090B00EF856A /* UISeperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A795872249090B00EF856A /* UISeperator.swift */; };
 		80AB976D22567561002507B9 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80AB976C22567561002507B9 /* UILabel.swift */; };
@@ -105,12 +105,12 @@
 		8010304A226226A70079ABBB /* SocialMediaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaModel.swift; sourceTree = "<group>"; };
 		8010304C2262474D0079ABBB /* OrdersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersController.swift; sourceTree = "<group>"; };
 		8010304E22624B7E0079ABBB /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
+		8012E884226AF1E40082746B /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		802973BE224F57E900A362D6 /* AllStoresController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllStoresController.swift; sourceTree = "<group>"; };
 		808533B52255263D005BF967 /* AllStoresCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllStoresCell.swift; sourceTree = "<group>"; };
 		8089786B224A6724003DEF2B /* UIDevice+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Name.swift"; sourceTree = "<group>"; };
 		80945AD82268F7A700341894 /* Queries.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Queries.graphql; sourceTree = "<group>"; };
 		80945ADA226905F500341894 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
-		80945ADE22690D9700341894 /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		80945AE022690EB200341894 /* GraphQL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQL.swift; sourceTree = "<group>"; };
 		80A795872249090B00EF856A /* UISeperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISeperator.swift; sourceTree = "<group>"; };
 		80AB976C22567561002507B9 /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
@@ -336,7 +336,7 @@
 				80B002742247E9BA00E92DDB /* Main.storyboard */,
 				80B0027A2247E9BC00E92DDB /* Assets.xcassets */,
 				80B0027C2247E9BC00E92DDB /* LaunchScreen.storyboard */,
-				80945ADE22690D9700341894 /* schema.json */,
+				8012E884226AF1E40082746B /* schema.json */,
 				80B0027F2247E9BC00E92DDB /* Info.plist */,
 				80B002772247E9BA00E92DDB /* bryng.xcdatamodeld */,
 			);
@@ -460,9 +460,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8012E885226AF1E40082746B /* schema.json in Resources */,
 				80B0027E2247E9BC00E92DDB /* LaunchScreen.storyboard in Resources */,
 				800F7A8A2269FFAB00020848 /* Login.graphql in Resources */,
-				80945ADF22690D9700341894 /* schema.json in Resources */,
 				80945AD92268F7A700341894 /* Queries.graphql in Resources */,
 				800F7A8C226A0A4D00020848 /* Register.graphql in Resources */,
 				80B0027B2247E9BC00E92DDB /* Assets.xcassets in Resources */,

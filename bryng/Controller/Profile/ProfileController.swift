@@ -25,7 +25,7 @@ class ProfileController: BaseViewController, UICollectionViewDelegateFlowLayout 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ProfileCell
         
         cell.handleLogout = { [weak self] in
-            CoreDataManager.shared.updateLoginSession(isLoggedIn: false)
+            CoreDataManager.shared.updateLoginSession(token: nil)
             
             let navController = UINavigationController(rootViewController: RegistrationController())
             navController.isNavigationBarHidden = true

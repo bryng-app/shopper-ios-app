@@ -12,6 +12,7 @@ class GraphQL {
     
     static let shared = GraphQL()
     
-    let apollo = ApolloClient(url: URL(string: "http://localhost:8080/graphql")!)
+    let graphQLUrl = "http://localhost:8080/graphql"
+    lazy var apollo = ApolloClient(url: URL(string: graphQLUrl)!)
     
 }

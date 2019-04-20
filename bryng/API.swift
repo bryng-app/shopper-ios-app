@@ -155,6 +155,78 @@ public final class LoginMutation: GraphQLMutation {
   }
 }
 
+public final class AddLoginTokenMutation: GraphQLMutation {
+  public let operationDefinition =
+    "mutation AddLoginToken {\n  addLoginToken {\n    __typename\n    token\n  }\n}"
+
+  public init() {
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Mutation"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("addLoginToken", type: .object(AddLoginToken.selections)),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(addLoginToken: AddLoginToken? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "addLoginToken": addLoginToken.flatMap { (value: AddLoginToken) -> ResultMap in value.resultMap }])
+    }
+
+    public var addLoginToken: AddLoginToken? {
+      get {
+        return (resultMap["addLoginToken"] as? ResultMap).flatMap { AddLoginToken(unsafeResultMap: $0) }
+      }
+      set {
+        resultMap.updateValue(newValue?.resultMap, forKey: "addLoginToken")
+      }
+    }
+
+    public struct AddLoginToken: GraphQLSelectionSet {
+      public static let possibleTypes = ["LoginToken"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("token", type: .nonNull(.scalar(String.self))),
+      ]
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(token: String) {
+        self.init(unsafeResultMap: ["__typename": "LoginToken", "token": token])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var token: String {
+        get {
+          return resultMap["token"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "token")
+        }
+      }
+    }
+  }
+}
+
 public final class RegisterMutation: GraphQLMutation {
   public let operationDefinition =
     "mutation Register($fullname: String!, $email: String!, $password: String!, $username: String!, $phoneNumber: String, $age: Int, $avatar: String) {\n  createUser(fullname: $fullname, email: $email, password: $password, username: $username, phoneNumber: $phoneNumber, age: $age, avatar: $avatar) {\n    __typename\n    token\n  }\n}"
