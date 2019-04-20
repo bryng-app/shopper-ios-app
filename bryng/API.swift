@@ -2,9 +2,9 @@
 
 import Apollo
 
-public final class AllUsersQuery: GraphQLQuery {
+public final class MeQuery: GraphQLQuery {
   public let operationDefinition =
-    "query AllUsers {\n  allUsers {\n    __typename\n    fullname\n  }\n}"
+    "query Me {\n  me {\n    __typename\n    fullname\n    email\n    username\n  }\n}"
 
   public init() {
   }
@@ -13,7 +13,7 @@ public final class AllUsersQuery: GraphQLQuery {
     public static let possibleTypes = ["Query"]
 
     public static let selections: [GraphQLSelection] = [
-      GraphQLField("allUsers", type: .list(.nonNull(.object(AllUser.selections)))),
+      GraphQLField("me", type: .object(Me.selections)),
     ]
 
     public private(set) var resultMap: ResultMap
@@ -22,25 +22,27 @@ public final class AllUsersQuery: GraphQLQuery {
       self.resultMap = unsafeResultMap
     }
 
-    public init(allUsers: [AllUser]? = nil) {
-      self.init(unsafeResultMap: ["__typename": "Query", "allUsers": allUsers.flatMap { (value: [AllUser]) -> [ResultMap] in value.map { (value: AllUser) -> ResultMap in value.resultMap } }])
+    public init(me: Me? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Query", "me": me.flatMap { (value: Me) -> ResultMap in value.resultMap }])
     }
 
-    public var allUsers: [AllUser]? {
+    public var me: Me? {
       get {
-        return (resultMap["allUsers"] as? [ResultMap]).flatMap { (value: [ResultMap]) -> [AllUser] in value.map { (value: ResultMap) -> AllUser in AllUser(unsafeResultMap: value) } }
+        return (resultMap["me"] as? ResultMap).flatMap { Me(unsafeResultMap: $0) }
       }
       set {
-        resultMap.updateValue(newValue.flatMap { (value: [AllUser]) -> [ResultMap] in value.map { (value: AllUser) -> ResultMap in value.resultMap } }, forKey: "allUsers")
+        resultMap.updateValue(newValue?.resultMap, forKey: "me")
       }
     }
 
-    public struct AllUser: GraphQLSelectionSet {
-      public static let possibleTypes = ["User"]
+    public struct Me: GraphQLSelectionSet {
+      public static let possibleTypes = ["Me"]
 
       public static let selections: [GraphQLSelection] = [
         GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
         GraphQLField("fullname", type: .nonNull(.scalar(String.self))),
+        GraphQLField("email", type: .nonNull(.scalar(String.self))),
+        GraphQLField("username", type: .nonNull(.scalar(String.self))),
       ]
 
       public private(set) var resultMap: ResultMap
@@ -49,8 +51,8 @@ public final class AllUsersQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(fullname: String) {
-        self.init(unsafeResultMap: ["__typename": "User", "fullname": fullname])
+      public init(fullname: String, email: String, username: String) {
+        self.init(unsafeResultMap: ["__typename": "Me", "fullname": fullname, "email": email, "username": username])
       }
 
       public var __typename: String {
@@ -68,6 +70,24 @@ public final class AllUsersQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "fullname")
+        }
+      }
+
+      public var email: String {
+        get {
+          return resultMap["email"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "email")
+        }
+      }
+
+      public var username: String {
+        get {
+          return resultMap["username"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "username")
         }
       }
     }
@@ -204,6 +224,85 @@ public final class AddLoginTokenMutation: GraphQLMutation {
 
       public init(token: String) {
         self.init(unsafeResultMap: ["__typename": "LoginToken", "token": token])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var token: String {
+        get {
+          return resultMap["token"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "token")
+        }
+      }
+    }
+  }
+}
+
+public final class GetJwtTokenMutation: GraphQLMutation {
+  public let operationDefinition =
+    "mutation GetJWTToken($loginToken: String!) {\n  getJWTToken(loginToken: $loginToken) {\n    __typename\n    token\n  }\n}"
+
+  public var loginToken: String
+
+  public init(loginToken: String) {
+    self.loginToken = loginToken
+  }
+
+  public var variables: GraphQLMap? {
+    return ["loginToken": loginToken]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Mutation"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("getJWTToken", arguments: ["loginToken": GraphQLVariable("loginToken")], type: .object(GetJwtToken.selections)),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(getJwtToken: GetJwtToken? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "getJWTToken": getJwtToken.flatMap { (value: GetJwtToken) -> ResultMap in value.resultMap }])
+    }
+
+    public var getJwtToken: GetJwtToken? {
+      get {
+        return (resultMap["getJWTToken"] as? ResultMap).flatMap { GetJwtToken(unsafeResultMap: $0) }
+      }
+      set {
+        resultMap.updateValue(newValue?.resultMap, forKey: "getJWTToken")
+      }
+    }
+
+    public struct GetJwtToken: GraphQLSelectionSet {
+      public static let possibleTypes = ["Auth"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("token", type: .nonNull(.scalar(String.self))),
+      ]
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(token: String) {
+        self.init(unsafeResultMap: ["__typename": "Auth", "token": token])
       }
 
       public var __typename: String {

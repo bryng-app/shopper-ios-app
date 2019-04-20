@@ -113,25 +113,21 @@ class LoginController: UIViewController {
     }
     
     private func addLoginToken(token: String) {
-        let configuration = URLSessionConfiguration.default
-        configuration.httpAdditionalHeaders = ["Authorization": "Bearer \(token)"]
-        
-        let url = URL(string: GraphQL.shared.graphQLUrl)!
-        let apollo = ApolloClient(networkTransport: HTTPNetworkTransport(url: url, configuration: configuration))
-        
-        let addLoginTokenMutation = AddLoginTokenMutation()
-        
-        apollo.perform(mutation: addLoginTokenMutation) { result, error in
-            if let error = error {
-                print(error)
-                return
+        GraphQL.shared.getAuthorizedApollo(token: token) { (apollo) in
+            let addLoginTokenMutation = AddLoginTokenMutation()
+            
+            apollo.perform(mutation: addLoginTokenMutation) { result, error in
+                if let error = error {
+                    print(error)
+                    return
+                }
+                
+                guard let addLoginToken = result?.data?.addLoginToken else { return }
+                
+                let loginToken = addLoginToken.token
+                
+                CoreDataManager.shared.updateLoginSession(token: loginToken)
             }
-            
-            guard let addLoginToken = result?.data?.addLoginToken else { return }
-            
-            let loginToken = addLoginToken.token
-            
-            CoreDataManager.shared.updateLoginSession(token: loginToken)
         }
     }
     

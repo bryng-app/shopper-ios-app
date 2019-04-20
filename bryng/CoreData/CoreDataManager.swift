@@ -36,6 +36,25 @@ class CoreDataManager {
         return false
     }
     
+    func getLoginToken() -> String? {
+        let context = CoreDataManager.shared.persistentContainer.viewContext
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "LoginSession")
+        
+        do {
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject] {
+                if let token = data.value(forKey: "token") {
+                    return token as? String
+                }
+            }
+        } catch {
+            print("Failed to fetch login session data. \(error)")
+        }
+        
+        return nil
+    }
+    
     func updateLoginSession(token: String?) {
         let viewContext = CoreDataManager.shared.persistentContainer.viewContext
         

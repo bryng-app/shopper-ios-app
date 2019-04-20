@@ -9,3 +9,9 @@ mutation AddLoginToken {
     token
   }
 }
+
+mutation GetJWTToken($loginToken: String!) {
+  getJWTToken(loginToken: $loginToken) {
+    token
+  }
+}
