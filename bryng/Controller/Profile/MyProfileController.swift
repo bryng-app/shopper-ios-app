@@ -64,7 +64,7 @@ class MyProfileController: ProfileBaseViewController {
                     self.dismiss(animated: true, completion: nil)
                 })
             } else {
-                cell.feedbackLabel.isHidden = false
+                AlertUtil.showProgressAlert(view: self.view, text: "Bitte fülle alle Textfelder aus!")
             }
         }
         

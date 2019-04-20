@@ -19,7 +19,7 @@ class MyProfileViewModel {
     fileprivate func checkFormValidity() {
         var isFormValid = false
         
-        if name?.isEmpty == false && email?.isEmpty == false && phoneNumber?.isEmpty == false {
+        if name?.isEmpty == false && email?.isEmpty == false {
             isFormValid = true
         }
         

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 class AlertUtil {
     
@@ -27,6 +28,13 @@ class AlertUtil {
         actions.forEach({alert.addAction($0)})
         alert.addAction(UIAlertAction(title: "Abbrechen", style: .cancel, handler: nil))
         viewController.present(alert, animated: true, completion: nil)
+    }
+    
+    static func showProgressAlert(view: UIView, text: String) {
+        let progressHUD = JGProgressHUD(style: .dark)
+        progressHUD.textLabel.text = text
+        progressHUD.dismiss(afterDelay: 2, animated: true)
+        progressHUD.show(in: view)
     }
     
 }

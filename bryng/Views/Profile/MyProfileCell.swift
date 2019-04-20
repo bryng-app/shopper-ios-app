@@ -19,9 +19,13 @@ class MyProfileCell: UICollectionViewCell {
             nameTextField.text = profileModel.fullname
             emailTextField.text = profileModel.email
             
+            myProfileViewModel.name = profileModel.fullname
+            myProfileViewModel.email = profileModel.email
+
             guard let phoneNumber = profileModel.phoneNumber else { return }
             
             phoneTextField.text = phoneNumber
+            myProfileViewModel.phoneNumber = profileModel.phoneNumber
         }
     }
     
@@ -79,14 +83,6 @@ class MyProfileCell: UICollectionViewCell {
         return btn
     }()
     
-    let feedbackLabel: UILabel = {
-        let label = UILabel(text: "Bitte fülle alle Textfelder aus!")
-        label.textColor = UIColor.primaryColor
-        label.textAlignment = .center
-        label.isHidden = true
-        return label
-    }()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -101,8 +97,7 @@ class MyProfileCell: UICollectionViewCell {
             nameTextField,
             emailTextField,
             phoneTextField,
-            saveButton,
-            feedbackLabel
+            saveButton
             ], spacing: 16)
         
         addSubview(stackView)
