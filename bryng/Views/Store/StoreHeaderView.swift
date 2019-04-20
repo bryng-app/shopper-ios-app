@@ -54,11 +54,11 @@ class StoreHeaderView: UICollectionReusableView {
         informationLabel.textAlignment = .center
         informationLabel.numberOfLines = 0
         
-        let attributedText = NSMutableAttributedString(string: "Netto", attributes: [.font: UIFont.systemFont(ofSize: 32, weight: .heavy)])
+        let attributedText = NSMutableAttributedString(string: "Store Name", attributes: [.font: UIFont.systemFont(ofSize: 32, weight: .heavy)])
         attributedText.append(NSAttributedString(string: "\nAlle Produkte", attributes: [.font: UIFont.systemFont(ofSize: 20, weight: .regular)]))
         
         informationLabel.attributedText = attributedText
-        
+
         addSubview(cartButton)
         cartButton.anchor(top: nil, leading: nil, bottom: imageView.bottomAnchor, trailing: imageView.trailingAnchor, padding: .init(top: 0, left: 0, bottom: 20, right: 28))
         cartButton.badgeEdgeInsets = UIEdgeInsets(top: 16, left: 28, bottom: 0, right: 0)

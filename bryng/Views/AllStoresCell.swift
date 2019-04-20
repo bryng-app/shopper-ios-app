@@ -10,7 +10,19 @@ import UIKit
 
 class AllStoresCell: UICollectionViewCell {
     
-    let imageView: UIImageView = {
+    var store: Store? {
+        didSet {
+            guard let store = store else { return }
+            
+            nameLabel.text = store.name
+            openingHoursLabel.text = "\(store.openingHours) Uhr"
+            imageView.image = UIImage(named: store.logo)
+            
+            // TODO: Set distance label
+        }
+    }
+    
+    fileprivate let imageView: UIImageView = {
         let iv = UIImageView()
         iv.backgroundColor = .red
         iv.widthAnchor.constraint(equalToConstant: 64).isActive = true
@@ -18,11 +30,11 @@ class AllStoresCell: UICollectionViewCell {
         return iv
     }()
     
-    let nameLabel = UILabel(text: "Store Name")
-    let distanceLabel = UILabel(text: "7.4km entfernt", font: .systemFont(ofSize: 14))
-    let openingHoursLabel = UILabel(text: "08-20 Uhr", font: .systemFont(ofSize: 14))
+    fileprivate let nameLabel = UILabel(text: "Store Name")
+    fileprivate let distanceLabel = UILabel(text: "7.4km entfernt", font: .systemFont(ofSize: 14))
+    fileprivate let openingHoursLabel = UILabel(text: "08-20 Uhr", font: .systemFont(ofSize: 14))
     
-    let goToButton: UIButton = {
+    fileprivate let goToButton: UIButton = {
         let btn = UIButton(type: .system)
         btn.setTitle("Einkaufen", for: .normal)
         btn.setTitleColor(.white, for: .normal)
@@ -60,7 +72,9 @@ class AllStoresCell: UICollectionViewCell {
     
     @objc fileprivate func onGoToButtonClick() {
         // TODO: On handle click, parse data
-        didSelectHandler?("bryng von STORE NAME")
+        guard let storeName = store?.name else { return }
+        
+        didSelectHandler?(storeName)
     }
     
     required init?(coder aDecoder: NSCoder) {

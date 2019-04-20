@@ -15,8 +15,18 @@ class AllStoresController: BaseViewController, UICollectionViewDelegateFlowLayou
     fileprivate let cellId = "cellId"
     fileprivate let headerId = "headerId"
     
+    fileprivate var allStores = [Store]()
+    fileprivate let activityIndicator = UIActivityIndicatorView(style: .gray)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        activityIndicator.center = view.center
+        activityIndicator.startAnimating()
+        
+        view.addSubview(activityIndicator)
+        
+        fetchAllStores()
         
         collectionView.backgroundColor = .modernGray
         
@@ -24,6 +34,26 @@ class AllStoresController: BaseViewController, UICollectionViewDelegateFlowLayou
         collectionView.register(AllStoresCell.self, forCellWithReuseIdentifier: cellId)
         
         setupSearchBar()
+    }
+    
+    fileprivate func fetchAllStores() {
+        let allStoresQuery = AllStoresQuery()
+        GraphQL.shared.apollo.fetch(query: allStoresQuery) { result, error in
+            if let error = error {
+                print("Something went wrong while fetching all stores. \(error)")
+                return
+            }
+            
+            guard let allStores = result?.data?.allStores else { return }
+            
+            for storeData in allStores {
+                let store = Store(name: storeData.name, logo: storeData.logo, openingHours: storeData.openingHours, longitude: storeData.location.longitude, latitude: storeData.location.latitude)
+                self.allStores.append(store)
+            }
+            
+            self.collectionView.reloadData()
+            self.activityIndicator.stopAnimating()
+        }
     }
     
     fileprivate func setupSearchBar() {
@@ -47,22 +77,25 @@ class AllStoresController: BaseViewController, UICollectionViewDelegateFlowLayou
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return allStores.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! AllStoresCell
         
+        cell.store = allStores[indexPath.row]
+        
         // TODO: Set parsed data
         cell.didSelectHandler = { [weak self] storeName in
-            self?.goToStoreController()
+            self?.goToStoreController(name: storeName)
         }
         
         return cell
     }
     
-    func goToStoreController() {
+    func goToStoreController(name: String) {
         let storeController = StoreController()
+        storeController.storeName = name
         navigationController?.pushViewController(storeController, animated: true)
     }
     
@@ -80,7 +113,6 @@ class AllStoresController: BaseViewController, UICollectionViewDelegateFlowLayou
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        
         return .init(width: view.frame.width, height: 100)
     }
     

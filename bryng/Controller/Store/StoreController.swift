@@ -12,6 +12,8 @@ let addItemToCartNotificationKey = "app.bryng.addItemToCart"
 
 class StoreController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
+    var storeName = "Store Name"
+    
     fileprivate let cellId = "cellId"
     fileprivate let headerId = "headerId"
     fileprivate let padding: CGFloat = 16
@@ -63,6 +65,10 @@ class StoreController: UICollectionViewController, UICollectionViewDelegateFlowL
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         storeHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as? StoreHeaderView
+        
+        let attributedText = NSMutableAttributedString(string: storeName, attributes: [.font: UIFont.systemFont(ofSize: 32, weight: .heavy)])
+        attributedText.append(NSAttributedString(string: "\nAlle Produkte", attributes: [.font: UIFont.systemFont(ofSize: 20, weight: .regular)]))
+        storeHeaderView?.informationLabel.attributedText = attributedText
         
         storeHeaderView?.handleDismiss = { [weak self] in
             self?.storeHeaderView?.animator.stopAnimation(true)

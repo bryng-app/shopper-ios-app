@@ -2,6 +2,155 @@
 
 import Apollo
 
+public final class AllStoresQuery: GraphQLQuery {
+  public let operationDefinition =
+    "query AllStores {\n  allStores {\n    __typename\n    name\n    logo\n    openingHours\n    location {\n      __typename\n      latitude\n      longitude\n    }\n  }\n}"
+
+  public init() {
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Query"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("allStores", type: .nonNull(.list(.nonNull(.object(AllStore.selections))))),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(allStores: [AllStore]) {
+      self.init(unsafeResultMap: ["__typename": "Query", "allStores": allStores.map { (value: AllStore) -> ResultMap in value.resultMap }])
+    }
+
+    public var allStores: [AllStore] {
+      get {
+        return (resultMap["allStores"] as! [ResultMap]).map { (value: ResultMap) -> AllStore in AllStore(unsafeResultMap: value) }
+      }
+      set {
+        resultMap.updateValue(newValue.map { (value: AllStore) -> ResultMap in value.resultMap }, forKey: "allStores")
+      }
+    }
+
+    public struct AllStore: GraphQLSelectionSet {
+      public static let possibleTypes = ["Store"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("name", type: .nonNull(.scalar(String.self))),
+        GraphQLField("logo", type: .nonNull(.scalar(String.self))),
+        GraphQLField("openingHours", type: .nonNull(.scalar(String.self))),
+        GraphQLField("location", type: .nonNull(.object(Location.selections))),
+      ]
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(name: String, logo: String, openingHours: String, location: Location) {
+        self.init(unsafeResultMap: ["__typename": "Store", "name": name, "logo": logo, "openingHours": openingHours, "location": location.resultMap])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var name: String {
+        get {
+          return resultMap["name"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "name")
+        }
+      }
+
+      public var logo: String {
+        get {
+          return resultMap["logo"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "logo")
+        }
+      }
+
+      public var openingHours: String {
+        get {
+          return resultMap["openingHours"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "openingHours")
+        }
+      }
+
+      public var location: Location {
+        get {
+          return Location(unsafeResultMap: resultMap["location"]! as! ResultMap)
+        }
+        set {
+          resultMap.updateValue(newValue.resultMap, forKey: "location")
+        }
+      }
+
+      public struct Location: GraphQLSelectionSet {
+        public static let possibleTypes = ["GeoPosition"]
+
+        public static let selections: [GraphQLSelection] = [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("latitude", type: .nonNull(.scalar(Double.self))),
+          GraphQLField("longitude", type: .nonNull(.scalar(Double.self))),
+        ]
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(latitude: Double, longitude: Double) {
+          self.init(unsafeResultMap: ["__typename": "GeoPosition", "latitude": latitude, "longitude": longitude])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var latitude: Double {
+          get {
+            return resultMap["latitude"]! as! Double
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "latitude")
+          }
+        }
+
+        public var longitude: Double {
+          get {
+            return resultMap["longitude"]! as! Double
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "longitude")
+          }
+        }
+      }
+    }
+  }
+}
+
 public final class MeQuery: GraphQLQuery {
   public let operationDefinition =
     "query Me {\n  me {\n    __typename\n    fullname\n    email\n    username\n  }\n}"

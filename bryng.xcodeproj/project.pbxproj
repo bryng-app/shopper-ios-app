@@ -37,6 +37,8 @@
 		8010304F22624B7E0079ABBB /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8010304E22624B7E0079ABBB /* OrderCell.swift */; };
 		8012E885226AF1E40082746B /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 8012E884226AF1E40082746B /* schema.json */; };
 		8012E887226B1C200082746B /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012E886226B1C200082746B /* ProfileModel.swift */; };
+		8012E889226B58D50082746B /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012E888226B58D50082746B /* Store.swift */; };
+		8012E88B226B5A640082746B /* Store.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 8012E88A226B5A640082746B /* Store.graphql */; };
 		802973BF224F57E900A362D6 /* AllStoresController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802973BE224F57E900A362D6 /* AllStoresController.swift */; };
 		808533B62255263D005BF967 /* AllStoresCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808533B52255263D005BF967 /* AllStoresCell.swift */; };
 		8089786C224A6724003DEF2B /* UIDevice+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8089786B224A6724003DEF2B /* UIDevice+Name.swift */; };
@@ -108,6 +110,8 @@
 		8010304E22624B7E0079ABBB /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
 		8012E884226AF1E40082746B /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		8012E886226B1C200082746B /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
+		8012E888226B58D50082746B /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		8012E88A226B5A640082746B /* Store.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Store.graphql; sourceTree = "<group>"; };
 		802973BE224F57E900A362D6 /* AllStoresController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllStoresController.swift; sourceTree = "<group>"; };
 		808533B52255263D005BF967 /* AllStoresCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllStoresCell.swift; sourceTree = "<group>"; };
 		8089786B224A6724003DEF2B /* UIDevice+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Name.swift"; sourceTree = "<group>"; };
@@ -286,6 +290,7 @@
 				80945AD82268F7A700341894 /* Queries.graphql */,
 				800F7A892269FFAB00020848 /* Login.graphql */,
 				800F7A8B226A0A4D00020848 /* Register.graphql */,
+				8012E88A226B5A640082746B /* Store.graphql */,
 			);
 			path = GraphQL;
 			sourceTree = "<group>";
@@ -362,6 +367,7 @@
 				80F6F65D2266357400C7B591 /* Page.swift */,
 				8000764E22672915008B09EA /* CartProduct.swift */,
 				8012E886226B1C200082746B /* ProfileModel.swift */,
+				8012E888226B58D50082746B /* Store.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -465,6 +471,7 @@
 			files = (
 				8012E885226AF1E40082746B /* schema.json in Resources */,
 				80B0027E2247E9BC00E92DDB /* LaunchScreen.storyboard in Resources */,
+				8012E88B226B5A640082746B /* Store.graphql in Resources */,
 				800F7A8A2269FFAB00020848 /* Login.graphql in Resources */,
 				80945AD92268F7A700341894 /* Queries.graphql in Resources */,
 				800F7A8C226A0A4D00020848 /* Register.graphql in Resources */,
@@ -582,6 +589,7 @@
 				8003E85B22687197005200C5 /* LoginController.swift in Sources */,
 				80C6297A225CF9BF00B943E1 /* SnappingLayout.swift in Sources */,
 				8001EB232264706400D4514F /* MapStoreInformationView.swift in Sources */,
+				8012E889226B58D50082746B /* Store.swift in Sources */,
 				80B002792247E9BA00E92DDB /* bryng.xcdatamodeld in Sources */,
 				8009AEC6225E6E9A00917602 /* AlertUtil.swift in Sources */,
 				80945ADB226905F500341894 /* API.swift in Sources */,

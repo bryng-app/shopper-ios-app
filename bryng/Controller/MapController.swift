@@ -63,7 +63,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             guard let allStoresController = viewController.topViewController as? AllStoresController else { return }
             
             allStoresController.tabBarController?.selectedIndex = 1
-            allStoresController.goToStoreController()
+            // allStoresController.goToStoreController()
         }
     }
     
