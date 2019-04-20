@@ -10,6 +10,16 @@ import UIKit
 
 class MapStoreInformationView: UIView {
     
+    var store: Store? {
+        didSet {
+            guard let store = store else { return }
+            
+            nameLabel.text = store.name
+            openingHoursLabel.text = "\(store.openingHours) Uhr"
+            imageView.image = UIImage(named: store.logo)
+        }
+    }
+    
     var didClickOnGoTo: (() -> ())?
     
     let imageView: UIImageView = {

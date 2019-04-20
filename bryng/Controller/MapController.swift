@@ -19,6 +19,8 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     
     fileprivate var routesDistances = [Route]()
     
+    fileprivate var stores = [Store]()
+    
     fileprivate var mapView: MKMapView!
     fileprivate let locationManager = CLLocationManager()
     fileprivate let regionInMeters: Double = 1000
@@ -45,12 +47,15 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        GraphQLService.shared.fetchAllStores { (stores) in
+            self.stores = stores
+            self.addStoreAnnotations()
+        }
+        
         setupMapView()
         checkLocationServices()
         setupLayout()
         setupMapStoreInformationView()
-        
-        addStoreAnnotations()
         
         mapStoreInformationView.frame = .init(x: 0, y: self.view.frame.size.height, width: self.view.frame.size.width, height: mapStoreInformationViewHeight)
         self.view.addSubview(mapStoreInformationView)
@@ -63,7 +68,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             guard let allStoresController = viewController.topViewController as? AllStoresController else { return }
             
             allStoresController.tabBarController?.selectedIndex = 1
-            // allStoresController.goToStoreController()
+            allStoresController.goToStoreController(name: self.mapStoreInformationView.store!.name)
         }
     }
     
@@ -166,8 +171,10 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     }
     
     fileprivate func addStoreAnnotations() {
-        let rewe = GroceryShop(title: "Norma", locationName: "Heinrich-Grüber-Straße 86, 12621 Berlin", coordinate: CLLocationCoordinate2D(latitude: 52.518827, longitude: 13.596681))
-        mapView.addAnnotation(rewe)
+        for store in stores {
+            let groceryShop = GroceryShop(title: store.name, locationName: nil, coordinate: CLLocationCoordinate2D(latitude: store.latitude, longitude: store.longitude))
+            mapView.addAnnotation(groceryShop)
+        }
     }
     
     fileprivate func createDirectionsRequest(from fromLocationCoordinate: CLLocationCoordinate2D, to toLocationCoordinate: CLLocationCoordinate2D) -> MKDirections.Request {
@@ -201,10 +208,6 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        /*let userAnnotation = MKPointAnnotation()
-        userAnnotation.coordinate = locationManager.location?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
-        userAnnotation.title = "Startpunkt"
-        mapView.addAnnotation(userAnnotation)*/
         let userCoordinate = locationManager.location?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
         
         drawDirections(to: view.annotation?.coordinate)
@@ -222,7 +225,8 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         }
         
         mapStoreInformationView.distanceLabel.text = distanceOutput
-        mapStoreInformationView.nameLabel.text = "Norma"
+        let store = stores.filter({$0.latitude == endLocation.coordinate.latitude && $0.longitude == endLocation.coordinate.longitude})[0]
+        mapStoreInformationView.store = store
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.navigationFixedButton.transform = CGAffineTransform(translationX: 0, y: -(self.mapStoreInformationViewHeight / 2 + 40))

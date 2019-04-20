@@ -26,7 +26,11 @@ class AllStoresController: BaseViewController, UICollectionViewDelegateFlowLayou
         
         view.addSubview(activityIndicator)
         
-        fetchAllStores()
+        GraphQLService.shared.fetchAllStores { (stores) in
+            self.allStores = stores
+            self.collectionView.reloadData()
+            self.activityIndicator.stopAnimating()
+        }
         
         collectionView.backgroundColor = .modernGray
         
@@ -34,26 +38,6 @@ class AllStoresController: BaseViewController, UICollectionViewDelegateFlowLayou
         collectionView.register(AllStoresCell.self, forCellWithReuseIdentifier: cellId)
         
         setupSearchBar()
-    }
-    
-    fileprivate func fetchAllStores() {
-        let allStoresQuery = AllStoresQuery()
-        GraphQL.shared.apollo.fetch(query: allStoresQuery) { result, error in
-            if let error = error {
-                print("Something went wrong while fetching all stores. \(error)")
-                return
-            }
-            
-            guard let allStores = result?.data?.allStores else { return }
-            
-            for storeData in allStores {
-                let store = Store(name: storeData.name, logo: storeData.logo, openingHours: storeData.openingHours, longitude: storeData.location.longitude, latitude: storeData.location.latitude)
-                self.allStores.append(store)
-            }
-            
-            self.collectionView.reloadData()
-            self.activityIndicator.stopAnimating()
-        }
     }
     
     fileprivate func setupSearchBar() {
