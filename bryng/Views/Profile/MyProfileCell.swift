@@ -12,6 +12,19 @@ class MyProfileCell: UICollectionViewCell {
     
     var didClickOnSave: (() -> ())?
     
+    var profileModel: ProfileModel? {
+        didSet {
+            guard let profileModel = profileModel else { return }
+            
+            nameTextField.text = profileModel.fullname
+            emailTextField.text = profileModel.email
+            
+            guard let phoneNumber = profileModel.phoneNumber else { return }
+            
+            phoneTextField.text = phoneNumber
+        }
+    }
+    
     lazy var nameTextField: BryngTextField = {
         let tf = BryngTextField(padding: 16, height: 50)
         tf.placeholder = "Dein Name"

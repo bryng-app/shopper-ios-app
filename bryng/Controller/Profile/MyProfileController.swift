@@ -36,6 +36,21 @@ class MyProfileController: ProfileBaseViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! MyProfileCell
         
+        GraphQL.shared.getAuthorizedApollo(token: nil) { (apollo) in
+            let meQuery = MeQuery()
+            
+            apollo.fetch(query: meQuery) { result, error in
+                if let error = error {
+                    print("Something went wrong with me query. \(error)")
+                    return
+                }
+                
+                guard let me = result?.data?.me else { return }
+                
+                cell.profileModel = ProfileModel(fullname: me.fullname, email: me.email, phoneNumber: nil)
+            }
+        }
+        
         myProfileViewModel = cell.myProfileViewModel
         setupMyProfileViewModelObserver()
         
