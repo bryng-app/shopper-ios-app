@@ -27,11 +27,13 @@ class AllStoresCell: UICollectionViewCell {
         iv.backgroundColor = .red
         iv.widthAnchor.constraint(equalToConstant: 64).isActive = true
         iv.heightAnchor.constraint(equalToConstant: 64).isActive = true
+        iv.layer.cornerRadius = 8
+        iv.clipsToBounds = true
         return iv
     }()
     
     fileprivate let nameLabel = UILabel(text: "Store Name")
-    fileprivate let distanceLabel = UILabel(text: "7.4km entfernt", font: .systemFont(ofSize: 14))
+    // fileprivate let distanceLabel = UILabel(text: "7.4km entfernt", font: .systemFont(ofSize: 14))
     fileprivate let openingHoursLabel = UILabel(text: "08-20 Uhr", font: .systemFont(ofSize: 14))
     
     fileprivate let goToButton: UIButton = {
@@ -55,7 +57,7 @@ class AllStoresCell: UICollectionViewCell {
         layer.cornerRadius = 16
         
         let labelsStackView = VerticalStackView(arrangedSubviews: [
-            nameLabel, distanceLabel, openingHoursLabel
+            nameLabel, openingHoursLabel
             ], spacing: 0)
         
         let stackView = UIStackView(arrangedSubviews: [
