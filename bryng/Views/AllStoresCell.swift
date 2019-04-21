@@ -73,7 +73,6 @@ class AllStoresCell: UICollectionViewCell {
     }
     
     @objc fileprivate func onGoToButtonClick() {
-        // TODO: On handle click, parse data
         guard let storeName = store?.name else { return }
         
         didSelectHandler?(storeName)
