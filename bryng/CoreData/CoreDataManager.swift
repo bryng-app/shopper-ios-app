@@ -95,8 +95,8 @@ class CoreDataManager {
         guard let token = token else {
             // Remove token
             if let result = try? viewContext.fetch(fetchRequest) {
-                for object in result {
-                    viewContext.delete(object as! NSManagedObject)
+                for object in result as! [NSManagedObject] {
+                    object.setValue(nil, forKey: "token")
                 }
             }
             

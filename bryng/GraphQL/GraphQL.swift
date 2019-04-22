@@ -18,15 +18,15 @@ class GraphQL {
     func getAuthorizedApollo(token: String?, callback: @escaping ((_ client: ApolloClient) -> ())) {
         let loginToken = CoreDataManager.shared.getLoginToken()
         
-        if let loginToken = loginToken {
-            if let token = token {
-                let configuration = URLSessionConfiguration.default
-                configuration.httpAdditionalHeaders = ["Authorization": "Bearer \(token)"]
+        if let token = token {
+            let configuration = URLSessionConfiguration.default
+            configuration.httpAdditionalHeaders = ["Authorization": "Bearer \(token)"]
                 
-                let url = URL(string: GraphQL.shared.graphQLUrl)!
-                let apollo = ApolloClient(networkTransport: HTTPNetworkTransport(url: url, configuration: configuration))
-                callback(apollo)
-            } else {
+            let url = URL(string: GraphQL.shared.graphQLUrl)!
+            let apollo = ApolloClient(networkTransport: HTTPNetworkTransport(url: url, configuration: configuration))
+            callback(apollo)
+        } else {
+            if let loginToken = loginToken {
                 generateJWTToken(loginToken: loginToken) { (jwtToken) in
                     guard let jwtToken = jwtToken else {
                         print("Could not generate jwt token!")
