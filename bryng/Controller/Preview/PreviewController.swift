@@ -110,7 +110,8 @@ class PreviewController: UICollectionViewController, UICollectionViewDelegateFlo
         
         cell.page = pages[indexPath.row]
         cell.handleTipOnGetStarted = { [weak self] in
-            self?.present(RegistrationController(), animated: true, completion: nil)
+            CoreDataManager.shared.setFirstLogin()
+            self?.navigationController?.pushViewController(BaseTabBarController(), animated: true)
         }
         
         return cell

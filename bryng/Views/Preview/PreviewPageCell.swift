@@ -26,12 +26,9 @@ class PreviewPageCell: UICollectionViewCell {
             guard let pageImage = page.image else { return }
             
             imageView.image = pageImage
-            if page.headline == "Lasse Deine Lebensmittel bryngen" {
-                imageView.constrainWidth(constant: 300)
-            } else {
-                imageView.constrainWidth(constant: 245)
-            }
-            imageView.constrainHeight(constant: 235)
+            imageView.constrainHeight(constant: 200)
+            imageView.constrainWidth(constant: 200)
+            imageView.contentMode = .scaleAspectFill
         }
     }
     
@@ -62,7 +59,7 @@ class PreviewPageCell: UICollectionViewCell {
         backgroundColor = .white
         
         addSubview(imageView)
-        imageView.anchor(top: topAnchor, leading: nil, bottom: nil, trailing: nil, padding: .init(top: 128, left: 0, bottom: 0, right: 0))
+        imageView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 128, left: 64, bottom: 0, right: 64))
         imageView.centerXInSuperview()
         
         addSubview(getStartedButton)

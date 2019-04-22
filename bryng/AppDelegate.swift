@@ -18,9 +18,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow()
         window?.makeKeyAndVisible()
-        // window?.rootViewController = RegistrationController()
-        window?.rootViewController = BaseTabBarController()
-        // window?.rootViewController = PreviewController()
+        
+        if CoreDataManager.shared.isFirstLogin() {
+            let navController = UINavigationController(rootViewController: PreviewController())
+            navController.isNavigationBarHidden = true
+            window?.rootViewController = navController
+        } else {
+            window?.rootViewController = BaseTabBarController()
+        }
         
         return true
     }

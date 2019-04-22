@@ -36,6 +36,36 @@ class CoreDataManager {
         return false
     }
     
+    func isFirstLogin() -> Bool {
+        let context = CoreDataManager.shared.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "LoginSession")
+        
+        do {
+            let results = try context.fetch(request)
+            
+            for result in results as! [NSManagedObject] {
+                return result.value(forKey: "firstLogin") as! Bool
+            }
+        } catch {
+            print("Failed to fetch login session. \(error)")
+        }
+        
+        return true
+    }
+    
+    func setFirstLogin() {
+        let context = CoreDataManager.shared.persistentContainer.viewContext
+        
+        let loginSession = NSEntityDescription.insertNewObject(forEntityName: "LoginSession", into: context)
+        loginSession.setValue(false, forKey: "firstLogin")
+        
+        do {
+            try context.save()
+        } catch {
+            print("Fetch failed: \(error)")
+        }
+    }
+    
     func getLoginToken() -> String? {
         let context = CoreDataManager.shared.persistentContainer.viewContext
         
