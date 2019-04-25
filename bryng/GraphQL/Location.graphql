@@ -1,0 +1,14 @@
+mutation AddLocation($latitude: Float!, $longitude: Float!) {
+    addLocation(location: {
+        latitude: $latitude,
+        longitude: $longitude
+    }) {
+        geoPosition {
+            latitude
+            longitude
+        }
+        user {
+            email
+        }
+    }
+}

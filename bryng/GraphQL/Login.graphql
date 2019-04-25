@@ -1,17 +1,17 @@
 mutation Login($email: String!, $password: String!) {
-  login(email: $email, password: $password) {
-    token
-  }
+    login(email: $email, password: $password) {
+        token
+    }
 }
 
 mutation AddLoginToken {
-  addLoginToken {
-    token
-  }
+    addLoginToken {
+        token
+    }
 }
 
 mutation GetJWTToken($loginToken: String!) {
-  getJWTToken(loginToken: $loginToken) {
-    token
-  }
+    getJWTToken(loginToken: $loginToken) {
+        token
+    }
 }

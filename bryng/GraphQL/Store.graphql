@@ -1,11 +1,11 @@
 query AllStores {
-  allStores {
-    name
-    logo
-    openingHours
-    location {
-      latitude
-      longitude
+    allStores {
+        name
+        logo
+        openingHours
+        location {
+          latitude
+          longitude
+        }
     }
-  }
 }

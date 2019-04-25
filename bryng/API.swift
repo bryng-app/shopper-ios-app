@@ -565,3 +565,178 @@ public final class RegisterMutation: GraphQLMutation {
     }
   }
 }
+
+public final class AddLocationMutation: GraphQLMutation {
+  public let operationDefinition =
+    "mutation AddLocation($latitude: Float!, $longitude: Float!) {\n  addLocation(location: {latitude: $latitude, longitude: $longitude}) {\n    __typename\n    geoPosition {\n      __typename\n      latitude\n      longitude\n    }\n    user {\n      __typename\n      email\n    }\n  }\n}"
+
+  public var latitude: Double
+  public var longitude: Double
+
+  public init(latitude: Double, longitude: Double) {
+    self.latitude = latitude
+    self.longitude = longitude
+  }
+
+  public var variables: GraphQLMap? {
+    return ["latitude": latitude, "longitude": longitude]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Mutation"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("addLocation", arguments: ["location": ["latitude": GraphQLVariable("latitude"), "longitude": GraphQLVariable("longitude")]], type: .nonNull(.object(AddLocation.selections))),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(addLocation: AddLocation) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "addLocation": addLocation.resultMap])
+    }
+
+    public var addLocation: AddLocation {
+      get {
+        return AddLocation(unsafeResultMap: resultMap["addLocation"]! as! ResultMap)
+      }
+      set {
+        resultMap.updateValue(newValue.resultMap, forKey: "addLocation")
+      }
+    }
+
+    public struct AddLocation: GraphQLSelectionSet {
+      public static let possibleTypes = ["Location"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("geoPosition", type: .nonNull(.object(GeoPosition.selections))),
+        GraphQLField("user", type: .nonNull(.object(User.selections))),
+      ]
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(geoPosition: GeoPosition, user: User) {
+        self.init(unsafeResultMap: ["__typename": "Location", "geoPosition": geoPosition.resultMap, "user": user.resultMap])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var geoPosition: GeoPosition {
+        get {
+          return GeoPosition(unsafeResultMap: resultMap["geoPosition"]! as! ResultMap)
+        }
+        set {
+          resultMap.updateValue(newValue.resultMap, forKey: "geoPosition")
+        }
+      }
+
+      public var user: User {
+        get {
+          return User(unsafeResultMap: resultMap["user"]! as! ResultMap)
+        }
+        set {
+          resultMap.updateValue(newValue.resultMap, forKey: "user")
+        }
+      }
+
+      public struct GeoPosition: GraphQLSelectionSet {
+        public static let possibleTypes = ["GeoPosition"]
+
+        public static let selections: [GraphQLSelection] = [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("latitude", type: .nonNull(.scalar(Double.self))),
+          GraphQLField("longitude", type: .nonNull(.scalar(Double.self))),
+        ]
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(latitude: Double, longitude: Double) {
+          self.init(unsafeResultMap: ["__typename": "GeoPosition", "latitude": latitude, "longitude": longitude])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var latitude: Double {
+          get {
+            return resultMap["latitude"]! as! Double
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "latitude")
+          }
+        }
+
+        public var longitude: Double {
+          get {
+            return resultMap["longitude"]! as! Double
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "longitude")
+          }
+        }
+      }
+
+      public struct User: GraphQLSelectionSet {
+        public static let possibleTypes = ["User"]
+
+        public static let selections: [GraphQLSelection] = [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("email", type: .nonNull(.scalar(String.self))),
+        ]
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(email: String) {
+          self.init(unsafeResultMap: ["__typename": "User", "email": email])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var email: String {
+          get {
+            return resultMap["email"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "email")
+          }
+        }
+      }
+    }
+  }
+}

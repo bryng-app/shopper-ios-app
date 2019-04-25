@@ -1,5 +1,5 @@
 mutation Register($fullname: String!, $email: String!, $password: String!, $username: String!, $phoneNumber: String, $age: Int, $avatar: String) {
-  createUser(fullname: $fullname, email: $email, password: $password, username: $username, phoneNumber: $phoneNumber, age: $age, avatar: $avatar) {
-    token
-  }
+    createUser(fullname: $fullname, email: $email, password: $password, username: $username, phoneNumber: $phoneNumber, age: $age, avatar: $avatar) {
+        token
+    }
 }

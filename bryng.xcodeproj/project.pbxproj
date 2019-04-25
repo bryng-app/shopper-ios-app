@@ -40,6 +40,7 @@
 		8012E889226B58D50082746B /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012E888226B58D50082746B /* Store.swift */; };
 		8012E88B226B5A640082746B /* Store.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 8012E88A226B5A640082746B /* Store.graphql */; };
 		8012E88D226B62640082746B /* GraphQLService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012E88C226B62640082746B /* GraphQLService.swift */; };
+		8012FD132272295F0044C1AC /* Location.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 8012FD122272295F0044C1AC /* Location.graphql */; };
 		802973BF224F57E900A362D6 /* AllStoresController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802973BE224F57E900A362D6 /* AllStoresController.swift */; };
 		808533B62255263D005BF967 /* AllStoresCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808533B52255263D005BF967 /* AllStoresCell.swift */; };
 		8089786C224A6724003DEF2B /* UIDevice+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8089786B224A6724003DEF2B /* UIDevice+Name.swift */; };
@@ -114,6 +115,7 @@
 		8012E888226B58D50082746B /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		8012E88A226B5A640082746B /* Store.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Store.graphql; sourceTree = "<group>"; };
 		8012E88C226B62640082746B /* GraphQLService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLService.swift; sourceTree = "<group>"; };
+		8012FD122272295F0044C1AC /* Location.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Location.graphql; sourceTree = "<group>"; };
 		802973BE224F57E900A362D6 /* AllStoresController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllStoresController.swift; sourceTree = "<group>"; };
 		808533B52255263D005BF967 /* AllStoresCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllStoresCell.swift; sourceTree = "<group>"; };
 		8089786B224A6724003DEF2B /* UIDevice+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Name.swift"; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 				800F7A892269FFAB00020848 /* Login.graphql */,
 				800F7A8B226A0A4D00020848 /* Register.graphql */,
 				8012E88A226B5A640082746B /* Store.graphql */,
+				8012FD122272295F0044C1AC /* Location.graphql */,
 			);
 			path = GraphQL;
 			sourceTree = "<group>";
@@ -479,6 +482,7 @@
 				80945AD92268F7A700341894 /* Queries.graphql in Resources */,
 				800F7A8C226A0A4D00020848 /* Register.graphql in Resources */,
 				80B0027B2247E9BC00E92DDB /* Assets.xcassets in Resources */,
+				8012FD132272295F0044C1AC /* Location.graphql in Resources */,
 				80B002762247E9BA00E92DDB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
