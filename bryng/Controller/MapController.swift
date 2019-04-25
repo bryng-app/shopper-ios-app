@@ -244,12 +244,55 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     }
     
     private var firstTimeLoaded = true
+    private var latestTrackedLocation: CLLocationCoordinate2D!
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print(locations)
         if navigationFixedButtonSelected || firstTimeLoaded {
             centerViewOnUserLocation()
+            if firstTimeLoaded {
+                latestTrackedLocation = locations[0].coordinate
+                saveLocation(latitude: latestTrackedLocation.latitude, longitude: latestTrackedLocation.longitude)
+            }
+            
             firstTimeLoaded = false
+            
+            let distance = calc(lat1: latestTrackedLocation.latitude, lon1: latestTrackedLocation.longitude, lat2: locations[0].coordinate.latitude, lon2: locations[0].coordinate.longitude)
+            if distance >= 5 {
+                latestTrackedLocation = CLLocationCoordinate2D(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude)
+                saveLocation(latitude: latestTrackedLocation.latitude, longitude: latestTrackedLocation.longitude)
+            }
         }
+    }
+    
+    private func saveLocation(latitude: Double, longitude: Double) {
+        GraphQL.shared.getAuthorizedApollo(token: nil) { (apollo) in
+            let addLocationMutation = AddLocationMutation(latitude: latitude, longitude: longitude)
+            
+            apollo.perform(mutation: addLocationMutation) { result, error in
+                if let error = error {
+                    print(error)
+                    return
+                }
+                
+                guard let _ = result?.data?.addLocation else {
+                    print("Could not save location in database!")
+                    return
+                }
+            }
+        }
+    }
+    
+    private func calc(lat1: Double, lon1: Double, lat2: Double, lon2: Double) -> Double {
+        let R = 6378.137; // Radius of earth in KM
+        let dLat = lat2 * Double.pi / 180 - lat1 * Double.pi / 180;
+        let dLon = lon2 * Double.pi / 180 - lon1 * Double.pi / 180;
+        let a = sin(dLat / 2) * sin(dLat / 2) +
+            cos(lat1 * Double.pi / 180) * cos(lat2 * Double.pi / 180) *
+            sin(dLon / 2) * sin(dLon / 2);
+        let c = 2 * atan2(sqrt(a), sqrt(1 - a));
+        let d = R * c;
+        return d * 1000; // meters
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
