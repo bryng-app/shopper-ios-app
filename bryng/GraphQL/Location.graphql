@@ -3,12 +3,9 @@ mutation AddLocation($latitude: Float!, $longitude: Float!) {
         latitude: $latitude,
         longitude: $longitude
     }) {
-        geoPosition {
+        location {
             latitude
             longitude
-        }
-        user {
-            email
         }
     }
 }

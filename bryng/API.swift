@@ -568,7 +568,7 @@ public final class RegisterMutation: GraphQLMutation {
 
 public final class AddLocationMutation: GraphQLMutation {
   public let operationDefinition =
-    "mutation AddLocation($latitude: Float!, $longitude: Float!) {\n  addLocation(location: {latitude: $latitude, longitude: $longitude}) {\n    __typename\n    geoPosition {\n      __typename\n      latitude\n      longitude\n    }\n    user {\n      __typename\n      email\n    }\n  }\n}"
+    "mutation AddLocation($latitude: Float!, $longitude: Float!) {\n  addLocation(location: {latitude: $latitude, longitude: $longitude}) {\n    __typename\n    location {\n      __typename\n      latitude\n      longitude\n    }\n  }\n}"
 
   public var latitude: Double
   public var longitude: Double
@@ -613,8 +613,7 @@ public final class AddLocationMutation: GraphQLMutation {
 
       public static let selections: [GraphQLSelection] = [
         GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-        GraphQLField("geoPosition", type: .nonNull(.object(GeoPosition.selections))),
-        GraphQLField("user", type: .nonNull(.object(User.selections))),
+        GraphQLField("location", type: .nonNull(.object(Location.selections))),
       ]
 
       public private(set) var resultMap: ResultMap
@@ -623,8 +622,8 @@ public final class AddLocationMutation: GraphQLMutation {
         self.resultMap = unsafeResultMap
       }
 
-      public init(geoPosition: GeoPosition, user: User) {
-        self.init(unsafeResultMap: ["__typename": "Location", "geoPosition": geoPosition.resultMap, "user": user.resultMap])
+      public init(location: Location) {
+        self.init(unsafeResultMap: ["__typename": "Location", "location": location.resultMap])
       }
 
       public var __typename: String {
@@ -636,25 +635,16 @@ public final class AddLocationMutation: GraphQLMutation {
         }
       }
 
-      public var geoPosition: GeoPosition {
+      public var location: Location {
         get {
-          return GeoPosition(unsafeResultMap: resultMap["geoPosition"]! as! ResultMap)
+          return Location(unsafeResultMap: resultMap["location"]! as! ResultMap)
         }
         set {
-          resultMap.updateValue(newValue.resultMap, forKey: "geoPosition")
+          resultMap.updateValue(newValue.resultMap, forKey: "location")
         }
       }
 
-      public var user: User {
-        get {
-          return User(unsafeResultMap: resultMap["user"]! as! ResultMap)
-        }
-        set {
-          resultMap.updateValue(newValue.resultMap, forKey: "user")
-        }
-      }
-
-      public struct GeoPosition: GraphQLSelectionSet {
+      public struct Location: GraphQLSelectionSet {
         public static let possibleTypes = ["GeoPosition"]
 
         public static let selections: [GraphQLSelection] = [
@@ -697,43 +687,6 @@ public final class AddLocationMutation: GraphQLMutation {
           }
           set {
             resultMap.updateValue(newValue, forKey: "longitude")
-          }
-        }
-      }
-
-      public struct User: GraphQLSelectionSet {
-        public static let possibleTypes = ["User"]
-
-        public static let selections: [GraphQLSelection] = [
-          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-          GraphQLField("email", type: .nonNull(.scalar(String.self))),
-        ]
-
-        public private(set) var resultMap: ResultMap
-
-        public init(unsafeResultMap: ResultMap) {
-          self.resultMap = unsafeResultMap
-        }
-
-        public init(email: String) {
-          self.init(unsafeResultMap: ["__typename": "User", "email": email])
-        }
-
-        public var __typename: String {
-          get {
-            return resultMap["__typename"]! as! String
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "__typename")
-          }
-        }
-
-        public var email: String {
-          get {
-            return resultMap["email"]! as! String
-          }
-          set {
-            resultMap.updateValue(newValue, forKey: "email")
           }
         }
       }

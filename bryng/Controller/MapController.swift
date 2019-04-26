@@ -247,7 +247,6 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     private var latestTrackedLocation: CLLocationCoordinate2D!
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print(locations)
         if navigationFixedButtonSelected || firstTimeLoaded {
             centerViewOnUserLocation()
             if firstTimeLoaded {
@@ -275,6 +274,7 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
                     return
                 }
                 
+                print(result?.data)
                 guard let _ = result?.data?.addLocation else {
                     print("Could not save location in database!")
                     return
