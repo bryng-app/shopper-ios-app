@@ -274,7 +274,6 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
                     return
                 }
                 
-                print(result?.data)
                 guard let _ = result?.data?.addLocation else {
                     print("Could not save location in database!")
                     return
