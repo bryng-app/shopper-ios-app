@@ -21,7 +21,7 @@ class BaseTabBarController: UITabBarController {
             createViewController(viewController: ProfileController(), title: "Profil", unfilledImageName: "contacts", filledImageName: "contacts-filled"),
         ]
         
-        selectedViewController = viewControllers![0]
+        selectedViewController = viewControllers![1]
     }
     
     override func viewDidAppear(_ animated: Bool) {

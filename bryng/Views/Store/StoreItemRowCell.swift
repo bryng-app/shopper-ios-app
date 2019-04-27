@@ -22,12 +22,10 @@ class StoreItemRowCell: UICollectionViewCell {
             priceLabel.text = "\(transformedPrice)€ je"
             nameLabel.text = storeItem.name
             weightLabel.text = storeItem.weight
-            fetchImage(storeItem.image)
+            
+            guard let imageUrl = storeItem.image else { return }
+            imageView.downloaded(from: imageUrl)
         }
-    }
-    
-    private func fetchImage(_ imageUrl: String) {
-        imageView.downloaded(from: imageUrl)
     }
 
     var didAddItemToCart: (() -> ())?

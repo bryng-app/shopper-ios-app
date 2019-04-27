@@ -11,7 +11,7 @@ import Foundation
 struct StoreItem {
     
     let name: String
-    let image: String
+    let image: String?
     let price: Double
     let weight: String
     let storeName: String

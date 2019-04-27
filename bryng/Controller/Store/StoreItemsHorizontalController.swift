@@ -10,7 +10,7 @@ import UIKit
 
 class StoreItemsHorizontalController: HorizontalSnappingController, UICollectionViewDelegateFlowLayout {
 
-    var storeItems = [StoreItem]()
+    fileprivate var storeItems: [StoreItem]!
     
     fileprivate let cellId = "cellId"
     fileprivate let activityIndicator = UIActivityIndicatorView(style: .gray)
@@ -34,8 +34,10 @@ class StoreItemsHorizontalController: HorizontalSnappingController, UICollection
             
             guard let products = result?.data?.getProducts else { return }
             
+            self?.storeItems.removeAll()
             products.forEach({
-                let storeItem = StoreItem(name: $0.name, image: $0.image, price: $0.price, weight: $0.weight, storeName: $0.storeName, categoryName: $0.categoryName)
+                let image = $0.image == "" ? nil : $0.image
+                let storeItem = StoreItem(name: $0.name, image: image, price: $0.price, weight: $0.weight, storeName: $0.storeName, categoryName: $0.categoryName)
                 self?.storeItems.append(storeItem)
             })
             self?.collectionView.reloadData()
@@ -45,6 +47,8 @@ class StoreItemsHorizontalController: HorizontalSnappingController, UICollection
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        storeItems = [StoreItem]()
         
         activityIndicator.center = view.center
         activityIndicator.startAnimating()
