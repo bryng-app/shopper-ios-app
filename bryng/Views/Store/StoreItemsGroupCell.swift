@@ -10,6 +10,14 @@ import UIKit
 
 class StoreItemsGroupCell: UICollectionViewCell {
     
+    var storeSection: StoreSection? {
+        didSet {
+            guard let storeSection = storeSection else { return }
+            
+            titleLabel.text = storeSection.name
+        }
+    }
+    
     let titleLabel = UILabel(text: "Section", font: .boldSystemFont(ofSize: 30))
     
     let horizontalController = StoreItemsHorizontalController()

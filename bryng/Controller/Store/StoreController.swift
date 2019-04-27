@@ -12,6 +12,8 @@ let addItemToCartNotificationKey = "app.bryng.addItemToCart"
 
 class StoreController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
+    private var storeSections = [StoreSection]()
+    
     var storeName = "Store Name"
     
     fileprivate let cellId = "cellId"
@@ -27,9 +29,26 @@ class StoreController: UICollectionViewController, UICollectionViewDelegateFlowL
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        fetchStoreSections()
         setupCollectionView()
         
         NotificationCenter.default.addObserver(self, selector: #selector(StoreController.addItemToCart(notification:)), name: addItemToCart, object: nil)
+    }
+    
+    private func fetchStoreSections() {
+        let allCategoriesQuery = AllCategoriesQuery()
+        
+        GraphQL.shared.apollo.fetch(query: allCategoriesQuery) { [weak self] result, error in
+            if let error = error {
+                print("Something went wrong fetch 'allCategories' query! \(error)")
+                return
+            }
+            
+            guard let allCategories = result?.data?.allCategories else { return }
+            
+            allCategories.forEach({self?.storeSections.append(StoreSection(name: $0.name))})
+            self?.collectionView.reloadData()
+        }
     }
     
     @objc func addItemToCart(notification: NSNotification) {
@@ -97,12 +116,13 @@ class StoreController: UICollectionViewController, UICollectionViewDelegateFlowL
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return storeSections.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! StoreItemsGroupCell
+        cell.storeSection = storeSections[indexPath.row]
         return cell
     }
     

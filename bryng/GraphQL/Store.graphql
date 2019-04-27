@@ -9,3 +9,20 @@ query AllStores {
         }
     }
 }
+
+query GetProducts($name: String!) {
+    getProducts(name: $name) {
+        name
+        image
+        price
+        weight
+        storeName
+        categoryName
+    }
+}
+
+query AllCategories {
+    allCategories {
+        name
+    }
+}

@@ -151,6 +151,207 @@ public final class AllStoresQuery: GraphQLQuery {
   }
 }
 
+public final class GetProductsQuery: GraphQLQuery {
+  public let operationDefinition =
+    "query GetProducts($name: String!) {\n  getProducts(name: $name) {\n    __typename\n    name\n    image\n    price\n    weight\n    storeName\n    categoryName\n  }\n}"
+
+  public var name: String
+
+  public init(name: String) {
+    self.name = name
+  }
+
+  public var variables: GraphQLMap? {
+    return ["name": name]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Query"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("getProducts", arguments: ["name": GraphQLVariable("name")], type: .nonNull(.list(.nonNull(.object(GetProduct.selections))))),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(getProducts: [GetProduct]) {
+      self.init(unsafeResultMap: ["__typename": "Query", "getProducts": getProducts.map { (value: GetProduct) -> ResultMap in value.resultMap }])
+    }
+
+    public var getProducts: [GetProduct] {
+      get {
+        return (resultMap["getProducts"] as! [ResultMap]).map { (value: ResultMap) -> GetProduct in GetProduct(unsafeResultMap: value) }
+      }
+      set {
+        resultMap.updateValue(newValue.map { (value: GetProduct) -> ResultMap in value.resultMap }, forKey: "getProducts")
+      }
+    }
+
+    public struct GetProduct: GraphQLSelectionSet {
+      public static let possibleTypes = ["Product"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("name", type: .nonNull(.scalar(String.self))),
+        GraphQLField("image", type: .nonNull(.scalar(String.self))),
+        GraphQLField("price", type: .nonNull(.scalar(Double.self))),
+        GraphQLField("weight", type: .nonNull(.scalar(String.self))),
+        GraphQLField("storeName", type: .nonNull(.scalar(String.self))),
+        GraphQLField("categoryName", type: .nonNull(.scalar(String.self))),
+      ]
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(name: String, image: String, price: Double, weight: String, storeName: String, categoryName: String) {
+        self.init(unsafeResultMap: ["__typename": "Product", "name": name, "image": image, "price": price, "weight": weight, "storeName": storeName, "categoryName": categoryName])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var name: String {
+        get {
+          return resultMap["name"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "name")
+        }
+      }
+
+      public var image: String {
+        get {
+          return resultMap["image"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "image")
+        }
+      }
+
+      public var price: Double {
+        get {
+          return resultMap["price"]! as! Double
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "price")
+        }
+      }
+
+      public var weight: String {
+        get {
+          return resultMap["weight"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "weight")
+        }
+      }
+
+      public var storeName: String {
+        get {
+          return resultMap["storeName"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "storeName")
+        }
+      }
+
+      public var categoryName: String {
+        get {
+          return resultMap["categoryName"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "categoryName")
+        }
+      }
+    }
+  }
+}
+
+public final class AllCategoriesQuery: GraphQLQuery {
+  public let operationDefinition =
+    "query AllCategories {\n  allCategories {\n    __typename\n    name\n  }\n}"
+
+  public init() {
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Query"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("allCategories", type: .nonNull(.list(.nonNull(.object(AllCategory.selections))))),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(allCategories: [AllCategory]) {
+      self.init(unsafeResultMap: ["__typename": "Query", "allCategories": allCategories.map { (value: AllCategory) -> ResultMap in value.resultMap }])
+    }
+
+    public var allCategories: [AllCategory] {
+      get {
+        return (resultMap["allCategories"] as! [ResultMap]).map { (value: ResultMap) -> AllCategory in AllCategory(unsafeResultMap: value) }
+      }
+      set {
+        resultMap.updateValue(newValue.map { (value: AllCategory) -> ResultMap in value.resultMap }, forKey: "allCategories")
+      }
+    }
+
+    public struct AllCategory: GraphQLSelectionSet {
+      public static let possibleTypes = ["Category"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("name", type: .nonNull(.scalar(String.self))),
+      ]
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(name: String) {
+        self.init(unsafeResultMap: ["__typename": "Category", "name": name])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var name: String {
+        get {
+          return resultMap["name"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "name")
+        }
+      }
+    }
+  }
+}
+
 public final class MeQuery: GraphQLQuery {
   public let operationDefinition =
     "query Me {\n  me {\n    __typename\n    fullname\n    email\n    username\n  }\n}"

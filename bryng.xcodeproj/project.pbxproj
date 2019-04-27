@@ -35,13 +35,14 @@
 		8010304B226226A70079ABBB /* SocialMediaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8010304A226226A70079ABBB /* SocialMediaModel.swift */; };
 		8010304D2262474D0079ABBB /* OrdersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8010304C2262474D0079ABBB /* OrdersController.swift */; };
 		8010304F22624B7E0079ABBB /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8010304E22624B7E0079ABBB /* OrderCell.swift */; };
-		8012E885226AF1E40082746B /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 8012E884226AF1E40082746B /* schema.json */; };
 		8012E887226B1C200082746B /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012E886226B1C200082746B /* ProfileModel.swift */; };
 		8012E889226B58D50082746B /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012E888226B58D50082746B /* Store.swift */; };
 		8012E88B226B5A640082746B /* Store.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 8012E88A226B5A640082746B /* Store.graphql */; };
 		8012E88D226B62640082746B /* GraphQLService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012E88C226B62640082746B /* GraphQLService.swift */; };
 		8012FD132272295F0044C1AC /* Location.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 8012FD122272295F0044C1AC /* Location.graphql */; };
 		802973BF224F57E900A362D6 /* AllStoresController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802973BE224F57E900A362D6 /* AllStoresController.swift */; };
+		805A9AD1227376AD0058D40D /* StoreSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805A9AD0227376AD0058D40D /* StoreSection.swift */; };
+		805A9AD322737B7D0058D40D /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 805A9AD222737B7D0058D40D /* schema.json */; };
 		808533B62255263D005BF967 /* AllStoresCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808533B52255263D005BF967 /* AllStoresCell.swift */; };
 		8089786C224A6724003DEF2B /* UIDevice+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8089786B224A6724003DEF2B /* UIDevice+Name.swift */; };
 		80945AD92268F7A700341894 /* Queries.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 80945AD82268F7A700341894 /* Queries.graphql */; };
@@ -110,13 +111,14 @@
 		8010304A226226A70079ABBB /* SocialMediaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaModel.swift; sourceTree = "<group>"; };
 		8010304C2262474D0079ABBB /* OrdersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersController.swift; sourceTree = "<group>"; };
 		8010304E22624B7E0079ABBB /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
-		8012E884226AF1E40082746B /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		8012E886226B1C200082746B /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		8012E888226B58D50082746B /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		8012E88A226B5A640082746B /* Store.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Store.graphql; sourceTree = "<group>"; };
 		8012E88C226B62640082746B /* GraphQLService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLService.swift; sourceTree = "<group>"; };
 		8012FD122272295F0044C1AC /* Location.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Location.graphql; sourceTree = "<group>"; };
 		802973BE224F57E900A362D6 /* AllStoresController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllStoresController.swift; sourceTree = "<group>"; };
+		805A9AD0227376AD0058D40D /* StoreSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreSection.swift; sourceTree = "<group>"; };
+		805A9AD222737B7D0058D40D /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		808533B52255263D005BF967 /* AllStoresCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllStoresCell.swift; sourceTree = "<group>"; };
 		8089786B224A6724003DEF2B /* UIDevice+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Name.swift"; sourceTree = "<group>"; };
 		80945AD82268F7A700341894 /* Queries.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Queries.graphql; sourceTree = "<group>"; };
@@ -346,10 +348,10 @@
 				80B002702247E9BA00E92DDB /* AppDelegate.swift */,
 				80B002722247E9BA00E92DDB /* ViewController.swift */,
 				80945ADA226905F500341894 /* API.swift */,
+				805A9AD222737B7D0058D40D /* schema.json */,
 				80B002742247E9BA00E92DDB /* Main.storyboard */,
 				80B0027A2247E9BC00E92DDB /* Assets.xcassets */,
 				80B0027C2247E9BC00E92DDB /* LaunchScreen.storyboard */,
-				8012E884226AF1E40082746B /* schema.json */,
 				80B0027F2247E9BC00E92DDB /* Info.plist */,
 				80B002772247E9BA00E92DDB /* bryng.xcdatamodeld */,
 			);
@@ -374,6 +376,7 @@
 				8000764E22672915008B09EA /* CartProduct.swift */,
 				8012E886226B1C200082746B /* ProfileModel.swift */,
 				8012E888226B58D50082746B /* Store.swift */,
+				805A9AD0227376AD0058D40D /* StoreSection.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -475,8 +478,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8012E885226AF1E40082746B /* schema.json in Resources */,
 				80B0027E2247E9BC00E92DDB /* LaunchScreen.storyboard in Resources */,
+				805A9AD322737B7D0058D40D /* schema.json in Resources */,
 				8012E88B226B5A640082746B /* Store.graphql in Resources */,
 				800F7A8A2269FFAB00020848 /* Login.graphql in Resources */,
 				80945AD92268F7A700341894 /* Queries.graphql in Resources */,
@@ -595,6 +598,7 @@
 				800BBAAC22480C4600110A0C /* UIView+Layout.swift in Sources */,
 				8010304F22624B7E0079ABBB /* OrderCell.swift in Sources */,
 				8003E85B22687197005200C5 /* LoginController.swift in Sources */,
+				805A9AD1227376AD0058D40D /* StoreSection.swift in Sources */,
 				80C6297A225CF9BF00B943E1 /* SnappingLayout.swift in Sources */,
 				8001EB232264706400D4514F /* MapStoreInformationView.swift in Sources */,
 				8012E889226B58D50082746B /* Store.swift in Sources */,
