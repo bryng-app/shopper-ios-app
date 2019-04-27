@@ -12,7 +12,7 @@ let addItemToCartNotificationKey = "app.bryng.addItemToCart"
 
 class StoreController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-    private var storeSections = [StoreSection]()
+    private var storeCategories = [StoreCategory]()
     
     var storeName = "Store Name"
     
@@ -46,7 +46,7 @@ class StoreController: UICollectionViewController, UICollectionViewDelegateFlowL
             
             guard let allCategories = result?.data?.allCategories else { return }
             
-            allCategories.forEach({self?.storeSections.append(StoreSection(name: $0.name))})
+            allCategories.forEach({self?.storeCategories.append(StoreCategory(name: $0.name))})
             self?.collectionView.reloadData()
         }
     }
@@ -116,13 +116,13 @@ class StoreController: UICollectionViewController, UICollectionViewDelegateFlowL
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return storeSections.count
+        return storeCategories.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! StoreItemsGroupCell
-        cell.storeSection = storeSections[indexPath.row]
+        cell.storeCategory = storeCategories[indexPath.row]
         return cell
     }
     

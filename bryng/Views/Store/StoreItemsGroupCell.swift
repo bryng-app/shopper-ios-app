@@ -10,17 +10,17 @@ import UIKit
 
 class StoreItemsGroupCell: UICollectionViewCell {
     
-    var storeSection: StoreSection? {
+    var storeCategory: StoreCategory? {
         didSet {
-            guard let storeSection = storeSection else { return }
+            guard let storeCategory = storeCategory else { return }
             
-            titleLabel.text = storeSection.name
+            titleLabel.text = storeCategory.name
+            horizontalController.category = storeCategory.name
         }
     }
     
-    let titleLabel = UILabel(text: "Section", font: .boldSystemFont(ofSize: 30))
-    
-    let horizontalController = StoreItemsHorizontalController()
+    fileprivate let titleLabel = UILabel(text: "Section", font: .boldSystemFont(ofSize: 30))
+    fileprivate let horizontalController = StoreItemsHorizontalController()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

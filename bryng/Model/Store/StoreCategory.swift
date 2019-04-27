@@ -1,5 +1,5 @@
 //
-//  StoreSection.swift
+//  StoreCategory.swift
 //  bryng
 //
 //  Created by Florian Woelki on 26.04.19.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct StoreSection {
+struct StoreCategory {
     
     let name: String
     

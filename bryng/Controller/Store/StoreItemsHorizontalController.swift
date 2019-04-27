@@ -10,10 +10,44 @@ import UIKit
 
 class StoreItemsHorizontalController: HorizontalSnappingController, UICollectionViewDelegateFlowLayout {
 
-    let cellId = "cellId"
+    var storeItems = [StoreItem]()
+    
+    fileprivate let cellId = "cellId"
+    fileprivate let activityIndicator = UIActivityIndicatorView(style: .gray)
+    
+    var category: String? {
+        didSet {
+            guard let category = category else { return }
+            
+            fetchStoreItems(category)
+        }
+    }
+    
+    private func fetchStoreItems(_ category: String) {
+        let getProductsQuery = GetProductsQuery(name: category)
+        
+        GraphQL.shared.apollo.fetch(query: getProductsQuery) { [weak self] result, error in
+            if let error = error {
+                print("Something went wrong while fetching 'getProducts' query! \(error)")
+                return
+            }
+            
+            guard let products = result?.data?.getProducts else { return }
+            
+            products.forEach({
+                let storeItem = StoreItem(name: $0.name, image: $0.image, price: $0.price, weight: $0.weight, storeName: $0.storeName, categoryName: $0.categoryName)
+                self?.storeItems.append(storeItem)
+            })
+            self?.collectionView.reloadData()
+            self?.activityIndicator.stopAnimating()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        activityIndicator.center = view.center
+        activityIndicator.startAnimating()
         
         collectionView.backgroundColor = .white
         
@@ -22,12 +56,13 @@ class StoreItemsHorizontalController: HorizontalSnappingController, UICollection
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 9
+        return storeItems.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! StoreItemRowCell
+        cell.storeItem = storeItems[indexPath.row]
         cell.didAddItemToCart = {
             let name = Notification.Name(rawValue: addItemToCartNotificationKey)
             NotificationCenter.default.post(name: name, object: nil)
