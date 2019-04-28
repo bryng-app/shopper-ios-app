@@ -28,6 +28,7 @@ class AllStoresCell: UICollectionViewCell {
         iv.widthAnchor.constraint(equalToConstant: 64).isActive = true
         iv.heightAnchor.constraint(equalToConstant: 64).isActive = true
         iv.layer.cornerRadius = 8
+        iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
         return iv
     }()
