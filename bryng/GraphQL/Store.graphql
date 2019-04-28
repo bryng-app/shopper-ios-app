@@ -12,6 +12,7 @@ query AllStores {
 
 query GetProducts($name: String!) {
     getProducts(name: $name) {
+        id
         name
         image
         price
@@ -24,5 +25,17 @@ query GetProducts($name: String!) {
 query AllCategories {
     allCategories {
         name
+    }
+}
+
+query GetProduct($id: String!) {
+    getProduct(id: $id) {
+        id
+        name
+        image
+        price
+        weight
+        storeName
+        categoryName
     }
 }

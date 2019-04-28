@@ -153,7 +153,7 @@ public final class AllStoresQuery: GraphQLQuery {
 
 public final class GetProductsQuery: GraphQLQuery {
   public let operationDefinition =
-    "query GetProducts($name: String!) {\n  getProducts(name: $name) {\n    __typename\n    name\n    image\n    price\n    weight\n    storeName\n    categoryName\n  }\n}"
+    "query GetProducts($name: String!) {\n  getProducts(name: $name) {\n    __typename\n    id\n    name\n    image\n    price\n    weight\n    storeName\n    categoryName\n  }\n}"
 
   public var name: String
 
@@ -196,6 +196,7 @@ public final class GetProductsQuery: GraphQLQuery {
 
       public static let selections: [GraphQLSelection] = [
         GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("name", type: .nonNull(.scalar(String.self))),
         GraphQLField("image", type: .nonNull(.scalar(String.self))),
         GraphQLField("price", type: .nonNull(.scalar(Double.self))),
@@ -210,8 +211,8 @@ public final class GetProductsQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(name: String, image: String, price: Double, weight: String, storeName: String, categoryName: String) {
-        self.init(unsafeResultMap: ["__typename": "Product", "name": name, "image": image, "price": price, "weight": weight, "storeName": storeName, "categoryName": categoryName])
+      public init(id: GraphQLID, name: String, image: String, price: Double, weight: String, storeName: String, categoryName: String) {
+        self.init(unsafeResultMap: ["__typename": "Product", "id": id, "name": name, "image": image, "price": price, "weight": weight, "storeName": storeName, "categoryName": categoryName])
       }
 
       public var __typename: String {
@@ -220,6 +221,15 @@ public final class GetProductsQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var id: GraphQLID {
+        get {
+          return resultMap["id"]! as! GraphQLID
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "id")
         }
       }
 
@@ -346,6 +356,145 @@ public final class AllCategoriesQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "name")
+        }
+      }
+    }
+  }
+}
+
+public final class GetProductQuery: GraphQLQuery {
+  public let operationDefinition =
+    "query GetProduct($id: String!) {\n  getProduct(id: $id) {\n    __typename\n    id\n    name\n    image\n    price\n    weight\n    storeName\n    categoryName\n  }\n}"
+
+  public var id: String
+
+  public init(id: String) {
+    self.id = id
+  }
+
+  public var variables: GraphQLMap? {
+    return ["id": id]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes = ["Query"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("getProduct", arguments: ["id": GraphQLVariable("id")], type: .object(GetProduct.selections)),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(getProduct: GetProduct? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Query", "getProduct": getProduct.flatMap { (value: GetProduct) -> ResultMap in value.resultMap }])
+    }
+
+    public var getProduct: GetProduct? {
+      get {
+        return (resultMap["getProduct"] as? ResultMap).flatMap { GetProduct(unsafeResultMap: $0) }
+      }
+      set {
+        resultMap.updateValue(newValue?.resultMap, forKey: "getProduct")
+      }
+    }
+
+    public struct GetProduct: GraphQLSelectionSet {
+      public static let possibleTypes = ["Product"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+        GraphQLField("name", type: .nonNull(.scalar(String.self))),
+        GraphQLField("image", type: .nonNull(.scalar(String.self))),
+        GraphQLField("price", type: .nonNull(.scalar(Double.self))),
+        GraphQLField("weight", type: .nonNull(.scalar(String.self))),
+        GraphQLField("storeName", type: .nonNull(.scalar(String.self))),
+        GraphQLField("categoryName", type: .nonNull(.scalar(String.self))),
+      ]
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(id: GraphQLID, name: String, image: String, price: Double, weight: String, storeName: String, categoryName: String) {
+        self.init(unsafeResultMap: ["__typename": "Product", "id": id, "name": name, "image": image, "price": price, "weight": weight, "storeName": storeName, "categoryName": categoryName])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var id: GraphQLID {
+        get {
+          return resultMap["id"]! as! GraphQLID
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "id")
+        }
+      }
+
+      public var name: String {
+        get {
+          return resultMap["name"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "name")
+        }
+      }
+
+      public var image: String {
+        get {
+          return resultMap["image"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "image")
+        }
+      }
+
+      public var price: Double {
+        get {
+          return resultMap["price"]! as! Double
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "price")
+        }
+      }
+
+      public var weight: String {
+        get {
+          return resultMap["weight"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "weight")
+        }
+      }
+
+      public var storeName: String {
+        get {
+          return resultMap["storeName"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "storeName")
+        }
+      }
+
+      public var categoryName: String {
+        get {
+          return resultMap["categoryName"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "categoryName")
         }
       }
     }

@@ -21,6 +21,7 @@ class BaseTabBarController: UITabBarController {
             createViewController(viewController: ProfileController(), title: "Profil", unfilledImageName: "contacts", filledImageName: "contacts-filled"),
         ]
         
+        CoreDataManager.shared.removeAllCartItems()
         selectedViewController = viewControllers![1]
     }
     

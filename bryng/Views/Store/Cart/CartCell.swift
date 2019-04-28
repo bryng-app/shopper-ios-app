@@ -17,12 +17,29 @@ class CartCell: UITableViewCell {
             productNameLabel.text = cartProduct.name
             amount = cartProduct.amount
             amountLabel.text = "Anzahl: \(cartProduct.amount)"
+            
+            var transformedPrice = String(cartProduct.price).replacingOccurrences(of: ".", with: ",")
+            if transformedPrice.count <= 3 {
+                transformedPrice.append("0")
+            }
+            
+            priceLabel.text = "\(transformedPrice)€ je"
+            
+            guard let imageUrl = cartProduct.image else {
+                productImageView.image = #imageLiteral(resourceName: "select_photo_empty")
+                return
+            }
+            productImageView.sd_setImage(with: URL(string: imageUrl))
         }
     }
     
     private let productImageView: UIImageView = {
         let iv = UIImageView()
-        iv.backgroundColor = .red
+        iv.backgroundColor = .white
+        iv.clipsToBounds = true
+        iv.image = #imageLiteral(resourceName: "select_photo_empty")
+        iv.contentMode = .scaleAspectFit
+        iv.layer.cornerRadius = 16
         return iv
     }()
     
@@ -41,6 +58,10 @@ class CartCell: UITableViewCell {
     }()
     
     @objc private func didTapOnAddAmount() {
+        guard let cartProduct = cartProduct else { return }
+        
+        CoreDataManager.shared.addCartItem(id: cartProduct.id)
+        
         amount += 1
         amountLabel.text = "Anzahl: \(amount)"
         
@@ -57,6 +78,10 @@ class CartCell: UITableViewCell {
     
     @objc private func didTapOnRemoveAmount() {
         if amount > 1 {
+            guard let cartProduct = cartProduct else { return }
+            
+            CoreDataManager.shared.removeCartItem(id: cartProduct.id)
+            
             removeAmountButton.tintColor = .primaryColor
             
             amount -= 1

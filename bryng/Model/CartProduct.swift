@@ -8,9 +8,12 @@
 
 import Foundation
 
-struct CartProduct {
+struct CartProduct : Hashable {
     
+    let id: String
     let name: String
     let amount: Int
+    let price: Double
+    let image: String?
     
 }

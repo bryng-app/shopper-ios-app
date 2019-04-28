@@ -55,6 +55,15 @@ class StoreController: UICollectionViewController, UICollectionViewDelegateFlowL
         storeHeaderView?.addItemToCart()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        guard let storeHeaderView = storeHeaderView else { return }
+    
+        let size = CoreDataManager.shared.getAmountOfCartItems()
+        storeHeaderView.cartButton.badgeLabel.text = "\(String(size))"
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // self.navigationController?.setNavigationBarHidden(true, animated: false)
@@ -90,6 +99,7 @@ class StoreController: UICollectionViewController, UICollectionViewDelegateFlowL
         storeHeaderView?.informationLabel.attributedText = attributedText
         
         storeHeaderView?.handleDismiss = { [weak self] in
+            CoreDataManager.shared.removeAllCartItems()
             self?.storeHeaderView?.animator.stopAnimation(true)
             // self?.navigationController?.setNavigationBarHidden(false, animated: false)
             self?.navigationController?.popViewController(animated: true)

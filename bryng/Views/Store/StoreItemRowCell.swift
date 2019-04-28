@@ -33,7 +33,7 @@ class StoreItemRowCell: UICollectionViewCell {
         }
     }
 
-    var didAddItemToCart: (() -> ())?
+    var didAddItemToCart: ((_ id: String) -> ())?
     
     let imageView: UIImageView = {
         let iv = UIImageView()
@@ -80,7 +80,9 @@ class StoreItemRowCell: UICollectionViewCell {
     
     @objc fileprivate func onAddItemToCart() {
         getButton.pulsate()
-        didAddItemToCart?()
+        
+        guard let storeItem = storeItem else { return }
+        didAddItemToCart?(storeItem.id)
     }
     
     required init?(coder aDecoder: NSCoder) {

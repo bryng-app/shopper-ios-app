@@ -37,7 +37,7 @@ class StoreItemsHorizontalController: HorizontalSnappingController, UICollection
             self?.storeItems.removeAll()
             products.forEach({
                 let image = $0.image == "" ? nil : $0.image
-                let storeItem = StoreItem(name: $0.name, image: image, price: $0.price, weight: $0.weight, storeName: $0.storeName, categoryName: $0.categoryName)
+                let storeItem = StoreItem(id: $0.id, name: $0.name, image: image, price: $0.price, weight: $0.weight, storeName: $0.storeName, categoryName: $0.categoryName)
                 self?.storeItems.append(storeItem)
             })
             self?.collectionView.reloadData()
@@ -67,9 +67,11 @@ class StoreItemsHorizontalController: HorizontalSnappingController, UICollection
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! StoreItemRowCell
         cell.storeItem = storeItems[indexPath.row]
-        cell.didAddItemToCart = {
+        cell.didAddItemToCart = { id in
             let name = Notification.Name(rawValue: addItemToCartNotificationKey)
             NotificationCenter.default.post(name: name, object: nil)
+            
+            CoreDataManager.shared.addCartItem(id: id)
         }
         return cell
     }

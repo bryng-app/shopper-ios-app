@@ -13,20 +13,44 @@ class CartController: UITableViewController {
     private var cartProducts = [CartProduct]()
     private let cellId = "cellId"
     
+    private let activityIndicator = UIActivityIndicatorView(style: .gray)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        cartProducts = [
-            CartProduct(name: "Apfel", amount: 3),
-            CartProduct(name: "Manderine", amount: 2),
-            CartProduct(name: "Banane", amount: 8)
-        ]
+        activityIndicator.startAnimating()
+        activityIndicator.fillSuperview()
+        fetchCartProducts()
         
         tableView.backgroundColor = .white
         tableView.allowsSelection = false
         tableView.tableFooterView = UIView()
         
         tableView.register(CartCell.self, forCellReuseIdentifier: cellId)
+    }
+    
+    private func fetchCartProducts() {
+        CoreDataManager.shared.getCartItems { [weak self] (storeItems) in
+            var cartProductsDict = [CartProduct: Int]()
+            
+            for storeItem in storeItems {
+                let cartProduct = CartProduct(id: storeItem.id, name: storeItem.name, amount: 0, price: storeItem.price, image: storeItem.image)
+                
+                if let value = cartProductsDict[cartProduct] {
+                    cartProductsDict[cartProduct] = value + 1
+                } else {
+                    cartProductsDict[cartProduct] = 1
+                }
+            }
+            
+            for (cartProduct, amount) in cartProductsDict {
+                let cartProduct = CartProduct(id: cartProduct.id, name: cartProduct.name, amount: amount, price: cartProduct.price, image: cartProduct.image == "" ? nil : cartProduct.image)
+                self?.cartProducts.append(cartProduct)
+            }
+            
+            self?.tableView.reloadData()
+            self?.activityIndicator.stopAnimating()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -80,6 +104,7 @@ class CartController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Löschen") { (action, indexPath) in
+            CoreDataManager.shared.removeCartItem(id: self.cartProducts[indexPath.row].id, completly: true)
             self.cartProducts.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
         }
