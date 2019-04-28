@@ -36,7 +36,6 @@
 		8010304D2262474D0079ABBB /* OrdersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8010304C2262474D0079ABBB /* OrdersController.swift */; };
 		8010304F22624B7E0079ABBB /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8010304E22624B7E0079ABBB /* OrderCell.swift */; };
 		8010CE6522745AD100316C83 /* StoreItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8010CE6422745AD100316C83 /* StoreItem.swift */; };
-		8010CE672274611C00316C83 /* UIImageView+Fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8010CE662274611C00316C83 /* UIImageView+Fetch.swift */; };
 		8012E887226B1C200082746B /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012E886226B1C200082746B /* ProfileModel.swift */; };
 		8012E889226B58D50082746B /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8012E888226B58D50082746B /* Store.swift */; };
 		8012E88B226B5A640082746B /* Store.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 8012E88A226B5A640082746B /* Store.graphql */; };
@@ -114,7 +113,6 @@
 		8010304C2262474D0079ABBB /* OrdersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersController.swift; sourceTree = "<group>"; };
 		8010304E22624B7E0079ABBB /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
 		8010CE6422745AD100316C83 /* StoreItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItem.swift; sourceTree = "<group>"; };
-		8010CE662274611C00316C83 /* UIImageView+Fetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Fetch.swift"; sourceTree = "<group>"; };
 		8012E886226B1C200082746B /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		8012E888226B58D50082746B /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		8012E88A226B5A640082746B /* Store.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Store.graphql; sourceTree = "<group>"; };
@@ -242,7 +240,6 @@
 				8089786B224A6724003DEF2B /* UIDevice+Name.swift */,
 				80AB976C22567561002507B9 /* UILabel.swift */,
 				80F6F65B2266310800C7B591 /* UIColor+Variables.swift */,
-				8010CE662274611C00316C83 /* UIImageView+Fetch.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -630,7 +627,6 @@
 				80CE1B2A2258ED2000B20351 /* StoreHeaderView.swift in Sources */,
 				80E36BC02263435200612AF1 /* MyProfileCell.swift in Sources */,
 				80C62976225CF02B00B943E1 /* StoreItemRowCell.swift in Sources */,
-				8010CE672274611C00316C83 /* UIImageView+Fetch.swift in Sources */,
 				800BBAAE2248122300110A0C /* UIButton+Layout.swift in Sources */,
 				80E36BC922639D0600612AF1 /* MyProfileViewModel.swift in Sources */,
 				8000764B22671F64008B09EA /* CartController.swift in Sources */,

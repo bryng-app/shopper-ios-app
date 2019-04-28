@@ -6,8 +6,8 @@ target 'bryng' do
   use_frameworks!
 
   # Pods for bryng
-  pod 'SDWebImage','~>4.4.2'
   pod 'JGProgressHUD','~>2.0.3'
   pod 'Apollo','~>0.10'
+  pod 'SDWebImage', '~>5.0'
 
 end

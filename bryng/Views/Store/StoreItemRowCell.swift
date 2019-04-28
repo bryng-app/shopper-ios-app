@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class StoreItemRowCell: UICollectionViewCell {
     
@@ -23,8 +24,12 @@ class StoreItemRowCell: UICollectionViewCell {
             nameLabel.text = storeItem.name
             weightLabel.text = storeItem.weight
             
-            guard let imageUrl = storeItem.image else { return }
-            imageView.downloaded(from: imageUrl)
+            guard let imageUrl = storeItem.image else {
+                imageView.image = #imageLiteral(resourceName: "select_photo_empty")
+                return
+            }
+            let url = URL(string: imageUrl)
+            imageView.sd_setImage(with: url)
         }
     }
 
