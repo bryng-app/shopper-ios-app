@@ -10,7 +10,6 @@
 		57B1AB2B72C6D7D7AEAFADF0 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B1A4AD1043C74ACE4125E7 /* CoreDataManager.swift */; };
 		8000764B22671F64008B09EA /* CartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8000764A22671F64008B09EA /* CartController.swift */; };
 		8000764D22672145008B09EA /* CartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8000764C22672145008B09EA /* CartCell.swift */; };
-		8000764F22672915008B09EA /* CartProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8000764E22672915008B09EA /* CartProduct.swift */; };
 		80007651226730A1008B09EA /* CartHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80007650226730A1008B09EA /* CartHeader.swift */; };
 		8001EB232264706400D4514F /* MapStoreInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8001EB222264706400D4514F /* MapStoreInformationView.swift */; };
 		8002BDB92265EB1700CECB4C /* PreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8002BDB82265EB1700CECB4C /* PreviewController.swift */; };
@@ -24,6 +23,9 @@
 		800BBAA922480AB900110A0C /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800BBAA822480AB900110A0C /* ProfileController.swift */; };
 		800BBAAC22480C4600110A0C /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800BBAAB22480C4600110A0C /* UIView+Layout.swift */; };
 		800BBAAE2248122300110A0C /* UIButton+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800BBAAD2248122300110A0C /* UIButton+Layout.swift */; };
+		800D382C2275CB50006D5A4A /* CoreDataManager+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800D382B2275CB50006D5A4A /* CoreDataManager+Login.swift */; };
+		800D382E2275CB8F006D5A4A /* CoreDataManager+CartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800D382D2275CB8F006D5A4A /* CoreDataManager+CartItem.swift */; };
+		800D38302275D5EA006D5A4A /* CartProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800D382F2275D5EA006D5A4A /* CartProduct.swift */; };
 		800E3F6D224AB3820030A61A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 800E3F6C224AB3820030A61A /* MapKit.framework */; };
 		800F7A8A2269FFAB00020848 /* Login.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 800F7A892269FFAB00020848 /* Login.graphql */; };
 		800F7A8C226A0A4D00020848 /* Register.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 800F7A8B226A0A4D00020848 /* Register.graphql */; };
@@ -86,7 +88,6 @@
 		57B1A4AD1043C74ACE4125E7 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		8000764A22671F64008B09EA /* CartController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartController.swift; sourceTree = "<group>"; };
 		8000764C22672145008B09EA /* CartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCell.swift; sourceTree = "<group>"; };
-		8000764E22672915008B09EA /* CartProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartProduct.swift; sourceTree = "<group>"; };
 		80007650226730A1008B09EA /* CartHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartHeader.swift; sourceTree = "<group>"; };
 		8001EB222264706400D4514F /* MapStoreInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapStoreInformationView.swift; sourceTree = "<group>"; };
 		8002BDB82265EB1700CECB4C /* PreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewController.swift; sourceTree = "<group>"; };
@@ -100,6 +101,9 @@
 		800BBAA822480AB900110A0C /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		800BBAAB22480C4600110A0C /* UIView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 		800BBAAD2248122300110A0C /* UIButton+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Layout.swift"; sourceTree = "<group>"; };
+		800D382B2275CB50006D5A4A /* CoreDataManager+Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataManager+Login.swift"; sourceTree = "<group>"; };
+		800D382D2275CB8F006D5A4A /* CoreDataManager+CartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataManager+CartItem.swift"; sourceTree = "<group>"; };
+		800D382F2275D5EA006D5A4A /* CartProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartProduct.swift; sourceTree = "<group>"; };
 		800E3F6C224AB3820030A61A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		800E3F70224AB9B60030A61A /* berlin.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = berlin.gpx; sourceTree = "<group>"; };
 		800F7A892269FFAB00020848 /* Login.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Login.graphql; sourceTree = "<group>"; };
@@ -185,6 +189,8 @@
 			isa = PBXGroup;
 			children = (
 				57B1A4AD1043C74ACE4125E7 /* CoreDataManager.swift */,
+				800D382B2275CB50006D5A4A /* CoreDataManager+Login.swift */,
+				800D382D2275CB8F006D5A4A /* CoreDataManager+CartItem.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -386,8 +392,8 @@
 				80C6EC8D224BFF55008E6EA9 /* GroceryShop.swift */,
 				8010304A226226A70079ABBB /* SocialMediaModel.swift */,
 				80F6F65D2266357400C7B591 /* Page.swift */,
-				8000764E22672915008B09EA /* CartProduct.swift */,
 				8012E886226B1C200082746B /* ProfileModel.swift */,
+				800D382F2275D5EA006D5A4A /* CartProduct.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -586,9 +592,11 @@
 				8010CE6522745AD100316C83 /* StoreItem.swift in Sources */,
 				80103047226214F40079ABBB /* SocialMediaCell.swift in Sources */,
 				8012E88D226B62640082746B /* GraphQLService.swift in Sources */,
+				800D38302275D5EA006D5A4A /* CartProduct.swift in Sources */,
 				80DE5EBD225CEC5400A4C175 /* StoreItemsGroupCell.swift in Sources */,
 				8003E85D2268728D005200C5 /* LoginViewModel.swift in Sources */,
 				8002BDB92265EB1700CECB4C /* PreviewController.swift in Sources */,
+				800D382C2275CB50006D5A4A /* CoreDataManager+Login.swift in Sources */,
 				8009AEC8225E70CB00917602 /* BaseViewController.swift in Sources */,
 				8000764D22672145008B09EA /* CartCell.swift in Sources */,
 				80B002862247E9D800E92DDB /* BaseTabBarController.swift in Sources */,
@@ -605,7 +613,6 @@
 				808533B62255263D005BF967 /* AllStoresCell.swift in Sources */,
 				801030402261D9980079ABBB /* AboutUsController.swift in Sources */,
 				80C6297C225D22AD00B943E1 /* BadgeButton.swift in Sources */,
-				8000764F22672915008B09EA /* CartProduct.swift in Sources */,
 				80E36BC52263790900612AF1 /* RegistrationViewModel.swift in Sources */,
 				800BBAAC22480C4600110A0C /* UIView+Layout.swift in Sources */,
 				8010304F22624B7E0079ABBB /* OrderCell.swift in Sources */,
@@ -631,6 +638,7 @@
 				80E36BC922639D0600612AF1 /* MyProfileViewModel.swift in Sources */,
 				8000764B22671F64008B09EA /* CartController.swift in Sources */,
 				8003E85F22689A1B005200C5 /* ProfileCell.swift in Sources */,
+				800D382E2275CB8F006D5A4A /* CoreDataManager+CartItem.swift in Sources */,
 				80C62978225CF2D200B943E1 /* HorizontalSnappingController.swift in Sources */,
 				802973BF224F57E900A362D6 /* AllStoresController.swift in Sources */,
 				8009AEC4225DEA6C00917602 /* MapController.swift in Sources */,

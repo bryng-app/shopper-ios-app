@@ -15,6 +15,8 @@ class CartController: UITableViewController {
     
     private let activityIndicator = UIActivityIndicatorView(style: .gray)
     
+    private let feedbackLabel = UILabel(text: "Hier ist nichts drin. 😕", font: .systemFont(ofSize: 24))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,7 +52,18 @@ class CartController: UITableViewController {
             
             self?.tableView.reloadData()
             self?.activityIndicator.stopAnimating()
+            
+            if self?.cartProducts.count == 0 {
+                self?.displayFeedbackLabel()
+            }
         }
+    }
+    
+    private func displayFeedbackLabel() {
+        tableView.addSubview(feedbackLabel)
+        feedbackLabel.translatesAutoresizingMaskIntoConstraints = false
+        feedbackLabel.centerXAnchor.constraint(equalTo: tableView.centerXAnchor).isActive = true
+        feedbackLabel.centerYAnchor.constraint(equalTo: tableView.centerYAnchor).isActive = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,7 +81,7 @@ class CartController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CartCell
-        
+    
         cell.cartProduct = cartProducts[indexPath.row]
         
         return cell
@@ -103,13 +116,17 @@ class CartController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let deleteAction = UITableViewRowAction(style: .destructive, title: "Löschen") { (action, indexPath) in
-            CoreDataManager.shared.removeCartItem(id: self.cartProducts[indexPath.row].id, completly: true)
-            self.cartProducts.remove(at: indexPath.row)
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
-        }
+        if cartProducts.count != 0 {
+            let deleteAction = UITableViewRowAction(style: .destructive, title: "Löschen") { (action, indexPath) in
+                CoreDataManager.shared.removeCartItem(id: self.cartProducts[indexPath.row].id, completly: true)
+                self.cartProducts.remove(at: indexPath.row)
+                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
         
-        return [deleteAction]
+            return [deleteAction]
+        }
+    
+        return nil
     }
     
 }

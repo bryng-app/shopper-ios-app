@@ -100,6 +100,7 @@ class CartCell: UITableViewCell {
     
     private func setupLayout() {
         addSubview(productImageView)
+        
         productImageView.constrainHeight(constant: 64)
         productImageView.constrainWidth(constant: 64)
         productImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive = true
