@@ -10,12 +10,18 @@ import UIKit
 
 class CartCell: UITableViewCell {
     
+    var callbackSubtractAmount: ((_ price: Double) -> ())?
+    var callbackAddAmount: ((_ price: Double) -> ())?
+    
     var cartProduct: CartProduct? {
         didSet {
             guard let cartProduct = cartProduct else { return }
             
             productNameLabel.text = cartProduct.name
             amount = cartProduct.amount
+            if amount == 1 {
+                removeAmountButton.tintColor = .gray
+            }
             amountLabel.text = "Anzahl: \(cartProduct.amount)"
             
             var transformedPrice = String(cartProduct.price).replacingOccurrences(of: ".", with: ",")
@@ -66,6 +72,8 @@ class CartCell: UITableViewCell {
         amountLabel.text = "Anzahl: \(amount)"
         
         removeAmountButton.tintColor = .primaryColor
+        
+        callbackAddAmount?(cartProduct.price)
     }
     
     private lazy var removeAmountButton: UIButton = {
@@ -89,6 +97,8 @@ class CartCell: UITableViewCell {
                 removeAmountButton.tintColor = .gray
             }
             amountLabel.text = "Anzahl: \(amount)"
+            
+            callbackSubtractAmount?(cartProduct.price)
         }
     }
     

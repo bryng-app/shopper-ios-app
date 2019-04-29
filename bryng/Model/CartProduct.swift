@@ -12,7 +12,7 @@ struct CartProduct : Hashable {
     
     let id: String
     let name: String
-    let amount: Int
+    var amount: Int
     let price: Double
     let image: String?
     

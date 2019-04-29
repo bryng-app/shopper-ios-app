@@ -17,6 +17,8 @@ class CartController: UITableViewController {
     
     private let feedbackLabel = UILabel(text: "Hier ist nichts drin. 😕", font: .systemFont(ofSize: 24))
     
+    private var cartFooter = CartFooter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,7 +28,6 @@ class CartController: UITableViewController {
         
         tableView.backgroundColor = .white
         tableView.allowsSelection = false
-        tableView.tableFooterView = UIView()
         
         tableView.register(CartCell.self, forCellReuseIdentifier: cellId)
     }
@@ -35,6 +36,7 @@ class CartController: UITableViewController {
         CoreDataManager.shared.getCartItems { [weak self] (storeItems) in
             var cartProductsDict = [CartProduct: Int]()
             
+            var totalPrice = 0.0
             for storeItem in storeItems {
                 let cartProduct = CartProduct(id: storeItem.id, name: storeItem.name, amount: 0, price: storeItem.price, image: storeItem.image)
                 
@@ -43,6 +45,8 @@ class CartController: UITableViewController {
                 } else {
                     cartProductsDict[cartProduct] = 1
                 }
+                
+                totalPrice += cartProduct.price
             }
             
             for (cartProduct, amount) in cartProductsDict {
@@ -50,12 +54,15 @@ class CartController: UITableViewController {
                 self?.cartProducts.append(cartProduct)
             }
             
-            self?.tableView.reloadData()
             self?.activityIndicator.stopAnimating()
             
             if self?.cartProducts.count == 0 {
                 self?.displayFeedbackLabel()
+            } else {
+                self?.cartFooter.total = totalPrice
             }
+            
+            self?.tableView.reloadData()
         }
     }
     
@@ -83,6 +90,21 @@ class CartController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CartCell
     
         cell.cartProduct = cartProducts[indexPath.row]
+        
+        cell.callbackAddAmount = { price in
+            if let total = self.cartFooter.total {
+                self.cartFooter.total = total + price
+                self.tableView.reloadData()
+                self.cartProducts[indexPath.row].amount += 1
+            }
+        }
+        
+        cell.callbackSubtractAmount = { price in
+            if let total = self.cartFooter.total {
+                self.cartFooter.total = total - price
+                self.cartProducts[indexPath.row].amount -= 1
+            }
+        }
         
         return cell
     }
@@ -115,10 +137,25 @@ class CartController: UITableViewController {
         return 100
     }
     
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if cartProducts.count != 0 {
+            return cartFooter
+        }
+        return UIView()
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 100
+    }
+    
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         if cartProducts.count != 0 {
             let deleteAction = UITableViewRowAction(style: .destructive, title: "Löschen") { (action, indexPath) in
-                CoreDataManager.shared.removeCartItem(id: self.cartProducts[indexPath.row].id, completly: true)
+                let cartProduct = self.cartProducts[indexPath.row]
+                CoreDataManager.shared.removeCartItem(id: cartProduct.id, completly: true)
+                if let total = self.cartFooter.total {
+                    self.cartFooter.total = total - cartProduct.price * Double(cartProduct.amount)
+                }
                 self.cartProducts.remove(at: indexPath.row)
                 self.tableView.deleteRows(at: [indexPath], with: .automatic)
             }

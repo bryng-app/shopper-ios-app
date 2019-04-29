@@ -40,6 +40,17 @@ extension CoreDataManager {
         return 0
     }
     
+    func getTotalCartItemsPrice(callback: @escaping ((_ total: Double) -> ())) {
+        getCartItems { (storeItems) in
+            var total = 0.0
+            for storeItem in storeItems {
+                total += storeItem.price
+            }
+            
+            callback(total)
+        }
+    }
+    
     func getCartItems(callback: @escaping ((_ cartItems: [StoreItem]) -> ())) {
         let context = persistentContainer.viewContext
         
@@ -94,9 +105,11 @@ extension CoreDataManager {
             let results = try context.fetch(request)
             for data in results {
                 guard let objectData = data as? NSManagedObject else { continue }
-                context.delete(objectData)
-                if !completly {
-                    break
+                if objectData.value(forKey: "id") as? String == id {
+                    context.delete(objectData)
+                    if !completly {
+                        break
+                    }
                 }
             }
         } catch {
