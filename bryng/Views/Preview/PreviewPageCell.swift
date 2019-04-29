@@ -26,9 +26,8 @@ class PreviewPageCell: UICollectionViewCell {
             guard let pageImage = page.image else { return }
             
             imageView.image = pageImage
-            imageView.constrainHeight(constant: 200)
-            imageView.constrainWidth(constant: 200)
-            imageView.contentMode = .scaleAspectFill
+            imageView.constrainHeight(constant: 125)
+            imageView.constrainWidth(constant: 125)
         }
     }
     
@@ -59,7 +58,7 @@ class PreviewPageCell: UICollectionViewCell {
         backgroundColor = .white
         
         addSubview(imageView)
-        imageView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 128, left: 64, bottom: 0, right: 64))
+        imageView.anchor(top: topAnchor, leading: nil, bottom: nil, trailing: nil, padding: .init(top: 128, left: 0, bottom: 0, right: 0))
         imageView.centerXInSuperview()
         
         addSubview(getStartedButton)

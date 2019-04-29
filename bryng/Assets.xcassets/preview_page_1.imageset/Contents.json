@@ -2,6 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "icons8-geschäft-96.png",
       "scale" : "1x"
     },
     {
@@ -10,7 +11,6 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "Bildschirmfoto 2019-04-17 um 08.44.20.png",
       "scale" : "3x"
     }
   ],
