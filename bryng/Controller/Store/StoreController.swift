@@ -66,6 +66,8 @@ class StoreController: UICollectionViewController, UICollectionViewDelegateFlowL
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = false
+        extendedLayoutIncludesOpaqueBars = false
         // self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     

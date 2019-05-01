@@ -30,6 +30,8 @@ class CartFooter: UIView {
         }
     }
     
+    var didClickOnCheckout: (() ->())?
+    
     private let totalCartItemsCost: UILabel = {
         let label = UILabel(text: "Kosten: 00,00€")
         label.font = UIFont.boldSystemFont(ofSize: 18)
@@ -48,7 +50,7 @@ class CartFooter: UIView {
     }()
     
     @objc private func didTapCheckout() {
-        // TODO: Add checkout controller
+        didClickOnCheckout?()
     }
     
     private let seperator = UISeperator.create()

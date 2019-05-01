@@ -80,12 +80,6 @@ class CartController: UITableViewController {
         extendedLayoutIncludesOpaqueBars = true
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        tabBarController?.tabBar.isHidden = false
-        extendedLayoutIncludesOpaqueBars = false
-    }
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CartCell
     
@@ -139,6 +133,10 @@ class CartController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if cartProducts.count != 0 {
+            cartFooter.didClickOnCheckout = { [weak self] in
+                self?.navigationController?.pushViewController(DeliveryTimeController(), animated: true)
+            }
+            
             return cartFooter
         }
         return UIView()
