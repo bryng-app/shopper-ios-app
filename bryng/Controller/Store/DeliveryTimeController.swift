@@ -16,7 +16,7 @@ class DeliveryTimeController: BaseViewController {
         let label = UILabel()
         
         let attributedText = NSMutableAttributedString(string: "Alle Preisinformationen findest du unter\n", attributes: [.font: UIFont.systemFont(ofSize: 14)])
-        attributedText.append(NSAttributedString(string: "https://bryng.app/preise", attributes: [.font: UIFont.boldSystemFont(ofSize: 14)]))
+        attributedText.append(NSAttributedString(string: "https://bryng.app/prices", attributes: [.font: UIFont.boldSystemFont(ofSize: 14)]))
         
         label.attributedText = attributedText
         label.textAlignment = .center
@@ -28,18 +28,27 @@ class DeliveryTimeController: BaseViewController {
         let picker = UIDatePicker()
         picker.datePickerMode = .time
         picker.locale = Locale(identifier: "en_FR")
+        var currentDate = Date()
+        currentDate = currentDate.addingTimeInterval(60.0 * 60.0)
+        picker.minimumDate = currentDate
+        picker.date = currentDate
         return picker
     }()
     
-    private let selectTimeButton: UIButton = {
+    private lazy var continueButton: UIButton = {
         let btn = UIButton(type: .system)
         btn.setTitle("Weiter", for: .normal)
         btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         btn.setTitleColor(.white, for: .normal)
         btn.backgroundColor = UIColor.primaryColor
         btn.layer.cornerRadius = 16
+        btn.addTarget(self, action: #selector(handleContinue), for: .touchUpInside)
         return btn
     }()
+    
+    @objc private func handleContinue() {
+        navigationController?.pushViewController(FinalCheckoutController(), animated: true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,10 +66,10 @@ class DeliveryTimeController: BaseViewController {
         timePicker.anchor(top: titleLabel.bottomAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 16, left: 8, bottom: 0, right: 8))
         timePicker.centerXInSuperview()
         
-        view.addSubview(selectTimeButton)
-        selectTimeButton.anchor(top: timePicker.bottomAnchor, leading: nil, bottom: nil, trailing: nil, padding: .init(top: 16, left: 0, bottom: 0, right: 0))
-        selectTimeButton.constrainWidth(constant: 128)
-        selectTimeButton.centerXInSuperview()
+        view.addSubview(continueButton)
+        continueButton.anchor(top: timePicker.bottomAnchor, leading: nil, bottom: nil, trailing: nil, padding: .init(top: 16, left: 0, bottom: 0, right: 0))
+        continueButton.constrainWidth(constant: 128)
+        continueButton.centerXInSuperview()
         
         view.addSubview(pricesInformationLabel)
         pricesInformationLabel.anchor(top: nil, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 8, bottom: 16, right: 8))
