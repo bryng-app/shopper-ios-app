@@ -47,7 +47,19 @@ class DeliveryTimeController: BaseViewController {
     }()
     
     @objc private func handleContinue() {
-        navigationController?.pushViewController(FinalCheckoutController(), animated: true)
+        let time = getTime()
+        let finalCheckoutController = FinalCheckoutController()
+        finalCheckoutController.time = time
+        
+        navigationController?.pushViewController(finalCheckoutController, animated: true)
+    }
+    
+    private func getTime() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_FR")
+        dateFormatter.dateFormat = "HH:mm"
+        let strDate = dateFormatter.string(from: timePicker.date)
+        return strDate
     }
     
     override func viewDidLoad() {
