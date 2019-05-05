@@ -84,7 +84,7 @@ class StoreHeaderView: UICollectionReusableView {
     fileprivate func setupGradientLayer() {
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
-        gradientLayer.locations = [0.5, 1.1]
+        gradientLayer.locations = [0.25, 1.1]
 
         let gradientContainerView = UIView()
         addSubview(gradientContainerView)

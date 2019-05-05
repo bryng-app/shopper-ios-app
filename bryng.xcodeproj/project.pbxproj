@@ -27,6 +27,9 @@
 		800D382E2275CB8F006D5A4A /* CoreDataManager+CartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800D382D2275CB8F006D5A4A /* CoreDataManager+CartItem.swift */; };
 		800D38302275D5EA006D5A4A /* CartProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800D382F2275D5EA006D5A4A /* CartProduct.swift */; };
 		800E3F6D224AB3820030A61A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 800E3F6C224AB3820030A61A /* MapKit.framework */; };
+		800E8C07227EDC0E00C0360F /* CategoriesListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E8C06227EDC0E00C0360F /* CategoriesListCell.swift */; };
+		800E8C09227EDE5100C0360F /* CategoriesListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E8C08227EDE5100C0360F /* CategoriesListController.swift */; };
+		800E8C0B227EDED300C0360F /* CategoryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800E8C0A227EDED300C0360F /* CategoryListCell.swift */; };
 		800F7A8A2269FFAB00020848 /* Login.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 800F7A892269FFAB00020848 /* Login.graphql */; };
 		800F7A8C226A0A4D00020848 /* Register.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 800F7A8B226A0A4D00020848 /* Register.graphql */; };
 		801030402261D9980079ABBB /* AboutUsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8010303F2261D9980079ABBB /* AboutUsController.swift */; };
@@ -109,6 +112,9 @@
 		800D382F2275D5EA006D5A4A /* CartProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CartProduct.swift; sourceTree = "<group>"; };
 		800E3F6C224AB3820030A61A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		800E3F70224AB9B60030A61A /* berlin.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = berlin.gpx; sourceTree = "<group>"; };
+		800E8C06227EDC0E00C0360F /* CategoriesListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesListCell.swift; sourceTree = "<group>"; };
+		800E8C08227EDE5100C0360F /* CategoriesListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesListController.swift; sourceTree = "<group>"; };
+		800E8C0A227EDED300C0360F /* CategoryListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListCell.swift; sourceTree = "<group>"; };
 		800F7A892269FFAB00020848 /* Login.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Login.graphql; sourceTree = "<group>"; };
 		800F7A8B226A0A4D00020848 /* Register.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Register.graphql; sourceTree = "<group>"; };
 		8010303F2261D9980079ABBB /* AboutUsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsController.swift; sourceTree = "<group>"; };
@@ -413,6 +419,7 @@
 				8000764A22671F64008B09EA /* CartController.swift */,
 				8012A061227A18D00013ACE1 /* DeliveryTimeController.swift */,
 				80E915BD227B66B300CBEFCD /* FinalCheckoutController.swift */,
+				800E8C08227EDE5100C0360F /* CategoriesListController.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -424,6 +431,8 @@
 				80DE5EBC225CEC5400A4C175 /* StoreItemsGroupCell.swift */,
 				80C62975225CF02B00B943E1 /* StoreItemRowCell.swift */,
 				80CE1B292258ED2000B20351 /* StoreHeaderView.swift */,
+				800E8C06227EDC0E00C0360F /* CategoriesListCell.swift */,
+				800E8C0A227EDED300C0360F /* CategoryListCell.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -599,6 +608,8 @@
 				80CE1B282258EBC900B20351 /* StoreController.swift in Sources */,
 				80AB976F22567C80002507B9 /* VerticalStackView.swift in Sources */,
 				8010CE6522745AD100316C83 /* StoreItem.swift in Sources */,
+				800E8C0B227EDED300C0360F /* CategoryListCell.swift in Sources */,
+				800E8C07227EDC0E00C0360F /* CategoriesListCell.swift in Sources */,
 				80103047226214F40079ABBB /* SocialMediaCell.swift in Sources */,
 				8012E88D226B62640082746B /* GraphQLService.swift in Sources */,
 				800D38302275D5EA006D5A4A /* CartProduct.swift in Sources */,
@@ -614,6 +625,7 @@
 				80AB976D22567561002507B9 /* UILabel.swift in Sources */,
 				80CE1B2C2258F07300B20351 /* StoreHeaderLayout.swift in Sources */,
 				80E36BC72263977A00612AF1 /* BryngTextField.swift in Sources */,
+				800E8C09227EDE5100C0360F /* CategoriesListController.swift in Sources */,
 				8012E887226B1C200082746B /* ProfileModel.swift in Sources */,
 				80007651226730A1008B09EA /* CartHeader.swift in Sources */,
 				8002BDBE2265EF7400CECB4C /* PreviewPageCell.swift in Sources */,

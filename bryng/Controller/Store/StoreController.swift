@@ -17,10 +17,13 @@ class StoreController: UICollectionViewController, UICollectionViewDelegateFlowL
     var storeName = "Store Name"
     
     fileprivate let cellId = "cellId"
+    fileprivate let categoriesListCell = "categoriesListCell"
     fileprivate let headerId = "headerId"
     fileprivate let padding: CGFloat = 16
     
     fileprivate let addItemToCart = Notification.Name(rawValue: addItemToCartNotificationKey)
+    
+    private var selectedIndex: Int = 0
     
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -76,6 +79,7 @@ class StoreController: UICollectionViewController, UICollectionViewDelegateFlowL
         collectionView.contentInsetAdjustmentBehavior = .never
         
         collectionView.register(StoreItemsGroupCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.register(CategoriesListCell.self, forCellWithReuseIdentifier: categoriesListCell)
         collectionView.register(StoreHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
     }
     
@@ -128,24 +132,34 @@ class StoreController: UICollectionViewController, UICollectionViewDelegateFlowL
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return storeCategories.count
+        return storeCategories.count == 0 ? 1 : 2
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        if indexPath.row == 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: categoriesListCell, for: indexPath) as! CategoriesListCell
+            cell.categories = storeCategories
+            cell.didSelectCategory = { category, indexPath in
+                self.selectedIndex = indexPath.row
+                self.collectionView.reloadData()
+            }
+            return cell
+        }
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! StoreItemsGroupCell
-        cell.storeCategory = storeCategories[indexPath.row]
+        cell.storeCategory = storeCategories[selectedIndex]
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return .init(width: view.frame.width, height: 300)
+        return indexPath.row == 0 ? .init(width: view.frame.width, height: 75) : .init(width: view.frame.width, height: 300)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
-        return .init(top: 16, left: 0, bottom: 80, right: 0)
+        return .init(top: 0, left: 0, bottom: 80, right: 0)
     }
     
     init() {

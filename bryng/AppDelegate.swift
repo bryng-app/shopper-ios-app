@@ -24,8 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             navController.isNavigationBarHidden = true
             window?.rootViewController = navController
         } else {
-            //window?.rootViewController = BaseTabBarController()
-            window?.rootViewController = UINavigationController(rootViewController: DeliveryTimeController())
+            window?.rootViewController = BaseTabBarController()
+            //window?.rootViewController = UINavigationController(rootViewController: DeliveryTimeController())
         }
         
         return true
