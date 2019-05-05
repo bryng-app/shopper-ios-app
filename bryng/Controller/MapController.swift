@@ -65,7 +65,10 @@ class MapController: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         mapStoreInformationView.didClickOnGoTo = {
             guard let viewController = self.tabBarController?.viewControllers?[1] as? UINavigationController else { return }
             
-            guard let allStoresController = viewController.topViewController as? AllStoresController else { return }
+            guard let allStoresController = viewController.topViewController as? AllStoresController else {
+                viewController.tabBarController?.selectedIndex = 1
+                return
+            }
             
             allStoresController.tabBarController?.selectedIndex = 1
             allStoresController.goToStoreController(name: self.mapStoreInformationView.store!.name)
